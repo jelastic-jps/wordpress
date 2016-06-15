@@ -8,7 +8,7 @@
 		"categories": [
 				"apps/blogs", "apps/content-management"
 		],
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress/master/images/wp.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress/images/wp.png",
 		"type": "php",
 		"homepage": "http://wordpress.org/",
 		"description": {
@@ -33,7 +33,7 @@
 				]
 			},
 			"deployments": [{
-					"archive": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress/master/dumps/wp-admin.zip",
+					"archive": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress/dumps/wp-admin.zip",
 					"name": "wordpress.zip",
 					"context": "ROOT"
 				}
@@ -43,7 +43,7 @@
 					"database": {
 						"name": "wordpress",
 						"user": "wordpress",
-						"dump": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress/master/dumps/wordpress.sql",
+						"dump": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress/dumps/wordpress.sql",
 						"patch": "UPDATE wordpress.wp_posts SET guid='${env.url}?p=1' WHERE id='1';UPDATE wordpress.wp_posts SET guid='${env.url}?p=2' WHERE id='2'; UPDATE wordpress.wp_posts SET guid='${env.url}?p=3' WHERE id='3'; UPDATE wordpress.wp_options SET option_value='${env.protocol}://${env.domain}' WHERE option_name='home'; UPDATE wordpress.wp_options SET option_value='${env.protocol}://${env.domain}' WHERE option_name='siteurl'; UPDATE wordpress.wp_options SET option_value='${user.email}' WHERE option_name='admin_email'; UPDATE wordpress.wp_users SET user_email='${user.email}' WHERE user_login='admin';UPDATE wordpress.wp_users SET user_pass=MD5('${user.appPassword}') WHERE user_login='admin';"
 					}
 				}, {
