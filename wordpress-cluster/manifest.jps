@@ -2,7 +2,7 @@
 	"jpsType": "install",
 	"application": {
 		"id": "wordpresscluster",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/images/wp.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/images/wp.png",
 		"description": {
 			"en": "Get your highly available and scalable clustered solution for WordPress, the extremely popular open source CMS and blogging tool. This package is designed to ensure the load tracking and distribution, as well as automatic adjusting the amount of allocated resources according to it.",
 			"ru": "Оцените преимущества работы с новым доступным и масштабируемым кластерным решением для WordPress, популярнейшего инструмента для бесплатного CMS и создания блога. Этот пакет предназначен для отслеживания и распределения загрузки, а также для автоматического регулирования количества выделенных ресурсов согласно загрузк"
@@ -59,17 +59,17 @@
 						"deploy": [{
 								"name": "WordPress-4.2.1.zip",
 								"context": "ROOT",
-								"archive": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/dumps/wordpress-4.2.1.zip"
+								"archive": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/dumps/wordpress-4.2.1.zip"
 							}
 						]
 					}, {
 						"upload": [{
 								"destPath": "${SERVER_WEBROOT}/ROOT/db-config.php",
-								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/dumps/db-config.php",
+								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/dumps/db-config.php",
 								"nodeMission": "cp"
 							}, {
 								"destPath": "${SERVER_WEBROOT}/ROOT/wp-content/db.php",
-								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/dumps/db.php",
+								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/dumps/db.php",
 								"nodeMission": "cp"
 							}
 						]
@@ -77,11 +77,11 @@
 						"executeScript": {
 							"description": "Configuring Db connections at cp nodes by pairs",
 							"type": "javascript",
-							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/configDbConnections.js"
+							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/configDbConnections.js"
 						}
 					}, {
 						"executeShellCommands": [{
-								"commands": ["curl -fsS \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/wp-configEdit.sh\" -o /var/lib/jelastic/keys/wp-configEdit.sh && bash /var/lib/jelastic/keys/wp-configEdit.sh '${env.protocol}' '${env.domain}'", "rm /var/lib/jelastic/keys/wp-configEdit.sh"],
+								"commands": ["curl -fsS \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/wp-configEdit.sh\" -o /var/lib/jelastic/keys/wp-configEdit.sh && bash /var/lib/jelastic/keys/wp-configEdit.sh '${env.protocol}' '${env.domain}'", "rm /var/lib/jelastic/keys/wp-configEdit.sh"],
 								"nodeMission": "cp"
 							}
 						]
@@ -105,7 +105,7 @@
 					}, {
 						"upload": [{
 								"destPath": "/var/lib/jelastic/keys/DbCreation.sh",
-								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/DbCreation.sh",
+								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/DbCreation.sh",
 								"nodeMission": "sqldb"
 							}
 						]
@@ -178,7 +178,7 @@
 						"executeScript": [{
 								"description": "Enable AutoScaling trigger",
 								"type": "javascript",
-								"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/enableScalingTrigger.js"
+								"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/enableScalingTrigger.js"
 							}
 						]
 					}
@@ -220,7 +220,7 @@
 						"executeScript": {
 							"description": "Configuring db's address on new compute nodes",
 							"type": "javascript",
-							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/replaceDbIPAddedCpNode.js"
+							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/replaceDbIPAddedCpNode.js"
 						}
 					}
 				]
@@ -287,7 +287,7 @@
 					}, {
 						"executeShellCommands": [{
 								"nodeId": "${nodes.sqldb[0].id}",
-								"commands": ["/bin/bash /var/lib/jelastic/keys/DbCreation.sh \"${nodes.sqldb.password}\" \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/dumps/wordpress.sql\" \"${env.url}\" \"${env.protocol}\" \"${env.domain}\" \"${user.email}\"  \"${user.appPassword}\" 2>>/var/lib/jelastic/keys/logs  1>>/var/lib/jelastic/keys/logs"]
+								"commands": ["/bin/bash /var/lib/jelastic/keys/DbCreation.sh \"${nodes.sqldb.password}\" \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/dumps/wordpress.sql\" \"${env.url}\" \"${env.protocol}\" \"${env.domain}\" \"${user.email}\"  \"${user.appPassword}\" 2>>/var/lib/jelastic/keys/logs  1>>/var/lib/jelastic/keys/logs"]
 							}
 						]
 					}
@@ -298,7 +298,7 @@
 						"executeScript": {
 							"description": "Get compute nodes Ids and mirrors compute node's address for rsync",
 							"type": "javascript",
-							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/installRsyncDaemon.js"
+							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/installRsyncDaemon.js"
 						}
 					}
 				]
@@ -320,7 +320,7 @@
 						"upload": [{
 								"nodeId": "${this.nodeId}",
 								"destPath": "${SERVER_WEBROOT}/lsyncd/sync.tar",
-								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/dumps/sync.tar"
+								"sourcePath": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/dumps/sync.tar"
 							}
 						]
 					}, {
@@ -439,7 +439,7 @@
 						"executeScript": {
 							"description": "Configure balancers after remove compute node",
 							"type": "javascript",
-							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/wordpress-cluster/master/scripts/ConfigCPAddress.js"
+							"script": "https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/scripts/ConfigCPAddress.js"
 						}
 					}
 				]
