@@ -1,3 +1,4 @@
+[![Wordpress](images/wp.png)](../wordpress)
 ##  Wordpress
 
 The JPS package deploys WordPress that initially contains 1 application server and 1 database container. The package provides vertical scalling per node and horizontal scaling for each layer out-of-the-box.
