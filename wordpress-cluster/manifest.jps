@@ -287,7 +287,7 @@
 					}, {
 						"executeShellCommands": [{
 								"nodeId": "${nodes.sqldb[0].id}",
-								"commands": ["/bin/bash /var/lib/jelastic/keys/DbCreation.sh \"${nodes.sqldb.password}\" \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/dumps/wordpress.sql\" \"${env.url}\" \"${env.protocol}\" \"${env.domain}\" \"${user.email}\"  \"${user.appPassword}\" 2>>/var/lib/jelastic/keys/logs  1>>/var/lib/jelastic/keys/logs"]
+								"commands": ["/bin/bash /var/lib/jelastic/keys/DbCreation.sh \"${nodes.sqldb.password}\" \"https://raw.githubusercontent.com/jelastic-jps/Wordpress/master/wordpress-cluster/dumps/wordpress.sql\" \"${env.url}\" \"${env.protocol}\" \"${env.domain}\" \"${user.email}\"  \"${user.appPassword}\" 2>>/var/lib/jelastic/keys/logs  1>>/var/lib/jelastic/keys/logs"]
 							}
 						]
 					}
