@@ -1,4 +1,4 @@
-[![Wordpress](images/wp.png)](../../../Wordpress)
+[![Wordpress](images/wp.png)](../../../wordpress)
 ## Wordpress Collection
 
 * [Wordpress](wordpress) - deploys WordPress that initially contains 1 application server and 1 database container (simple solution for websites and blogs).<br />
