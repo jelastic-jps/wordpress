@@ -8,7 +8,7 @@
 		"categories": [
 				"apps/blogs", "apps/content-management"
 		],
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/images/wp.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp.png",
 		"type": "php",
 		"homepage": "http://wordpress.org/",
 		"description": {

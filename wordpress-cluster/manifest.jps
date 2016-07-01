@@ -2,7 +2,7 @@
 	"jpsType": "install",
 	"application": {
 		"id": "wordpresscluster",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-cluster/images/wp.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp.png",
 		"description": {
 			"en": "Get your highly available and scalable clustered solution for WordPress, the extremely popular open source CMS and blogging tool. This package is designed to ensure the load tracking and distribution, as well as automatic adjusting the amount of allocated resources according to it.",
 			"ru": "Оцените преимущества работы с новым доступным и масштабируемым кластерным решением для WordPress, популярнейшего инструмента для бесплатного CMS и создания блога. Этот пакет предназначен для отслеживания и распределения загрузки, а также для автоматического регулирования количества выделенных ресурсов согласно загрузк"
