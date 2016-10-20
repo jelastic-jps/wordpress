@@ -1,10 +1,11 @@
 [![Wordpress](../images/wp.png)](../wordpress-cluster)
-## WordPress Cluster
+## WordPress Cluster + Lsyncd
 
 The JPS package deploys WordPress Cluster that initially contains 2 load balancers, 2 application servers and 2 database containers. The package provides high availability for each layer and autoscaling for application server layer out-of-the-box.
 
 ### Highlights
 This package is designed to handle big load spikes by adjusting the allocated resources and topology configuration on the fly with a help of automatic vertical and horizontal scaling. As result, it provides very cost effective solution for websites and blogs with variable load.
+File synchronization between compute nodes is based on Lsycnd and rsyncd services. Cluster solution based on Jelastic stacks as: nginx load balancer, nginxphp , mysql57.
 
 ### Environment Topology
 
