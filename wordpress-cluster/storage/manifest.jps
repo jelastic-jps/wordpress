@@ -106,7 +106,7 @@
           "executeScript": [{
             "description": "Enable AutoScaling trigger",
             "type": "javascript",
-            "script": "https://download.jelastic.com/public.php?service=files&t=a0ff8d4ba0415cd9972b43ebc5fd14d0&download"
+            "script": "https://raw.github.com/jelastic-jps/wordpress/master/wordpress-cluster/storage/scripts/enableScalingTrigger.js"
           }
           ]
         }
