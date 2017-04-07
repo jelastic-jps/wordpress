@@ -4,10 +4,10 @@
 
 The JPS package deploy Wordpress that initially contains 2 balancers, 2 application servers, 2 MySQL databases and 1 storage container.
 
-##Highlights
+## Highlights
 Get your highly available and scalable clustered solution for Wordpress, the extremely popular open source CMS and blogging tool. This package is designed to ensure the load tracking and distribution, as well as automatic adjusting the amount of allocated resources according to it.
 
-##Environment Topology
+## Environment Topology
 ![Cluster Topology](images/topology.png)
 
 ###Specifics
