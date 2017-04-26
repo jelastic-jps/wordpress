@@ -9,7 +9,7 @@ File synchronization between compute nodes is based on Lsycnd and rsyncd service
 
 ### Environment Topology
 
-![wordpress-cluster-topology](../image/wordpress-cluster-topology.png)
+![wordpress-cluster-topology](../images/wordpress-cluster-topology.png)
 
 ### Specifics
 
