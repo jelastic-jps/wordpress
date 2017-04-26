@@ -8,7 +8,7 @@ This package is designed to handle big load spikes by adjusting the allocated re
 
 ### Environment Topology
 
-![Wordpress Cluster Topology](https://docs.google.com/drawings/d/1mpRISbXAX4TdISQXle2Jv0u9g4QTtgAPJZP7_K2clpw/pub?w=505&h=216)
+![wordpress-environment-topology](../images/wordpress-environment-topology.png)
 
 ### Specifics
 
