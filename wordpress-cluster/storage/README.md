@@ -10,7 +10,7 @@ Get your highly available and scalable clustered solution for Wordpress, the ext
 ## Environment Topology
 ![Cluster Topology](images/topology.png)
 
-###Specifics
+### Specifics
  Layer | Server          | Number of CTs <br/> by default | Cloudlets per CT <br/> (reserved/dynamic) | Options
 -------|-----------------| :-----------------------------:|:-----------------------------------------:|:-----:
 LB     |      Nginx      |           2                    |           1/8                             |   -
