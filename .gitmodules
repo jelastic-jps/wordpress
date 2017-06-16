@@ -1,0 +1,3 @@
+[submodule "wordpress-cluster-storage"]
+	path = wordpress-cluster-storage
+	url = git@github.com:jelastic-jps/wordpress-cluster.git
