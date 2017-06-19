@@ -340,7 +340,7 @@ return {
     result: 0,
     onAfterReturn: {
         call: {
-            action: "installWp",
+            procedure: "installWp",
             params:{
                 idnaHost: sResp
             }
