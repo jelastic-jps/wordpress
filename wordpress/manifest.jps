@@ -67,7 +67,8 @@
               "unzip -oq /tmp/wordpress.zip -d ${SERVER_WEBROOT}/ROOT/",
               "mv ${SERVER_WEBROOT}/ROOT/wordpress/* ${SERVER_WEBROOT}/ROOT/ && rm -rf ${SERVER_WEBROOT}/ROOT/wordpress",
               "wp --allow-root core config --dbhost=${nodes.sqldb.address} --dbname=wordpress --dbuser=wordpress --dbpass=${user.appPassword} --path=${SERVER_WEBROOT}/ROOT",
-              "wp --allow-root core install --title='' --admin_user=admin --admin_password=${user.appPassword} --url=${this.idnaHost} --admin_email=${user.email} --path=${SERVER_WEBROOT}/ROOT"
+              "wp --allow-root core install --title='' --admin_user=admin --admin_password=${user.appPassword} --url=${this.idnaHost} --admin_email=${user.email} --path=${SERVER_WEBROOT}/ROOT",
+              "sed -i \"/<?php/a if (strpos(\"'$_SERVER'\"['HTTP_X_FORWARDED_PROTO'], 'https') !== false) \"'$_SERVER'\"['HTTPS']='on';\" ${SERVER_WEBROOT}/ROOT/wp-config.php"
             ]
           }
         ]
