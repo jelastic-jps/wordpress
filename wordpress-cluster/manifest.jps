@@ -78,9 +78,9 @@
           {
             "deploy": [
               {
-                "name": "WordPress-4.2.1.zip",
+                "name": "WordPress-latest.tar.gz",
                 "context": "ROOT",
-                "archive": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-cluster/dumps/wordpress-4.2.1.zip"
+                "archive": "https://wordpress.org/latest.tar.gz"
               }
             ]
           },
