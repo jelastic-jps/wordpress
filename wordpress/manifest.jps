@@ -7,7 +7,8 @@
     "version": "4.9.1",
     "categories": [
       "apps/blogs",
-      "apps/content-management"
+      "apps/content-management",
+      apps/partners
     ],
     "logo": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp.png",
     "type": "php",
