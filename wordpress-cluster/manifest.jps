@@ -236,7 +236,7 @@
               {
                 "description": "Enable AutoScaling trigger",
                 "type": "javascript",
-                "script": "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-cluster/scripts/enableScalingTrigger.js"
+                "script": "https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/scripts/addTriggers.js"
               }
             ]
           }
