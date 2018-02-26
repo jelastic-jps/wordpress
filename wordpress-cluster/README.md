@@ -1,4 +1,4 @@
-##This package is outdated. Please refer to more advanced version [here](https://github.com/jelastic-jps/wordpress-cluster)
+## This package is outdated. Please refer to more advanced version [here](https://github.com/jelastic-jps/wordpress-cluster)
 
 [![Wordpress](../images/wp.png)](../wordpress-cluster)
 
