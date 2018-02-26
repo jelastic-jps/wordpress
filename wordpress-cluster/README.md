@@ -1,4 +1,7 @@
+##This package is outdated. Please refer to more advanced version [here](https://github.com/jelastic-jps/wordpress-cluster)
+
 [![Wordpress](../images/wp.png)](../wordpress-cluster)
+
 ## WordPress Cluster + Lsyncd
 
 The JPS package deploys WordPress Cluster that initially contains 2 load balancers, 2 application servers and 2 database containers. The package provides high availability for each layer and autoscaling for application server layer out-of-the-box.
