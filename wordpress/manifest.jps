@@ -29,24 +29,25 @@ nodes:
 onInstall:
   - script: "${baseUrl}/scripts/idna.js"
   
-  - cmd[sqldb]: |-
-      mysql -uroot -p${nodes.sqldb.password} -e "CREATE DATABASE IF NOT EXIST wordpress;"
-      mysql -uroot -p${nodes.sqldb.password} -e "CREATE USER '${globals.DB_USER}'@'%' IDENTIFIED BY '${globals.DB_PASS}'; GRANT ALL ON wordpress.* TO '${globals.DB_USER}'@'%'; FLUSH PRIVILEGES;"
+actions:
+  installWp:
+    - cmd[sqldb]: |-
+        mysql -uroot -p${nodes.sqldb.password} -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+        mysql -uroot -p${nodes.sqldb.password} -e "CREATE USER '${globals.DB_USER}'@'%' IDENTIFIED BY '${globals.DB_PASS}'; GRANT ALL ON wordpress.* TO '${globals.DB_USER}'@'%'; FLUSH PRIVILEGES;"
 
-  - deploy:
-      archive: https://wordpress.org/latest.tar.gz
-      name: WordPress-latest.tar.gz
-      context: ROOT
+    - deploy:
+        archive: https://wordpress.org/latest.tar.gz
+        name: WordPress-latest.tar.gz
+        context: ROOT
 
-  - cmd[nginxphp]: curl -fsSL 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar' -o /usr/local/bin/wp && chmod +x /usr/local/bin/wp
-    user: root
+    - cmd[nginxphp]: curl -fsSL 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar' -o /usr/local/bin/wp && chmod +x /usr/local/bin/wp
+      user: root
 
-  - cmd[nginxphp]: |-
-      wp core config --dbhost=${nodes.sqldb.address} --dbname=wordpress --dbuser=${globals.DB_USER} --dbpass=${globals.DB_PASS} --path=${SERVER_WEBROOT}/ROOT
-      wp --allow-root core install --title='' --admin_user=admin --admin_password=${globals.ADMIN_PASSWD} --url=${this.idnaHost} --admin_email=${user.email} --path=${SERVER_WEBROOT}/ROOT
-      sed -i "/<?php/a if (strpos("'$_SERVER'"['HTTP_X_FORWARDED_PROTO'], 'https') !== false) { "'$_SERVER'"['HTTPS']='on'; define('FORCE_SSL_ADMIN', true); }" ${SERVER_WEBROOT}/ROOT/wp-config.php
+    - cmd[nginxphp]: |-
+        wp core config --dbhost=${nodes.sqldb.address} --dbname=wordpress --dbuser=${globals.DB_USER} --dbpass=${globals.DB_PASS} --path=${SERVER_WEBROOT}/ROOT
+        wp --allow-root core install --title='' --admin_user=admin --admin_password=${globals.ADMIN_PASSWD} --url=${this.idnaHost} --admin_email=${user.email} --path=${SERVER_WEBROOT}/ROOT
+        sed -i "/<?php/a if (strpos("'$_SERVER'"['HTTP_X_FORWARDED_PROTO'], 'https') !== false) { "'$_SERVER'"['HTTPS']='on'; define('FORCE_SSL_ADMIN', true); }" ${SERVER_WEBROOT}/ROOT/wp-config.php
 
-    
 success: 'Below you will find your admin panel link, username and password.</br></br>
     <table style=''font-size:13px; border: none;''><tr><td>Admin panel URL:</td><td
     style=''padding-left: 10px;''><a href=''${env.protocol}://${env.domain}/wp-admin/''
