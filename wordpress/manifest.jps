@@ -31,6 +31,10 @@ onInstall:
   
 actions:
   installWp:
+    - cmd[cp]: |-
+        sed -i 's|location / {|location / {\nif (!-e $request_filename){\nrewrite ^(.*)$ \/index.php?error=404;\n}|g' /etc/nginx/nginx.conf
+        /etc/init.d/nginx restart
+      user: root
     - cmd[sqldb]: |-
         mysql -uroot -p${nodes.sqldb.password} -e "CREATE DATABASE IF NOT EXISTS wordpress;"
         mysql -uroot -p${nodes.sqldb.password} -e "CREATE USER '${globals.DB_USER}'@'%' IDENTIFIED BY '${globals.DB_PASS}'; GRANT ALL ON wordpress.* TO '${globals.DB_USER}'@'%'; FLUSH PRIVILEGES;"
