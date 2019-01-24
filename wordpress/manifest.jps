@@ -1,4 +1,3 @@
----
 jpsType: install
 jpsVersion: '1.1'
 id: wordpress
@@ -21,10 +20,12 @@ nodes:
   - nodeType: nginxphp-dockerized
     tag: 1.14.2-php-7.3.0
     count: 1
-    cloudlets: 8
+    cloudlets: 16
+    env:
+      SERVER_WEBROOT: /var/www/webroot
 
-  - nodeType: mysql5
-    tag: 5.7.22
+  - nodeType: mysql
+    tag: 8.0.13
     count: 1
     cloudlets: 8
   
@@ -46,10 +47,10 @@ actions:
         name: WordPress-latest.tar.gz
         context: ROOT
 
-    - cmd[nginxphp]: curl -fsSL 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar' -o /usr/local/bin/wp && chmod +x /usr/local/bin/wp
+    - cmd[cp]: curl -fsSL 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar' -o /usr/local/bin/wp && chmod +x /usr/local/bin/wp
       user: root
 
-    - cmd[nginxphp]: |-
+    - cmd[cp]: |-
         wp core config --dbhost=${nodes.sqldb.address} --dbname=wordpress --dbuser=${globals.DB_USER} --dbpass=${globals.DB_PASS} --path=${SERVER_WEBROOT}/ROOT
         wp --allow-root core install --title='' --admin_user=admin --admin_password=${globals.ADMIN_PASSWD} --url=${this.idnaHost} --admin_email=${user.email} --path=${SERVER_WEBROOT}/ROOT
         wget ${baseUrl}/configs/wp-jelastic.php -O ${SERVER_WEBROOT}/ROOT/wp-jelastic.php
