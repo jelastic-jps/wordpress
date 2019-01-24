@@ -18,11 +18,13 @@ globals:
 
 ssl: false
 nodes:
-  - nodeType: nginxphp
+  - nodeType: nginxphp-dockerized
+    tag: 1.14.2-php-7.3.0
     count: 1
     cloudlets: 8
 
   - nodeType: mysql5
+    tag: 5.7.22
     count: 1
     cloudlets: 8
   
