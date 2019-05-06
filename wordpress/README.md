@@ -15,15 +15,15 @@ This package is designed to handle big load spikes by adjusting the allocated re
 Layer                |     Server    | Number of CTs <br/> by default | Cloudlets per CT <br/> (reserved/dynamic) | Options
 -------------------- | --------------| :----------------------------: | :---------------------------------------: | :-----:
 AS                   | NGINX PHP FPM |       1                        |           1 / 16                          | -
-DB                   |    MySQL      |       1                        |           1 / 16                           | -
+DB                   |    MySQL      |       1                        |           1 / 8                           | -
 
-* AS - Application server 
-* DB - Database 
+* AS - Application server
+* DB - Database
 * CT - Container
 
-**WordPress Version**: 4.3.4<br/>
-**PHP Engine**: PHP 5.3.29<br/>
-**MySQL Database**: 5.7.12
+**WordPress Version**: WordPress Latest<br/>
+**PHP Engine**: PHP 7.3.0<br/>
+**MySQL Database**: 8.0.13
 
 ### Deployment
 
