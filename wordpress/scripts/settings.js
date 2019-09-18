@@ -4,7 +4,7 @@ import com.hivext.api.core.utils.Transport;
 
 var cdnAppid = "c05ffa5b45628a2a0c95467ebca8a0b4";
 var lsAppid = "9e6afcf310004ac84060f90ff41a5aba";
-var baseUrl = "https://raw.githubusercontent.com/sych74/wordpress-cluster/master";
+var baseUrl = "https://raw.githubusercontent.com/sych74/wordpress/master/wordpress";
 var cdnText = "Install Lightning-Fast Premium CDN with 130+ PoPs",
     sslText = "Install Let's Encrypt SSL with Auto-Renewal";
     lsText = "Install LiteSpeed High-Performance Web Server";
@@ -14,6 +14,16 @@ var group = jelastic.billing.account.GetAccount(appid, session);
 var url = baseUrl + "/configs/settings.yaml";
 var settings = toNative(new Yaml().load(new Transport().get(url)));
 var fields = settings.fields;
+var isLS = jelastic.dev.apps.GetApp(lsAppid);
+    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
+        settings.fields.push({
+            type: "checkbox",
+            name: "ls-addon",
+            caption: lsText,
+            value: true
+        });
+    }
+
 if (group.groupType == 'trial') {
     
     fields.push({
@@ -22,25 +32,6 @@ if (group.groupType == 'trial') {
       "height": 30,
       "hideLabel": true,
       "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
-    }, {
-        "type": "compositefield",
-        "hideLabel": true,
-        "pack": "left",
-        "itemCls": "deploy-manager-grid",
-        "cls": "x-grid3-row-unselected",
-        "items": [{
-            "type": "spacer",
-            "width": 4
-        }, {
-            "type": "displayfield",
-            "cls": "x-grid3-row-checker x-item-disabled",
-            "width": 30,
-            "height": 20
-        }, {
-            "type": "displayfield",
-            "cls": "x-item-disabled",
-            "value": lsText
-        }]
     }, {
         "type": "compositefield",
         "hideLabel": true,
