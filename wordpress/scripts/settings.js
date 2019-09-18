@@ -25,7 +25,13 @@ if (group.groupType == 'trial') {
                 value: true
             });
         }
-
+    settings.fields.push({
+        type: "checkbox",
+        name: "mu-addon",
+        caption: muText,
+        value: false
+    });
+    
     fields.push({
       "type": "displayfield",
       "cls": "warning",
@@ -70,12 +76,6 @@ if (group.groupType == 'trial') {
             "cls": "x-item-disabled",
             "value": sslText
         }]
-    }, {
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
-
     });
 } else {
 
