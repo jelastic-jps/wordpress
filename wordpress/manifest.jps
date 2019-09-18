@@ -1,13 +1,14 @@
-type: install
-version: '1.1'
-name: WordPress Cluster
-id: wordpress-cluster
+jpsType: install
+jpsVersion: '1.1'
+id: wordpress
+name: WordPress
 categories:
-  - apps/clusters
+  - apps/blogs
   - apps/content-management
-description: WordPress Cluster package provides integrated autoscaling and high availability for development and production environments. Clustered topology ensures effective handling of heavy workload.
-logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress-cluster/master
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp.png
+homepage: http://wordpress.org/
+description: WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.
+baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
 
 onBeforeInit: /scripts/settings.js
 onBeforeInstall: /scripts/beforeinstall.js
@@ -18,20 +19,13 @@ nodes: definedInOnBeforeInstall
 globals:
   DB_USER: jelastic-${fn.random}
   DB_PASS: ${fn.password(10)}
-  DB_HOST: sqldb
+  DB_HOST: 127.0.0.1
   PROTOCOL: http
   WP_ADMIN_PASS: ${fn.password(10)}
   SUCCESS: success
   EMAIL: default
 
-onAfterScaleOut[nodeGroup:cp]:
-  forEach(event.response.nodes):
-    - log: App Servers Setup
-    - setNodeDisplayName [${@i.id}]: AppServer
-    - setupNode:
-        nodeId: ${@i.id}
-
-onAfterInstallAddon [nodeGroup:bl, id:cdn]:
+onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   - install: ${baseUrl}/scripts/setupCDN.jps
     settings:
       PATH: ${baseUrl}
@@ -48,26 +42,11 @@ onInstall:
   - if (${response.ssl}):
       setGlobals:
         PROTOCOL: https
-
-  - log: Auto Scaling Triggers
-  - script: "${baseUrl}/scripts/addTriggers.js"
-    nodeGroup: cp
-    resourceType: CPU
-    loadGrowth: ${settings.loadGrowth}
-    cleanOldTriggers: true
     
   - log: Set Node Display Name
-  - setNodeDisplayName [bl]: Load balancer
   - setNodeDisplayName [cp]: AppServer
-  - setNodeDisplayName [storage]: Storage  
 
-  - log: DB Galera  Setup
-  - install: https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/galera.jps
-    settings:
-      db_user: "${globals.DB_USER}"
-      db_pass: "${globals.DB_PASS}"
-      custom_conf: "${baseUrl}/configs/sqldb/wordpress.cnf"
-    nodeGroup: sqldb
+  - creatUserDB
 
   - setupNode:
       nodeId: cp
@@ -76,7 +55,7 @@ onInstall:
       - setGlobals:
           PROTOCOL: https
 
-  - install-wordpress:
+  - install-wordpress
       
   - if (${settings.le-addon:false}): 
       - install-LE-addon
@@ -90,20 +69,20 @@ actions:
 
   install-LE-addon:
     - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
-      nodeGroup: bl
+      nodeGroup: cp
       skipEmail: true
       settings:
         customDomains: ${env.domain}
 
   setupDomain:
-    - cmd[bl]: source /opt/letsencrypt/settings && echo $domain
+    - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
     - set:
         domain: ${response.out}
     - cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --DOMAIN https://${this.domain}
 
   install-edgeport-CDN:
     - install: https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}
-      nodeGroup: bl
+      nodeGroup: cp
       skipEmail: true
     - script: return jelastic.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.info", {partnerCode:1})
     - setGlobals:
@@ -144,7 +123,14 @@ actions:
     - install: ${baseUrl}/scripts/WP-CLI.jps?_r=${fn.random}
       settings:
         TARGET_NODES: ${this.nodeId}
-
+        
+  creatUserDB:
+    - log: Create user for DataBase
+    - cmd [cp]: |-
+        wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log
+        bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log
+      user: root
+        
 success:
   email: success/email/cluster/oneregion-${globals.EMAIL}.md?_r=${fn.random}
   text: success/text/oneregion/${globals.SUCCESS}.md?_r=${fn.random}
