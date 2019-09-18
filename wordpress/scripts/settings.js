@@ -14,18 +14,18 @@ var group = jelastic.billing.account.GetAccount(appid, session);
 var url = baseUrl + "/configs/settings.yaml";
 var settings = toNative(new Yaml().load(new Transport().get(url)));
 var fields = settings.fields;
-var isLS = jelastic.dev.apps.GetApp(lsAppid);
-    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            type: "checkbox",
-            name: "ls-addon",
-            caption: lsText,
-            value: true
-        });
-    }
 
 if (group.groupType == 'trial') {
-    
+    var isLS = jelastic.dev.apps.GetApp(lsAppid);
+        if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
+            settings.fields.push({
+                type: "checkbox",
+                name: "ls-addon",
+                caption: lsText,
+                value: true
+            });
+        }
+
     fields.push({
       "type": "displayfield",
       "cls": "warning",
