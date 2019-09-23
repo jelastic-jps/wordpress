@@ -6,7 +6,7 @@ The JPS package deploys one of single container topologies:
 
   * **LEMP**: *NGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance storage  
   or  
-  * **LLSMP** - *LiteSpeedNGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance storage
+  * **LLSMP**: *LiteSpeedNGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance storage
   
 
 ### Highlights
@@ -26,7 +26,7 @@ If required use Advanced Features:
 
   * The *WordPress* application can be handled by either **[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)**(if chosen) or **[NGINX PHP](https://docs.jelastic.com/nginx-php)** server  
   * **[Premium CDN](https://jelastic.com/blog/enterprise-cdn-verizon-integration/)** integration in order to provide Lightning-fast static assets loading  
-  * **[Let's Encrypt SSL](https://jelastic.com/blog/free-ssl-certificates-with-lets-encrypt/)** Add-On allows to get your traffic secured and along with LiteSpeed Web Server provides **[HTTP/3](https://docs.jelastic.com/http3)** protocol support  
+  * **[Let's Encrypt SSL](https://jelastic.com/blog/free-ssl-certificates-with-lets-encrypt/)** Add-On allows to get your traffic secured and along with LiteSpeed Web Server provides **[HTTP/3](https://docs.jelastic.com/http3)** protocol support. This option stipulates the public IP address wil be added to your container  
   * **WordPress Multisite Network**. WordPress comes with built-in Multisite feature for the cases when the massive WordPress installations are required running under the hood virtually unlimited quantity on WordPress sites using one hosting account. You can enable this functionality picking up the respective checkbox. As a result, your application will be acting as WordPress network hub, where the network can comprise a number of websites. With this built-in feature and Jelastic automation, any user can create own independent network of websites and invite others to create their own sites on the network even for commercial usage.
 
 Upon successfull installation, you’ll see the appropriate pop-up with access credentials to your administration WordPress panel, whilst the same information will be duplicated to your email box.
