@@ -96,7 +96,7 @@ actions:
         bash ~/bin/setupWP.sh --edgeportCDN true --CDN_URL ${globals.CDN}
 
   configure-MU:
-    - install: ${baseUrl}/addon/WPMU.jps
+    - install: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/addon/WPMU.jps
       settings:
         mode: subdir
 
