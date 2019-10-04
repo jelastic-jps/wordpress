@@ -326,11 +326,13 @@ var sEnvUrl = "${env.url}",
     sResp;
 
 
-if (sConverted) {
-    
+if (sConverted) {    
     if (/[а-яА-ЯЁё]/.test(sConverted)) {
-        sDomain = sConverted.split('.')[0];
+        sDomain = sConverted.split('//')[1];
+        sConverted = punycode.ToASCII(sDomain);
     }
 }
 
-return {result: 0, domain: sDomain}
+sResp = sEnvUrl.replace(sDomain, sConverted);
+
+return {result: 0, domain: sResp}
