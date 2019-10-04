@@ -336,4 +336,4 @@ if (sConverted) {
 
 sResp = sEnvUrl.replace(sDomain, sConverted);
 
-return sResp;
+return {result: 0, sResp: sResp}
