@@ -43,7 +43,7 @@ onInstall:
       setGlobals:
         PROTOCOL: https
         
-  - script: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/scripts/idna.js
+  - script: ${baseUrl}/scripts/idna.js
   - setGlobals:
       DOMAIN: ${response.domain}         
     
