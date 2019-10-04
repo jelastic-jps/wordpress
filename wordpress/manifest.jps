@@ -42,6 +42,10 @@ onInstall:
   - if (${response.ssl}):
       setGlobals:
         PROTOCOL: https
+        
+  - script: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/scripts/idna.js
+  - setGlobals:
+      DOMAIN: ${response.domain}         
     
   - log: Set Node Display Name
   - setNodeDisplayName [cp]: AppServer
@@ -108,7 +112,7 @@ actions:
         db_pass: ${globals.DB_PASS}
         wp_admin_pass: ${globals.WP_ADMIN_PASS}
         wp_title: "Hello World"
-        wp_url: ${globals.PROTOCOL}://${env.domain}/
+        wp_url: ${globals.DOMAIN}
         targetNodeID: ${nodes.cp.master.id}
 
   setupNode:
