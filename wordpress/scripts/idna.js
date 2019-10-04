@@ -330,10 +330,7 @@ if (sConverted) {
     
     if (/[а-яА-ЯЁё]/.test(sConverted)) {
         sDomain = sConverted.split('//')[1];
-        sConverted = punycode.ToASCII(sDomain);
     }
 }
-
-sResp = sEnvUrl.replace(sDomain, sConverted);
 
 return {result: 0, domain: sDomain}
