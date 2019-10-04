@@ -321,7 +321,7 @@ var punycode = new function Punycode() {
 }();
 
 var sEnvUrl = "${env.url}",
-    sDomain = sConverted.split('//')[1];
+    sConverted = sEnvUrl.split('.')[0],
     sDomain,
     sResp;
 
@@ -329,7 +329,7 @@ var sEnvUrl = "${env.url}",
 if (sConverted) {
     
     if (/[а-яА-ЯЁё]/.test(sConverted)) {
-        sDomain = sConverted;
+        sDomain = sConverted.split('//')[1];
         sConverted = punycode.ToASCII(sDomain);
     }
 }
