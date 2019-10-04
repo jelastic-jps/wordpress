@@ -333,6 +333,6 @@ if (sConverted) {
     }
 }
 
-sResp = sEnvUrl.replace(sDomain, sConverted);
+sResp = sEnvUrl.replace(sDomain, sConverted).split('/')[0];
 
 return {result: 0, domain: sResp}
