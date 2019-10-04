@@ -320,7 +320,7 @@ var punycode = new function Punycode() {
     }
 }();
 
-var sEnvUrl = "${env.domain}",
+var sEnvUrl = "${env.url}",
     sConverted = sEnvUrl.split('.')[0],
     sDomain,
     sResp;
