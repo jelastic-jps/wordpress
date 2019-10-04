@@ -329,7 +329,7 @@ var sEnvUrl = "${env.domain}",
 if (sConverted) {
     
     if (/[а-яА-ЯЁё]/.test(sConverted)) {
-        sDomain = sConverted.split('//')[1];
+        sDomain = sConverted;
         sConverted = punycode.ToASCII(sDomain);
     }
 }
