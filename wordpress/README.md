@@ -4,9 +4,9 @@
 Out-of-the-box automated Enterprise WordPress application solution for large businesses and mission-critical sites.
 The JPS package deploys one of single container topologies:  
 
-  * **LEMP**: *NGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance storage  
+  * **LEMP**: *NGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance RAM-allocated data structure store  
   or  
-  * **LLSMP**: *LiteSpeedNGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance storage
+  * **LLSMP**: *LiteSpeedNGINX* application server, *PHP*, *MariaDB* database server, *Redis* high-performance RAM-allocated data structure store  
   
 
 ### Highlights
