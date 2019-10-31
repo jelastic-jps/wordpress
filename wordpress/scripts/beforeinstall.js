@@ -14,7 +14,8 @@ if (${settings.ls-addon:false}) {
     displayName: "AppServer",
     env: {
       SERVER_WEBROOT: "/var/www/webroot/ROOT",
-      REDIS_ENABLED: "true"
+      REDIS_ENABLED: "true",
+      WAF: "${settings.waf}"
     }
   })
 }
