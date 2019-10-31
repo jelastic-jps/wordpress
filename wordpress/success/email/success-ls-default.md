@@ -8,7 +8,7 @@ Use the following credentials to access the admin panel:
 
 Please use the following data to access LiteSpeed WebAdmin Console:
 
-**Admin Console**: [https://${env.domain}:4848/](https://${env.domain}:4848/) 
+**Admin Console**: [https://${env.domain}:4848/](https://${env.domain}:4848/)   
 **Login**: admin    
 **Password**: ${globals.DB_PASS}  
 
