@@ -13,6 +13,8 @@ baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
 onBeforeInit: /scripts/settings.js
 onBeforeInstall: /scripts/beforeinstall.js
 
+skipNodeEmails: true
+
 nodes: definedInOnBeforeInstall
 
 globals:
