@@ -25,6 +25,7 @@ globals:
   WP_ADMIN_PASS: ${fn.password(10)}
   SUCCESS: success
   EMAIL: default
+  STACK: nginx
 
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   - install: ${baseUrl}/scripts/setupCDN.jps
@@ -73,10 +74,6 @@ onInstall:
   - if (${settings.ls-addon:false}):
       setGlobals:
         STACK: ls
-
-  - if (!${settings.ls-addon:false}):
-      setGlobals:
-        STACK: nginx
           
 actions:
 
@@ -142,6 +139,7 @@ actions:
     - cmd [cp]: |-
         wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log
         bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log
+        jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log 
       user: root
         
 success:
