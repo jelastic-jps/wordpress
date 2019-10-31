@@ -9,28 +9,16 @@ var cdnText = "Install Lightning-Fast Premium CDN with 130+ PoPs",
     sslText = "Install Let's Encrypt SSL with Auto-Renewal";
     lsText = "Install LiteSpeed High-Performance Web Server";
     muText = "Install WordPress Multisite Network";
+    wafText = "Web Application Firewall";
 var group = jelastic.billing.account.GetAccount(appid, session);
+var isCDN = jelastic.dev.apps.GetApp(cdnAppid);
+var isLS = jelastic.dev.apps.GetApp(lsAppid);
 
 var url = baseUrl + "/configs/settings.yaml";
 var settings = toNative(new Yaml().load(new Transport().get(url)));
 var fields = settings.fields;
 
 if (group.groupType == 'trial') {
-    var isLS = jelastic.dev.apps.GetApp(lsAppid);
-        if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
-            settings.fields.push({
-                type: "checkbox",
-                name: "ls-addon",
-                caption: lsText,
-                value: true
-            });
-        }
-    settings.fields.push({
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
-    });
     
     fields.push({
       "type": "displayfield",
@@ -38,26 +26,55 @@ if (group.groupType == 'trial') {
       "height": 30,
       "hideLabel": true,
       "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
-    }, {
-        "type": "compositefield",
-        "hideLabel": true,
-        "pack": "left",
-        "itemCls": "deploy-manager-grid",
-        "cls": "x-grid3-row-unselected",
-        "items": [{
-            "type": "spacer",
-            "width": 4
-        }, {
-            "type": "displayfield",
-            "cls": "x-grid3-row-checker x-item-disabled",
-            "width": 30,
-            "height": 20
-        }, {
-            "type": "displayfield",
-            "cls": "x-item-disabled",
-            "value": cdnText
-        }]
-    }, {
+    })
+ 
+    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
+        settings.fields.push({
+            "type": "compositefield",
+            "hideLabel": true,
+            "pack": "left",
+            "itemCls": "deploy-manager-grid",
+            "cls": "x-grid3-row-unselected",
+            "items": [{
+                "type": "spacer",
+                "width": 4
+            }, {
+                "type": "displayfield",
+                "cls": "x-grid3-row-checker x-item-disabled",
+                "width": 30,
+                "height": 20
+            }, {
+                "type": "displayfield",
+                "cls": "x-item-disabled",
+                "value": lsText
+            }]
+        });
+    }
+
+    if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
+        settings.fields.push({
+            "type": "compositefield",
+            "hideLabel": true,
+            "pack": "left",
+            "itemCls": "deploy-manager-grid",
+            "cls": "x-grid3-row-unselected",
+            "items": [{
+                "type": "spacer",
+                "width": 4
+            }, {
+                "type": "displayfield",
+                "cls": "x-grid3-row-checker x-item-disabled",
+                "width": 30,
+                "height": 20
+            }, {
+                "type": "displayfield",
+                "cls": "x-item-disabled",
+                "value": cdnText
+            }]
+        });
+    }
+    
+    settings.fields.push({
         "type": "compositefield",
         "hideLabel": true,
         "pack": "left",
@@ -77,20 +94,58 @@ if (group.groupType == 'trial') {
             "value": sslText
         }]
     });
+
+    settings.fields.push({
+        type: "checkbox",
+        name: "mu-addon",
+        caption: muText,
+        value: false
+
+    });
+
 } else {
 
-    var isLS = jelastic.dev.apps.GetApp(lsAppid);
     if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
         settings.fields.push({
             type: "checkbox",
             name: "ls-addon",
             caption: lsText,
-            value: true
+            value: true,
+            tooltip: "If this option is disabled, the topology will be installed using NGINX application server",
+            "showIf": {
+                "true": {
+                    "type": "checkbox",
+                    "name": "waf",
+                    "caption": wafText,
+                    "value": true,
+                    "tooltip": "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
+                },
+                "false": {
+                    "type": "compositefield",
+                    "hideLabel": true,
+                    "pack": "left",
+                    "name": "waf",
+                    "value": false,
+                    "itemCls": "deploy-manager-grid",
+                    "cls": "x-grid3-row-unselected",
+                    "items": [{
+                        "type": "displayfield",
+                        "cls": "x-grid3-row-checker x-item-disabled",
+                        "margins": "0 0 0 -3",
+                        "width": 16,
+                        "height": 20
+                        
+                    }, {
+                        "type": "displayfield",
+                        "cls": "x-item-disabled",
+                        "value": wafText,
+                        "margins": "0 0 0 12"
+                    }]
+                }   
+             }
         });
     }
-    
-    
-    var isCDN = jelastic.dev.apps.GetApp(cdnAppid);
+   
     if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
         settings.fields.push({
             type: "checkbox",
