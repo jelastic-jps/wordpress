@@ -69,7 +69,15 @@ onInstall:
       - setupDomain
 
   - if (${settings.cdn-addon:false}): install-edgeport-CDN
-    
+  
+  - if (${settings.ls-addon:false}):
+      setGlobals:
+        STACK: ls
+
+  - if (!${settings.ls-addon:false}):
+      setGlobals:
+        STACK: nginx
+          
 actions:
 
   install-LE-addon:
@@ -137,7 +145,7 @@ actions:
       user: root
         
 success:
-  email: success/email/success-${globals.EMAIL}.md?_r=${fn.random}
+  email: success/email/success-${globals.STACK}-${globals.EMAIL}.md?_r=${fn.random}
   text: success/text/${globals.SUCCESS}.md?_r=${fn.random}
 
 startPage: ${globals.PROTOCOL}://${env.domain}/
