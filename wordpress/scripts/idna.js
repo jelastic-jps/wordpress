@@ -326,24 +326,13 @@ var sEnvUrl = "${env.url}",
     sResp;
 
 
-if (sConverted) {
-    
+if (sConverted) {    
     if (/[а-яА-ЯЁё]/.test(sConverted)) {
         sDomain = sConverted.split('//')[1];
         sConverted = punycode.ToASCII(sDomain);
     }
 }
 
-sResp = sEnvUrl.replace(sDomain, sConverted);
+sResp = sEnvUrl.replace(sDomain, sConverted).split('/')[2];
 
-return {
-    result: 0,
-    onAfterReturn: {
-        call: {
-            procedure: "installWp",
-            params:{
-                idnaHost: sResp
-            }
-        }
-    }
-};
+return {result: 0, domain: sResp}

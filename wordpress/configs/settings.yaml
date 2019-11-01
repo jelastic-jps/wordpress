@@ -1,0 +1,6 @@
+fields:
+
+- caption: Advanced Features
+  type: displayfield
+  name: displayfield
+  markup:
