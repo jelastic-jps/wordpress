@@ -11,6 +11,7 @@ description: WordPress CMS deployed as a lightweight standalone container for ru
 baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
 
 skipNodeEmails: true
+
 settings:
   fields:
   - caption: Env Name    
@@ -19,6 +20,7 @@ settings:
     randomName: true
     showFullDomain: true,
     dependsOn: region
+
   - caption: Region
     type: regionlist
     name: region
@@ -31,7 +33,12 @@ onInstall:
     jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
     envName: ${settings.envName}
     region: ${settings.region}
+    loggerName: ${settings.envName}
+    displayName: WP Standalone
     settings:
       ls-addon: true
       fixedCloudlets: 16
       waf: true
+      le-addon: true
+      cdn-addon: true
+      
