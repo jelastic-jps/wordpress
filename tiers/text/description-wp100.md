@@ -8,5 +8,11 @@
 </ul>
 <p>Topology inside container: LiteSpeed Web Server, MariaDB, Redis</p>
 <p>Built-in functionality:</p>
-<p>Let&rsquo;s Encrypt SSL with Auto-Renewal <br />Web Application Firewall (WAF) Layer-7 <br />Anti-DDoS Filtering <br />WordPress Multisite <br />Network Public IPv4 and Public IPv6</p>
+<ul>
+<li>Let&rsquo;s Encrypt SSL with Auto-Renewal</li>
+<li>Web Application Firewall (WAF) Layer-7</li>
+<li>Anti-DDoS Filtering</li>
+<li>WordPress Multisite</li>
+<li>Network Public IPv4 and Public IPv6</li>
+</ul>
 <p>Price / month: $100</p>
