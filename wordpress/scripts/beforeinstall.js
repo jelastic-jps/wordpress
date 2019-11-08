@@ -11,6 +11,7 @@ if (${settings.ls-addon:false}) {
     count: 1,
     cloudlets: ${settings.fixedCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
+    diskLimit: ${settings.fixedCloudlets:10000},
     nodeGroup: "cp",
     displayName: "AppServer",
     env: {
@@ -28,6 +29,7 @@ if (!${settings.ls-addon:false}) {
     count: 1,
     cloudlets: ${settings.fixedCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
+    diskLimit: ${settings.fixedCloudlets:10000},
     nodeGroup: "cp",
     displayName: "AppServer",
     env: {
