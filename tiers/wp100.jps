@@ -1,7 +1,7 @@
 jpsType: install
 jpsVersion: '1.5'
 id: wordpress
-name: WordPress
+name: WordPress Standalone Starter
 categories:
   - apps/blogs
   - apps/content-management
