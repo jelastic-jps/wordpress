@@ -57,9 +57,9 @@ onInstall:
         galera: false
         mu-addon: ${settings.mu-addon}
         is_trigger: false
-        cp_count: 2
+        cp_count: 3
         bl_fixedCloudlets: 8
-        cp_fixedCloudlets: 16
+        cp_fixedCloudlets: 32
         db_fixedCloudlets: 8
         st_fixedCloudlets: 8
         st_diskLimit: 20000
