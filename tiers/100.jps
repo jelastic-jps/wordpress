@@ -10,9 +10,7 @@ homepage: http://wordpress.org/
 description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
 baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
 
-onBeforeInstall8: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/scripts/beforeinstall.js
 skipNodeEmails: true
-
 settings:
   fields:
   - caption: Env Name    
@@ -21,7 +19,6 @@ settings:
     randomName: true
     showFullDomain: true,
     dependsOn: region
-
   - caption: Region
     type: regionlist
     name: region
