@@ -46,4 +46,5 @@ onInstall:
         cdn-addon: true
         fixedCloudlets: 64
         diskLimit: 50000
+        noteCDN: wp200
         
