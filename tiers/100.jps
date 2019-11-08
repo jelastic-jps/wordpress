@@ -1,0 +1,16 @@
+jpsType: install
+jpsVersion: '1.1'
+id: wordpress
+name: WordPress
+categories:
+  - apps/blogs
+  - apps/content-management
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
+homepage: http://wordpress.org/
+description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
+
+onBeforeInit: /scripts/settings.js
+onBeforeInstall: /scripts/beforeinstall.js
+
+skipNodeEmails: true
