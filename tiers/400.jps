@@ -44,7 +44,7 @@ onInstall:
         le-addon: true
         cdn-addon: true
         noteCDN: wp500
-        galera: true
+        galera: false
         is_trigger: false
         cp_count: 2
         bl_fixedCloudlets: 8
