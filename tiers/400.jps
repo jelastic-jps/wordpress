@@ -23,6 +23,16 @@ settings:
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
+    
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:    
+
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false
 
 onInstall:
   - script: |
@@ -45,6 +55,7 @@ onInstall:
         cdn-addon: true
         noteCDN: wp500
         galera: false
+        mu-addon: ${settings.mu-addon}
         is_trigger: false
         cp_count: 2
         bl_fixedCloudlets: 8
@@ -52,5 +63,4 @@ onInstall:
         db_fixedCloudlets: 8
         st_fixedCloudlets: 8
         st_diskLimit: 20000
-        
         
