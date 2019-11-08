@@ -44,5 +44,6 @@ onInstall:
         waf: true
         le-addon: true
         cdn-addon: true
-        diskLimit: 10000
+        fixedCloudlets: 32
+        diskLimit: 20000
         
