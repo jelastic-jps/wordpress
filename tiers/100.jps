@@ -8,9 +8,33 @@ categories:
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
 description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
+baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
 
-onBeforeInit: /scripts/settings.js
-onBeforeInstall: /scripts/beforeinstall.js
-
+onBeforeInstall8: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/scripts/beforeinstall.js
 skipNodeEmails: true
+
+settings:
+  fields:
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true,
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+
+onInstall:
+  install:
+    jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
+    envName: ${settings.envName}
+    region: ${settings.region}
+    settings:
+      ls-addon: true
+      fixedCloudlets: 16
+      waf: true
