@@ -1,6 +1,6 @@
 jpsType: install
 jpsVersion: '1.1'
-id: wordpress
+id: wordpress-100
 name: WordPress
 categories:
   - apps/blogs
