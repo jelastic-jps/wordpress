@@ -46,6 +46,7 @@ onInstall:
         noteCDN: wp1000
         galera: true
         is_trigger: true
+        loadGrowth: fast
         cp_count: 2
         bl_fixedCloudlets: 8
         cp_fixedCloudlets: 16
