@@ -1,0 +1,49 @@
+jpsType: install
+jpsVersion: '1.1'
+id: wordpress
+name: WordPress
+categories:
+  - apps/blogs
+  - apps/content-management
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
+homepage: http://wordpress.org/
+description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
+
+settings:
+  fields:
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true,
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+
+onInstall:
+  - script: |
+      return {
+      result:0,
+      envGroups:eval('(' + MANIFEST + ')').envGroups
+      }
+
+  - install:
+      jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
+      envName: ${settings.envName}
+      region: ${settings.region}
+      loggerName: ${settings.envName}
+      displayName: WP Standalone
+      envGroups: ${response.envGroups}    
+      settings:
+        ls-addon: true
+        waf: true
+        le-addon: true
+        cdn-addon: true
+        
+        diskLimit: 50000
+        
