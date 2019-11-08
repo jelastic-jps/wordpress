@@ -1,0 +1,55 @@
+type: install
+version: '1.1'
+name: WordPress Cluster
+id: wordpress-cluster
+categories:
+  - apps/clusters
+  - apps/content-management
+description: WordPress Cluster package provides integrated autoscaling and high availability for development and production environments. Clustered topology ensures effective handling of heavy workload.
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
+
+settings:
+  fields:
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true,
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+
+onInstall:
+  - script: |
+      return {
+      result:0,
+      envGroups:eval('(' + MANIFEST + ')').envGroups
+      }
+
+  - install:
+      jps: https://raw.githubusercontent.com/sych74/wordpress-cluster/master/manifest.jps
+      envName: ${settings.envName}
+      region: ${settings.region}
+      loggerName: ${settings.envName}
+      displayName: WP Cluster
+      envGroups: ${response.envGroups}    
+      settings:
+        ls-addon: true
+        waf: true
+        le-addon: true
+        cdn-addon: true
+        noteCDN: wp1000
+        galera: true
+        is_trigger: true
+        cp_count: 2
+        bl_fixedCloudlets: 8
+        cp_fixedCloudlets: 16
+        db_fixedCloudlets: 12
+        st_fixedCloudlets: 8
+        st_diskLimit: 20000
+        
