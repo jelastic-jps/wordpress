@@ -23,6 +23,16 @@ settings:
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
+    
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:    
+
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false
 
 onInstall:
   - script: |
@@ -43,6 +53,7 @@ onInstall:
         waf: true
         le-addon: true
         cdn-addon: true
+        mu-addon: ${settings.mu-addon}
         noteCDN: wp1000
         galera: true
         is_trigger: true
