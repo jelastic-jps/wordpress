@@ -11,17 +11,17 @@ description:
   short: WordPress Standalone Starter
 
 settings:
-  fields:
-  - caption: Advanced Features
-    type: displayfield
-    name: displayfield
-    markup:    
-    
+  fields:  
   - type: checkbox
     name: mu-addon
     caption: Install WordPress Multisite Network
     value: false
-  
+
+  - caption: Price
+    type: displayfield
+    name: displayfield
+    markup: $100/month
+
   - caption: Env Name    
     type: envname
     name: envName
