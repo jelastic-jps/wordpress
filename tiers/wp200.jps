@@ -7,7 +7,7 @@ categories:
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
-baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
 description:
   text: text/description-wp200.md    
   short: WordPress Standalone Pro
@@ -57,7 +57,7 @@ onInstall:
       }
 
   - install:
-      jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/manifest.jps
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
