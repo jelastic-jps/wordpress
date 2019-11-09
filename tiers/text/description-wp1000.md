@@ -2,7 +2,7 @@ WordPress Cluster package provides integrated autoscaling and high availability 
 
 * 24 GB RAM
 * 78 GHz CPU
-* 10 GB disk space
+* 10 GB SSD Disk
 * 1000 GB CDN Free
 * 1 Public IP
 

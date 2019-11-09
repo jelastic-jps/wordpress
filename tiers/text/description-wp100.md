@@ -2,9 +2,9 @@ WordPress CMS deployed as a lightweight standalone container for running smaller
 
 * 4 GB RAM 
 * 2 GHz CPU 
-* 10 GB disk space 
+* 10 GB SSD Disk
 * 1 Public IP 
-* 200 GB CDN free
+* 200 GB CDN Free
 
 Stacks inside container: LiteSpeed Web Server, MariaDB, Redis.   
 Built-in Let’s Encrypt SSL Auto-Renewal.

@@ -2,8 +2,8 @@ WordPress Cluster package provides high availability for production environments
 
 * 16 GB RAM
 * 52 GHz CPU
-* 10 GB disk space
-* 500 GB CDN free
+* 10 GB SSD Disk
+* 500 GB CDN Free
 * 1 Public IP
 
 **Topology:**  LiteSpeed Web ADC, 2 x LiteSpeed Web Servers, 2 x MariaDB Master-Master Databases, Redis, Shared Storage

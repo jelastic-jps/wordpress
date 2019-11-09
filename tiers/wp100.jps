@@ -7,7 +7,7 @@ categories:
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
 description:
-  text: text/description-wp100.md    
+  text: text/description-wp100.md
   short: WordPress Standalone Starter
 
 settings:
@@ -27,12 +27,18 @@ settings:
     selectFirstAvailable: true
     message: unavailable region
     
-  - caption: Price - $99 per month
+  - caption: 1
     type: displayfield
     name: displayfield
-    markup: "billied on per hour basis"
-    hideLabel: false
- 
+    markup:    
+    hideLabel: true
+    
+  - caption: '<b>$99 per month</b>'
+    type: displayfield
+    name: displayfield
+    markup: billed on per hour basis
+    height: 20px
+    hideLabel: false   
     
   - caption: Advanced Features
     type: displayfield
