@@ -5,10 +5,10 @@ WordPress CMS deployed as a lightweight standalone container for running smaller
 * 200 GB CDN
 * 1 Public IP
 
-Topology inside container: LiteSpeed Web Server, MariaDB, Redis
+**Topology inside container:** LiteSpeed Web Server, MariaDB, Redis
 
 
-Built-in functionality:
+**Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
 * Web Application Firewall (WAF)
@@ -17,4 +17,4 @@ Built-in functionality:
 * Public IPv4 and Public IPv6
 
 
-Price / month: $100
+**Price / month:** $99
