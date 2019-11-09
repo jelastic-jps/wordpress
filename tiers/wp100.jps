@@ -4,8 +4,8 @@ name: WordPress Standalone Starter
 categories:
   - apps/blogs
   - apps/content-management
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
-logo: https://raw.githubusercontent.com/sych74/wordpress/master/images/wp-standalone.png
 description:
   text: text/description-wp100.md    
   short: WordPress Standalone Starter
