@@ -10,6 +10,7 @@ WordPress CMS deployed as a lightweight standalone container for running medium 
 **Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
+* HTTP/3 Premium CDN
 * Web Application Firewall (WAF)
 * Layer-7 Anti-DDoS Filtering
 * WordPress Multisite Network
