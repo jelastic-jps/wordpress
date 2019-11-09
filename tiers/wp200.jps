@@ -4,10 +4,10 @@ name: WordPress Standalone Pro
 categories:
   - apps/blogs
   - apps/content-management
-logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
-baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
+logo: /images/wp-standalone.png
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 description:
-  text: text/description-wp200.md
+  text: /tiers/text/description-wp200.md
   short: WordPress Standalone Pro
 
 settings:
@@ -85,7 +85,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/manifest.jps
+      jps: /wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
