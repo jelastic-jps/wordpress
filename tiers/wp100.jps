@@ -1,19 +1,27 @@
-jpsType: install
-jpsVersion: '1.5'
-id: wordpress
+type: install
+id: wordpress-100 
 name: WordPress Standalone Starter
 categories:
   - apps/blogs
   - apps/content-management
-logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
-homepage: http://wordpress.org/
 baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+logo: /../images/wp-standalone.png
 description:
   text: /text/description-wp100.md
   short: WordPress Standalone Starter
 
 settings:
   fields:
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:    
+    
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false
+  
   - caption: Env Name    
     type: envname
     name: envName
@@ -28,22 +36,9 @@ settings:
     selectFirstAvailable: true
     message: unavailable region
     
-  - caption: Advanced Features
-    type: displayfield
-    name: displayfield
-    markup:    
-
-  - type: checkbox
-    name: mu-addon
-    caption: Install WordPress Multisite Network
-    value: false
-    
 onInstall:
   - script: |
-      return {
-      result:0,
-      envGroups:eval('(' + MANIFEST + ')').envGroups
-      }
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
 
   - install:
       jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
