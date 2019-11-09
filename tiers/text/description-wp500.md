@@ -1,20 +1,21 @@
-WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency:
+WordPress Cluster package provides high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload using optimal amount of allocated resources:
 
-* 4 GB RAM, 12 GHz CPU
+* 16 GB RAM, 52 GHz CPU
 * 10 GB disk space
-* 200 GB CDN
+* 500 GB CDN
 * 1 Public IP
 
-**Topology inside container:** LiteSpeed Web Server, MariaDB, Redis
-
+**Topology inside container:**  LiteSpeed Web ADC, 2 LiteSpeed Web Servers, 2 MariaDB Master-Master Databases, Redis, Shared Storage
 
 **Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
+* HTTP/3 Premium CDN
+* Automated Horizontal Scaling for Web Servers
 * Web Application Firewall (WAF)
+* Master-Master Database Replication
 * Layer-7 Anti-DDoS Filtering
 * WordPress Multisite Network
 * Public IPv4 and Public IPv6
-
 
 **Price / month:** $99
