@@ -1,8 +1,9 @@
 WordPress Cluster package provides integrated autoscaling and high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload with unexpected load spikes using optimal amount of reserved resources:
 
-* 24 GB RAM, 78 GHz CPU
+* 24 GB RAM
+* 78 GHz CPU
 * 10 GB disk space
-* 1000 GB CDN
+* 1000 GB CDN Free
 * 1 Public IP
 
 **Topology:** LiteSpeed Web ADC, 2+ LiteSpeed Web Servers, 3 MariaDB Galera Cluster, Redis, Shared Storage
