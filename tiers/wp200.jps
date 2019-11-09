@@ -99,6 +99,6 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
-        diskLimit: 40000
+        diskLimit: 40
         noteCDN: wp200
         
