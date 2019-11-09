@@ -17,7 +17,7 @@ settings:
     type: envname
     name: envName
     randomName: true
-    showFullDomain: true,
+    showFullDomain: true
     dependsOn: region
 
   - caption: Region
@@ -91,6 +91,6 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
-        diskLimit: 20
+        diskLimit: 20000
         noteCDN: wp100
         
