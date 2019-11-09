@@ -6,7 +6,7 @@ categories:
   - apps/clusters
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
-baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
 description:
   text: text/description-wp500.md    
   short: WordPress Cluster Business
