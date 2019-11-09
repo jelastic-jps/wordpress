@@ -33,7 +33,7 @@ settings:
     markup:    
     hideLabel: true
     
-  - caption: '<b>$199 per month</b>'
+  - caption: '<b>$99 per month</b>'
     type: displayfield
     name: displayfield
     markup: billed on per hour basis
