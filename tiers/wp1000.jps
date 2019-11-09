@@ -72,10 +72,10 @@ onInstall:
         galera: true
         is_trigger: true
         loadGrowth: fast
-        cp_count: 2
+        cp_count: 5
         bl_fixedCloudlets: 8
         cp_fixedCloudlets: 32
-        db_fixedCloudlets: 12
-        st_fixedCloudlets: 8
+        db_fixedCloudlets: 8
+        st_fixedCloudlets: 4
         st_diskLimit: 200
         
