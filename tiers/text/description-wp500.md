@@ -5,13 +5,12 @@ WordPress Cluster package provides high availability for development and product
 * 500 GB CDN
 * 1 Public IP
 
-**Topology inside container:**  LiteSpeed Web ADC, 2 LiteSpeed Web Servers, 2 MariaDB Master-Master Databases, Redis, Shared Storage
+**Topology:**  LiteSpeed Web ADC, 2 LiteSpeed Web Servers, 2 MariaDB Master-Master Databases, Redis, Shared Storage
 
 **Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
 * HTTP/3 Premium CDN
-* Automated Horizontal Scaling for Web Servers
 * Web Application Firewall (WAF)
 * Master-Master Database Replication
 * Layer-7 Anti-DDoS Filtering
