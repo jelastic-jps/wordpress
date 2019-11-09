@@ -5,9 +5,9 @@ categories:
   - apps/blogs
   - apps/content-management
 baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
-logo: /../images/wp-standalone.png
+logo: https://raw.githubusercontent.com/sych74/wordpress/master/images/wp-standalone.png
 description:
-  text: /text/description-wp100.md
+  text: text/description-wp100.md    
   short: WordPress Standalone Starter
 
 settings:
