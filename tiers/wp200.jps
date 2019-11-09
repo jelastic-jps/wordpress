@@ -70,6 +70,6 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         fixedCloudlets: 64
-        diskLimit: 50000
+        diskLimit: 20
         noteCDN: wp200
         
