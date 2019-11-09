@@ -6,7 +6,13 @@ WordPress Cluster package provides high availability for production environments
 * 500 GB CDN Free
 * 1 Public IP
 
-**Topology:**  LiteSpeed Web ADC, 2 x LiteSpeed Web Servers, 2 x MariaDB Master-Master Databases, Redis, Shared Storage
+**Topology:**  
+
+* LiteSpeed Web ADC
+* 2 x LiteSpeed Web Servers
+* 2 x MariaDB Master-Master Databases
+* Redis 
+* Shared Storage
 
 **Built-in functionality:**
 
