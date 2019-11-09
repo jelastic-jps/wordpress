@@ -8,7 +8,7 @@ categories:
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
 description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
 
 onBeforeInit: /scripts/settings.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeinstall.js?_r=${fn.random}
