@@ -18,4 +18,9 @@ WordPress Cluster package provides high availability for development and product
 * WordPress Multisite Network
 * Public IPv4 and Public IPv6
 
-**Price / month:** $99
+**Functionality Available by Request:**
+* Geo Distribution
+* Disaster Recovery
+* Failover DNS
+
+**Price / Month:** $499
