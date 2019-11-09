@@ -72,9 +72,9 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         is_trigger: false
         cp_count: 3
-        bl_fixedCloudlets: 8
+        bl_fixedCloudlets: 6
         cp_fixedCloudlets: 32
         db_fixedCloudlets: 8
-        st_fixedCloudlets: 8
+        st_fixedCloudlets: 4
         st_diskLimit: 100
         
