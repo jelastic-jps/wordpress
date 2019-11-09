@@ -5,7 +5,7 @@ categories:
   - apps/blogs
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
-baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
 description:
   text: text/description-wp100.md    
   short: WordPress Standalone Starter
@@ -53,7 +53,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
 
   - install:
-      jps: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress/manifest.jps
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/manifest.jps
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
