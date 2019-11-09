@@ -27,11 +27,18 @@ settings:
     selectFirstAvailable: true
     message: unavailable region
     
-  - caption: Price - $99 per month
+  - caption: 1
     type: displayfield
     name: displayfield
-    markup: "Please note: billied on per hour basis"
-    hideLabel: false
+    markup:    
+    hideLabel: true
+    
+  - caption: '<b>$99 per month</b>'
+    type: displayfield
+    name: displayfield
+    markup: billed on per hour basis
+    height: 20px
+    hideLabel: false   
     
   - caption: Advanced Features
     type: displayfield
@@ -47,6 +54,15 @@ settings:
     value: true
 
   - type: checkbox
+    name: autoscaling
+    caption: 'Auto scaling up to 2 x of the reserved resources'
+    tooltip: |
+      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
+      <br/><br/>  
+      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
+    value: true
+
+  - type: checkbox
     name: cdn-addon
     caption: Install Lightning-Fast Premium CDN with 130+ PoPs
     tooltip: |
@@ -54,14 +70,13 @@ settings:
       Web pages load faster, and viewers enjoy a better experience with content loading more efficiently. 
       HTTP/3 protocol provides better security since it was designed to require traffic encryption by default.
     value: false
-
+    
   - type: checkbox
     name: waf
-    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'  
-    
+    caption: 'Extra security with LiteSpeed Enterprise built-in WAF (Web Application Firewall)'      
     value: false
     tooltip: |
-      Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>Enterprise LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo. 
+      Protect web sites with <a href='https://www.litespeedtech.com/products/litespeed-web-server'>LiteSpeed Enterprise</a> built-in WAF based on Free ModSecurity Rules from Comodo. 
       WAF prevents attacks stemming from web application security flaws, such as SQL injection, cross-site scripting (XSS), file inclusion, and security misconfigurations. 
       Enabling WAF slightly reduces number of processed requests per second (up to ~7%).  
 

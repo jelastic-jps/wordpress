@@ -1,19 +1,11 @@
-WordPress CMS deployed as a lightweight standalone container for running medium websites and blogs with optimal amount of allocated resources for cost efficiency:
+WordPress CMS deployed as a lightweight standalone container for running medium websites and blogs with optimal amount of reserved resources for cost efficiency:
 
-* 8 GB RAM, 25 GHz CPU
-* 40 GB disk space
-* 300 GB CDN
+* 8 GB RAM 
+* 25 GHz CPU
+* 10 GB SSD Disk
+* 300 GB CDN Free
 * 1 Public IP
 
-**Topology inside container:** LiteSpeed Web Server, MariaDB, Redis
+Stacks inside container: LiteSpeed Web Server, MariaDB, Redis.  
+Built-in Let’s Encrypt SSL with Auto-Renewal.
 
-**Built-in functionality:**
-
-* Let’s Encrypt SSL with Auto-Renewal
-* HTTP/3 Premium CDN
-* Web Application Firewall (WAF)
-* Layer-7 Anti-DDoS Filtering
-* WordPress Multisite Network
-* Public IPv4 and Public IPv6
-
-**Price / month:** $199
