@@ -7,7 +7,6 @@ WordPress CMS deployed as a lightweight standalone container for running medium 
 
 **Topology inside container:** LiteSpeed Web Server, MariaDB, Redis
 
-
 **Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
@@ -15,6 +14,5 @@ WordPress CMS deployed as a lightweight standalone container for running medium 
 * Layer-7 Anti-DDoS Filtering
 * WordPress Multisite Network
 * Public IPv4 and Public IPv6
-
 
 **Price / month:** $199
