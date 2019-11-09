@@ -76,5 +76,5 @@ onInstall:
         cp_fixedCloudlets: 32
         db_fixedCloudlets: 8
         st_fixedCloudlets: 8
-        st_diskLimit: 20000
+        st_diskLimit: 100
         
