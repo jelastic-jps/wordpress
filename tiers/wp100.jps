@@ -4,10 +4,10 @@ name: WordPress Standalone Starter
 categories:
   - apps/blogs
   - apps/content-management
-logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
-baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
+logo: /images/wp-standalone.png
 description:
-  text: text/description-wp100.md
+  text: /tiers/text/description-wp100.md    
   short: WordPress Standalone Starter
 
 settings:
@@ -27,31 +27,23 @@ settings:
     selectFirstAvailable: true
     message: unavailable region
     
-  - caption: 1
+  - caption: Price - $99 per month
     type: displayfield
     name: displayfield
-    markup:    
-    hideLabel: true
-    
-  - caption: '<b>$99 per month</b>'
-    type: displayfield
-    name: displayfield
-    markup: billed on per hour basis
-    height: 20px
-    hideLabel: false   
+    markup: "Please note: billied on per hour basis"
+    hideLabel: false
     
   - caption: Advanced Features
     type: displayfield
     name: displayfield
-    markup:    
-
+    markup:
+    
   - type: checkbox
     name: autoscaling
-    caption: 'Auto-scaling up to 2 x of the reserved resources'
+    caption: 'Auto scaling up to 2 x of the reserved resources'
     tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
-      <br/><br/>  
-      Please note: auto-scaling cost is $0.0037 per 128 MiB per hour of actual usage of dynamic resources.
+      Enable peace of mind with automatic handling of temporary load spikes above the default plan resource capabilities to serve more users without downtimes. 
+      Auto scaling cost is $0.0037 per 128 MiB per hour of actual usage of dynamic resources.
     value: true
 
   - type: checkbox
@@ -65,11 +57,11 @@ settings:
 
   - type: checkbox
     name: waf
-    caption: 'Extra security with LiteSpeed Enterprise built-in WAF (Web Application Firewall)'  
+    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'  
     
     value: false
     tooltip: |
-      Protect web sites with <a href='https://www.litespeedtech.com/products/litespeed-web-server'>LiteSpeed Enterprise</a> built-in WAF based on Free ModSecurity Rules from Comodo. 
+      Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>Enterprise LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo. 
       WAF prevents attacks stemming from web application security flaws, such as SQL injection, cross-site scripting (XSS), file inclusion, and security misconfigurations. 
       Enabling WAF slightly reduces number of processed requests per second (up to ~7%).  
 
@@ -85,7 +77,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/manifest.jps
+      jps: /wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
@@ -99,6 +91,6 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
-        diskLimit: 20000
+        diskLimit: 20
         noteCDN: wp100
         
