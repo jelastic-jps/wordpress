@@ -1,13 +1,16 @@
 jpsType: install
 jpsVersion: '1.1'
 id: wordpress-200
-name: WordPress
+name: WordPress Standalone Pro
 categories:
   - apps/blogs
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
-description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
+baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+description:
+  text: text/description-wp200.md    
+  short: WordPress Standalone Pro
 
 settings:
   fields:
