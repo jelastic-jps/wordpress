@@ -11,16 +11,22 @@ description:
   short: WordPress Standalone Starter
 
 settings:
-  fields:  
+  fields:
+  - type: checkbox
+    name: cdn-addon
+    caption: Install Lightning-Fast Premium CDN with 130+ PoPs
+    value: false
+
+  - type: checkbox
+    name: waf
+    caption: Web Application Firewall
+    value: false
+    tooltip: Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo
+  
   - type: checkbox
     name: mu-addon
     caption: Install WordPress Multisite Network
     value: false
-
-  - caption: Price
-    type: displayfield
-    name: displayfield
-    markup: $100/month
 
   - caption: Env Name    
     type: envname
@@ -49,9 +55,9 @@ onInstall:
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
-        waf: true
+        waf: ${settings.waf}
         le-addon: true
-        cdn-addon: true
+        cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         fixedCloudlets: 32
         diskLimit: 20000
