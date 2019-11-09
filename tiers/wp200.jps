@@ -27,7 +27,7 @@ settings:
     selectFirstAvailable: true
     message: unavailable region
     
-  - caption: Price - $99 per month
+  - caption: Price - $199 per month
     type: displayfield
     name: displayfield
     markup: "Please note: billied on per hour basis"
@@ -93,8 +93,4 @@ onInstall:
         fixedCloudlets: ${response.fixedCloudlets}
         diskLimit: 40000
         noteCDN: wp200
-
-
-
-
         
