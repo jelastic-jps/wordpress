@@ -1,4 +1,4 @@
-WordPress Cluster package provides integrated autoscaling and high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload with unexpected load spikes using optimal amount of allocated resources:
+WordPress Cluster package provides integrated autoscaling and high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload with unexpected load spikes using optimal amount of reserved resources:
 
 * 24 GB RAM, 78 GHz CPU
 * 10 GB disk space
@@ -20,8 +20,7 @@ WordPress Cluster package provides integrated autoscaling and high availability 
 
 **Functionality Available by Request:**
 * GlobalSign SSL
-* Geo Distribution
-* Disaster Recovery
-* Failover DNS
-
-**Price / month:** $699 (can increase based on autoscaling)
+* CI/CD Addons
+* Failover DNS 
+* Disaster Recovery Addons
+* Geo Distributed Deployment
