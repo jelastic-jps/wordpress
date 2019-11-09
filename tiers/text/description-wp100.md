@@ -8,3 +8,4 @@ WordPress CMS deployed as a lightweight standalone container for running smaller
 
 Stacks inside container: LiteSpeed Web Server, MariaDB, Redis.   
 Built-in Let’s Encrypt SSL Auto-Renewal.
+
