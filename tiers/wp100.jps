@@ -12,21 +12,6 @@ description:
 
 settings:
   fields:
-  - type: checkbox
-    name: cdn-addon
-    caption: Install Lightning-Fast Premium CDN with 130+ PoPs
-    value: false
-
-  - type: checkbox
-    name: waf
-    caption: Web Application Firewall
-    value: false
-    tooltip: Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo
-  
-  - type: checkbox
-    name: mu-addon
-    caption: Install WordPress Multisite Network
-    value: false
 
   - caption: Env Name    
     type: envname
@@ -41,6 +26,27 @@ settings:
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
+    
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:    
+
+  - type: checkbox
+    name: cdn-addon
+    caption: Install Lightning-Fast Premium CDN with 130+ PoPs
+    value: false
+
+  - type: checkbox
+    name: waf
+    caption: Web Application Firewall
+    value: false
+    tooltip: Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo
+  
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false    
     
 onInstall:
   - script: |
