@@ -30,7 +30,7 @@ settings:
   - caption: Price - $99 per month
     type: displayfield
     name: displayfield
-    markup: "Please note: billied on per hour basis"
+    markup: "billied on per hour basis"
     hideLabel: false
  
     
