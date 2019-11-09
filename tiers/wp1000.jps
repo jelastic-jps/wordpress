@@ -6,7 +6,7 @@ categories:
   - apps/clusters
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
-baseURL: https://raw.githubusercontent.com/sych74/wordpress/master/tiers
+baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
 description:
   text: text/description-wp1000.md    
   short: WordPress Cluster Enterprise
@@ -56,7 +56,7 @@ onInstall:
       }
 
   - install:
-      jps: https://raw.githubusercontent.com/sych74/wordpress-cluster/master/manifest.jps
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/manifest.jps
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
