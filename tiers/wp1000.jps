@@ -1,0 +1,81 @@
+type: install
+version: '1.1'
+name: WordPress Cluster Enterprise
+id: wordpress-1000
+categories:
+  - apps/clusters
+  - apps/content-management
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
+baseURL: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/tiers
+description:
+  text: text/description-wp1000.md    
+  short: WordPress Cluster Enterprise
+
+settings:
+  fields:
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true,
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+    
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:    
+
+  - type: checkbox
+    name: cdn-addon
+    caption: Install Lightning-Fast Premium CDN with 130+ PoPs
+    value: false
+
+  - type: checkbox
+    name: waf
+    caption: Web Application Firewall
+    value: false
+    tooltip: Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo
+  
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false
+
+onInstall:
+  - script: |
+      return {
+      result:0,
+      envGroups:eval('(' + MANIFEST + ')').envGroups
+      }
+
+  - install:
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/manifest.jps
+      envName: ${settings.envName}
+      region: ${settings.region}
+      loggerName: ${settings.envName}
+      displayName: WP Cluster
+      envGroups: ${response.envGroups}    
+      settings:
+        ls-addon: true
+        waf: ${settings.waf}
+        le-addon: true
+        cdn-addon: ${settings.cdn-addon}
+        mu-addon: ${settings.mu-addon}
+        noteCDN: wp1000
+        galera: true
+        is_trigger: true
+        loadGrowth: fast
+        cp_count: 2
+        bl_fixedCloudlets: 8
+        cp_fixedCloudlets: 32
+        db_fixedCloudlets: 12
+        st_fixedCloudlets: 8
+        st_diskLimit: 20000
+        

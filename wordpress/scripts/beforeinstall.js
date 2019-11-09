@@ -9,7 +9,9 @@ if (${settings.ls-addon:false}) {
     nodeType: "llsmp",
     tag: "5.4.1-php-7.3.7",
     count: 1,
-    cloudlets: 16,
+    cloudlets: ${settings.fixedCloudlets:16},
+    fixedCloudlets: ${settings.fixedCloudlets:1},
+    diskLimit: ${settings.diskLimit:10000},
     nodeGroup: "cp",
     displayName: "AppServer",
     env: {
@@ -25,7 +27,9 @@ if (!${settings.ls-addon:false}) {
     nodeType: "lemp",
     tag: "1.16.0-php-7.3.5",
     count: 1,
-    cloudlets: 16,
+    cloudlets: ${settings.fixedCloudlets:16},
+    fixedCloudlets: ${settings.fixedCloudlets:1},
+    diskLimit: ${settings.diskLimit:10000},
     nodeGroup: "cp",
     displayName: "AppServer",
     env: {
