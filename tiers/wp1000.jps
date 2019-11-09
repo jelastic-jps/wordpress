@@ -4,7 +4,7 @@ name: WordPress Cluster Enterprise
 categories:
   - apps/blogs
   - apps/content-management
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-cluster.png
 description:
   text: /tiers/text/description-wp1000.md?_r=${fn.random}
@@ -100,7 +100,7 @@ onInstall:
       }
 
   - install:
-      jps: https://raw.githubusercontent.com/sych74/wordpress-cluster/master/manifest.jps?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
