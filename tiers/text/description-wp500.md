@@ -2,7 +2,7 @@ WordPress Cluster package provides high availability for production environments
 
 * 16 GB RAM
 * 52 GHz CPU
-* 10 GB SSD Disk
+* 100 GB SSD Disk
 * 500 GB CDN Free
 * 1 Public IP
 
