@@ -14,7 +14,7 @@ WordPress Cluster package provides high availability for development and product
 * Redis 
 * Shared Storage
 
-**Built-in functionality:**
+**Built-In Functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
 * HTTP/3 Premium CDN
