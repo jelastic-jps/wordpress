@@ -1,7 +1,6 @@
-WordPress Cluster package provides high availability for production environments of large projects. Clustered topology ensures effective handling of heavy load using optimal amount of reserved resources:
+WordPress Cluster package provides high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload using optimal amount of allocated resources:
 
-* 16 GB RAM
-* 52 GHz CPU
+* 16 GB RAM, 52 GHz CPU
 * 10 GB SSD Local Disk
 * 100 GB Shared Storage
 * 500 GB CDN Free
@@ -18,10 +17,18 @@ WordPress Cluster package provides high availability for production environments
 **Built-in functionality:**
 
 * Let’s Encrypt SSL with Auto-Renewal
+* HTTP/3 Premium CDN
+* Automated Horizontal Scaling for Web Servers
+* Web Application Firewall (WAF)
 * Master-Master Database Replication
+* Layer-7 Anti-DDoS Filtering
+* WordPress Multisite Network
+* Public IPv4 and Public IPv6
+
 
 **Functionality Available by Request:**
-* CI/CD Addons
-* Failover DNS 
-* Disaster Recovery Addons
-* Geo Distributed Deployment
+* Geo Distribution
+* Disaster Recovery
+* Failover DNS
+
+**Price / Month:** $499
