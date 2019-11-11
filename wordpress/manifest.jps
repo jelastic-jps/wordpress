@@ -1,13 +1,15 @@
 jpsType: install
 jpsVersion: '1.1'
 id: wordpress
-name: WordPress
+name: WordPress Standalone Kit
 categories:
   - apps/blogs
   - apps/content-management
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
-description: WordPress CMS deployed as a lightweight standalone container for running smaller websites and blogs with minimal allocated resources for cost efficiency.
+description:
+  text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
+  short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
 
 onBeforeInit: /scripts/settings.js?_r=${fn.random}
