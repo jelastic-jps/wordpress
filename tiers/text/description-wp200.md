@@ -2,7 +2,7 @@ WordPress CMS deployed as a lightweight standalone container for running medium 
 
 * 8 GB RAM 
 * 25 GHz CPU
-* 10 GB SSD Disk
+* 40 GB SSD Disk
 * 300 GB CDN Free
 * 1 Public IP
 
