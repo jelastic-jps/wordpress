@@ -3,14 +3,14 @@ WordPress Cluster package provides integrated autoscaling and high availability 
 * 24 GB RAM, 78 GHz CPU
 * 10 GB SSD Local Disk
 * 200 GB Shared Storage
-* 1000 GB CDN Free
+* 1000 GB CDN
 * 1 Public IP
 
 **Topology:** 
 
 * LiteSpeed Web ADC
 * 2+ LiteSpeed Web Servers 
-* 3 MariaDB Galera Cluster 
+* 3 x MariaDB Galera Cluster 
 * Redis 
 * Shared Storage
 
