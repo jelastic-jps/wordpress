@@ -3,7 +3,7 @@ WordPress Cluster package provides high availability for development and product
 * 16 GB RAM, 52 GHz CPU
 * 10 GB SSD Local Disk
 * 100 GB Shared Storage
-* 500 GB CDN Free
+* 500 GB CDN
 * 1 Public IP
 
 **Topology:**  
