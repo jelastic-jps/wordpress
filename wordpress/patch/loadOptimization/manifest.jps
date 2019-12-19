@@ -1,0 +1,28 @@
+jpsType: update
+jpsVersion: '1.1'
+id: wp-standalone-optimization
+name: Standalone Optimization for Load Perfomance Tests
+description: Optimization for Load Perfomance Tests
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/images/wp-cluster.png
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master
+
+onInstall:
+
+  - log: LiteSpeed WEB optimization
+  
+  - cmd[cp]: sed -i 's/^WP_PROTECT=.*/WP_PROTECT=OFF/g' /.jelenv;
+    user: root
+
+  - cmd[cp]: |-
+      wget ${baseUrl}/patch/loadOptimization/scripts/LSWEB.sh -O ~/LSWEB.sh;
+      bash ~/LSWEB.sh;
+  
+  - log: DataBase optimization
+  - cmd[cp]: wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf
+  - cmd[cp]: |-
+      wget ${baseUrl}/patch/loadOptimization/scripts/DB.sh -O ~/DB.sh;
+      bash ~/DB.sh;
+    user: root
+
+  - log: Disabled WP Loggin User Cache
+  - cmd[cp]: cd /var/www/webroot/ROOT; wp lscache-admin set_option cache_priv false --path=${SERVER_WEBROOT} &>> /var/log/run.log;

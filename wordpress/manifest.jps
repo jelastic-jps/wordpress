@@ -141,6 +141,7 @@ actions:
   creatUserDB:
     - log: Create user for DataBase
     - cmd [cp]: |-
+        wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log
         wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log
         bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log
         jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log 
