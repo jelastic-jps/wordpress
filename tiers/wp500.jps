@@ -127,4 +127,5 @@ onInstall:
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
         st_diskLimit: 100
+        bl_diskLimit: 30
         
