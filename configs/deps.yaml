@@ -1,8 +1,8 @@
 tags:
   lemp:
     lemp:
-      digest: sha256:bb90546b5937cd5495d9bbebd387f175d117fef66d546c7741589d0841a50bf9
-      version: 1.18.0-php-7.4.9
+      digest: sha256:fb0beec697bdf617d15fde9c542a89409d676eeac665188a7a50b7d0a390af19
+      version: 1.18.0-php-7.4.10
   llsmp:
     llsmp:
       digest: sha256:f929b52cb06ef454a56c906383f5259ee99a133058b9b945bb5ff682f76372d7
@@ -20,8 +20,8 @@ tags:
       version: 1.18.0
   nginxphp:
     nginxphp:
-      digest: sha256:fe0cfae6ccdb9fa7f914a8f118e285d5eb89bf5a0b3f73367433dfe6de391d27
-      version: 1.18.0-php-7.4.9
+      digest: sha256:4ca99adac50551a5ac553061eed4a6e4ffac351eb81c77f309a88df0b0e50808
+      version: 1.18.0-php-7.4.10
   storage:
     storage:
       digest: sha256:d5e483bb656fa2abe006391852ce472e8bf94b000dad3afd54bfc28e662526f6
