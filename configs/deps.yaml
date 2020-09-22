@@ -5,8 +5,8 @@ tags:
       version: 1.18.0-php-7.4.10
   llsmp:
     llsmp:
-      digest: sha256:0369bf18ca4c20f789bd6aebf07db731e6eacf177cb6666990f2fbb0f5428936
-      version: 5.4.8-php-7.4.6
+      digest: sha256:3848d87e091bc18f98cd83af12086f27857b4b05c9fb9e0f054b73a87bc4c2ec
+      version: 5.4.9-php-7.4.9
   mysql:
     mysql5:
       digest: sha256:bbbaee267da03f86084d5543c00c43b4c7aa8b890629a12a62ab8521c3d70e70
