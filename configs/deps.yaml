@@ -1,7 +1,7 @@
 tags:
   lemp:
     lemp:
-      digest: sha256:fb0beec697bdf617d15fde9c542a89409d676eeac665188a7a50b7d0a390af19
+      digest: sha256:10e3544b430ebfd655536610facfacd148e560668416a246bd75712ca24b8d36
       version: 1.18.0-php-7.4.10
   llsmp:
     llsmp:
