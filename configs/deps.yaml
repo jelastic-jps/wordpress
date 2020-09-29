@@ -9,10 +9,10 @@ tags:
       version: 5.4.9-php-7.4.10
   mysql:
     mysql5:
-      digest: sha256:bbbaee267da03f86084d5543c00c43b4c7aa8b890629a12a62ab8521c3d70e70
+      digest: sha256:f1d78e02ebbcb0dc4822f0f4fb7466546563f0b26053e87f8fc19ba2db371815
       version: 5.7.31
     mysql8:
-      digest: sha256:571f4b4457d8a736e3e292e299248048e19b32620524cd49f5ff9bbef27b205a
+      digest: sha256:ace5f5b9c83ec62da55ddca793fb0652bcf4b5f78a6d860574148b3d97d99d3a
       version: 8.0.21
   nginxbalancer:
     nginxbalancer:
