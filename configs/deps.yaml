@@ -1,28 +1,13 @@
-tags:
+templates:
   lemp:
-    lemp:
-      digest: sha256:31e33ec42be8cf3bc20f4e5b976bb5de74f577af4341f60b8a4434b5c9f6f013
-      version: 1.18.0-php-7.4.10
+    - ^lemp
   llsmp:
-    llsmp:
-      digest: sha256:95e4b8f16b32245d3972066a59b673ad28f3343e82776be1f6c9c3c33e18e975
-      version: 5.4.9-php-7.4.10
+    - ^llsmp
   mysql:
-    mysql5:
-      digest: sha256:f958cb2a2579308a5031383acfa77dce6e697669dcaa86bc100a409fe597613e
-      version: 5.7.31
-    mysql8:
-      digest: sha256:51264966b815442ac0af2f99a155e05d9594e52bc8bf4193ba2143fb86a99a1e
-      version: 8.0.21
+    - ^mysql5$
   nginxbalancer:
-    nginxbalancer:
-      digest: sha256:96fdbf83753ff881c54256f0d1fe19586c9c3e10588de5324da91f3eb1adfc84
-      version: 1.18.0
+    - ^nginxbalancer
   nginxphp:
-    nginxphp:
-      digest: sha256:e369727a05bf67b5c93e19747b8c97b909113c074944db1197ff337ddb595bec
-      version: 1.18.0-php-7.4.10
+    - ^nginxphp
   storage:
-    storage:
-      digest: sha256:843b00bca62bafc95c512977f683c6b32de72799f5314e5e37cf8853a360c5d7
-      version: 2.0-7.8
+    - ^storage
