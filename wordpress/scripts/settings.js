@@ -26,7 +26,7 @@ if (group.groupType == 'trial') {
       "cls": "warning",
       "height": 30,
       "hideLabel": true,
-      "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
+      "markup": "The following advanced features are not available for " + group.groupType + " accounts. Please upgrade your account to access these features."
     })
  
     if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
