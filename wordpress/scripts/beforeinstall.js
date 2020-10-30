@@ -9,7 +9,6 @@ var resp = {
 if (${settings.ls-addon:false}) {
   resp.nodes.push({
     nodeType: "llsmp",
-    tag: "5.4.1-php-7.3.7",
     count: 1,
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
@@ -29,7 +28,6 @@ if (${settings.ls-addon:false}) {
 if (!${settings.ls-addon:false}) {
   resp.nodes.push({
     nodeType: "lemp",
-    tag: "1.16.0-php-7.3.5",
     count: 1,
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
