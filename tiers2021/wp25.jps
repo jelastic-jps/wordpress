@@ -61,7 +61,7 @@ settings:
       HTTP/3 ready Premium CDN improves web application performance by up to 60%. 
       Web pages load faster, and viewers enjoy a better experience with content loading more efficiently. 
       HTTP/3 protocol provides better security since it was designed to require traffic encryption by default.
-    value: false
+    value: true
     
   - type: checkbox
     name: waf
