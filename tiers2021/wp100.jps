@@ -7,7 +7,7 @@ categories:
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
-  text: /tiers/text/description-wp100.md    
+  text: /tiers2021/text/description-wp100.md    
   short: WordPress Standalone Starter
 
 settings:
@@ -84,7 +84,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
-      jps: /wordpress/manifest.jps?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
@@ -98,5 +98,4 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
-        diskLimit: 20
         

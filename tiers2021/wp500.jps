@@ -7,7 +7,7 @@ categories:
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-cluster.png
 description:
-  text: /tiers/text/description-wp500.md?_r=${fn.random}
+  text: /tiers2021/text/description-wp500.md?_r=${fn.random}
   short: WordPress Cluster Business
 
 settings:
@@ -101,7 +101,7 @@ onInstall:
       }
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/manifest.jps?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/load2021/manifest.yml?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
@@ -113,7 +113,6 @@ onInstall:
         le-addon: true
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
-        noteCDN: wp500
         galera: false
         is_trigger: ${settings.horizontal}
         loadGrowth: fast
@@ -126,6 +125,3 @@ onInstall:
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
-        st_diskLimit: 100
-        bl_diskLimit: 30
-        
