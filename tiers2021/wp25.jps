@@ -1,0 +1,103 @@
+type: install
+id: wordpress-100 
+name: WordPress Standalone Starter
+categories:
+  - apps/blogs
+  - apps/content-management
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
+logo: /images/wp-standalone.png
+description:
+  text: /tiers/text/description-wp100.md    
+  short: WordPress Standalone Starter
+
+settings:
+  fields:
+
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+    
+  - caption: 1
+    type: displayfield
+    name: displayfield
+    markup:    
+    hideLabel: true
+    
+  - caption: '<b>$99 per month</b>'
+    type: displayfield
+    name: displayfield
+    markup: billed on per hour basis
+    height: 20px
+    hideLabel: false   
+    
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:
+    
+  - type: checkbox
+    name: autoscaling
+    caption: 'Auto scaling up to 2 x of the reserved resources'
+    tooltip: |
+      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
+      <br/><br/>  
+      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
+    value: true
+
+  - type: checkbox
+    name: cdn-addon
+    caption: Install Lightning-Fast Premium CDN with 130+ PoPs
+    tooltip: |
+      HTTP/3 ready Premium CDN improves web application performance by up to 60%. 
+      Web pages load faster, and viewers enjoy a better experience with content loading more efficiently. 
+      HTTP/3 protocol provides better security since it was designed to require traffic encryption by default.
+    value: false
+    
+  - type: checkbox
+    name: waf
+    caption: 'Extra security with LiteSpeed Enterprise built-in WAF (Web Application Firewall)'      
+    value: false
+    tooltip: |
+      Protect web sites with <a href='https://www.litespeedtech.com/products/litespeed-web-server'>LiteSpeed Enterprise</a> built-in WAF based on Free ModSecurity Rules from Comodo. 
+      WAF prevents attacks stemming from web application security flaws, such as SQL injection, cross-site scripting (XSS), file inclusion, and security misconfigurations. 
+      Enabling WAF slightly reduces number of processed requests per second (up to ~7%).  
+
+  - type: checkbox
+    name: mu-addon
+    caption: Install WordPress Multisite Network
+    value: false    
+    tooltip: "IMPORTANT: CDN and Let's Ecrypt addons should be configured manually after adding each new website. Please contact support team if you need any assistance on configuration."
+
+onInstall:
+  - script: |
+      fixedCloudlets = 32;
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
+
+  - install:
+      jps: /wordpress/manifest.jps?_r=${fn.random}
+      envName: ${settings.envName}
+      region: ${settings.region}
+      loggerName: ${settings.envName}
+      displayName: WP Standalone
+      envGroups: ${response.envGroups}    
+      settings:
+        ls-addon: true
+        waf: ${settings.waf}
+        le-addon: true
+        cdn-addon: ${settings.cdn-addon}
+        mu-addon: ${settings.mu-addon}
+        flexibleCloudlets: ${response.flexibleCloudlets}
+        fixedCloudlets: ${response.fixedCloudlets}
+        diskLimit: 20
+        noteCDN: wp100
+        
