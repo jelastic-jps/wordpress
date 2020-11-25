@@ -9,6 +9,7 @@ var resp = {
 if (${settings.ls-addon:false}) {
   resp.nodes.push({
     nodeType: "llsmp",
+    tag: "5.4.10-php-7.4.10",
     count: 1,
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
