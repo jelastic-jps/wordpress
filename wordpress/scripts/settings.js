@@ -5,7 +5,7 @@ import com.hivext.api.core.utils.Transport;
 var cdnAppid = "c05ffa5b45628a2a0c95467ebca8a0b4";
 var lsAppid = "9e6afcf310004ac84060f90ff41a5aba";
 var baseUrl = "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress";
-var cdnText = "Install Lightning-Fast Premium CDN with 130+ PoPs",
+var cdnText = "Install Lightning-Fast Premium CDN",
     sslText = "Install Let's Encrypt SSL with Auto-Renewal";
     lsText = "Install LiteSpeed High-Performance Web Server";
     muText = "Install WordPress Multisite Network";
@@ -26,7 +26,7 @@ if (group.groupType == 'trial') {
       "cls": "warning",
       "height": 30,
       "hideLabel": true,
-      "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
+      "markup": "The following advanced features are not available for " + group.groupType + " accounts. Please upgrade your account to access these features."
     })
  
     if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
