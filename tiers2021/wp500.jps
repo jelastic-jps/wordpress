@@ -114,9 +114,11 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         galera: false
+        glusterfs: false
         is_trigger: ${settings.horizontal}
         loadGrowth: fast
         cp_count: 3
+        bl_count: 1
         bl_fixedCloudlets: ${response.bl_fixedCloudlets}
         cp_fixedCloudlets: ${response.cp_fixedCloudlets}
         db_fixedCloudlets: ${response.db_fixedCloudlets}
