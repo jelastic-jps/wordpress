@@ -1,5 +1,5 @@
 type: install
-id: wordpress-100 
+id: wordpress-25
 name: WordPress Standalone Starter
 categories:
   - apps/blogs
