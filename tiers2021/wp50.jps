@@ -1,6 +1,6 @@
 type: install
 id: wordpress-50
-name: WordPress Elastic Starter
+name: WordPress Standalone Starter
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
   text: /tiers2021/text/description-wp50.md    
-  short: WordPress Elastic Starter
+  short: WordPress Standalone Starter
 
 settings:
   fields:
@@ -79,7 +79,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Elastic Starter
+      displayName: WordPress Standalone Starter
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true

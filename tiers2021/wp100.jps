@@ -1,6 +1,6 @@
 type: install
 id: wordpress-100 
-name: WordPress Elastic Lite
+name: WordPress Standalone Lite
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
   text: /tiers2021/text/description-wp100.md    
-  short: WordPress Elastic Lite
+  short: WordPress Standalone Lite
 
 settings:
   fields:
@@ -79,7 +79,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Elastic Lite
+      displayName: WordPress Standalone Lite
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
