@@ -1,6 +1,6 @@
 type: install
 id: wordpress-100 
-name: WordPress Standalone Starter
+name: WordPress Elastic Lite
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
   text: /tiers2021/text/description-wp100.md    
-  short: WordPress Standalone Starter
+  short: WordPress Elastic Lite
 
 settings:
   fields:
@@ -46,15 +46,6 @@ settings:
     markup:
     
   - type: checkbox
-    name: autoscaling
-    caption: 'Auto scaling up to 2 x of the reserved resources'
-    tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
-      <br/><br/>  
-      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
-    value: true
-
-  - type: checkbox
     name: cdn-addon
     caption: Install Lightning-Fast Premium CDN with 130+ PoPs
     tooltip: |
@@ -80,15 +71,15 @@ settings:
 
 onInstall:
   - script: |
-      fixedCloudlets = 32;
-      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
+      flexibleCloudlets = 64;
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
 
   - install:
       jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Standalone
+      displayName: WordPress Elastic Lite
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
@@ -97,5 +88,3 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
-        fixedCloudlets: ${response.fixedCloudlets}
-        

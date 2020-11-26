@@ -1,6 +1,6 @@
 type: install
 id: wordpress-200 
-name: WordPress Standalone Pro
+name: WordPress Elastic Pro
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ logo: /images/wp-standalone.png
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 description:
   text: /tiers2021/text/description-wp200.md
-  short: WordPress Standalone Pro
+  short: WordPress Elastic Pro
 
 settings:
   fields:
@@ -46,27 +46,17 @@ settings:
     markup:    
 
   - type: checkbox
-    name: autoscaling
-    caption: 'Auto scaling up to 2 x of the reserved resources'
-    tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
-      <br/><br/>  
-      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
-    value: true
-
-  - type: checkbox
     name: cdn-addon
     caption: Install Lightning-Fast Premium CDN with 130+ PoPs
     tooltip: |
       HTTP/3 ready Premium CDN improves web application performance by up to 60%. 
       Web pages load faster, and viewers enjoy a better experience with content loading more efficiently. 
       HTTP/3 protocol provides better security since it was designed to require traffic encryption by default.
-    value: false
+    value: true
 
   - type: checkbox
     name: waf
-    caption: 'Extra security with LiteSpeed Enterprise built-in WAF (Web Application Firewall)'  
-    
+    caption: 'Extra security with LiteSpeed Enterprise built-in WAF (Web Application Firewall)'   
     value: false
     tooltip: |
       Protect web sites with <a href='https://www.litespeedtech.com/products/litespeed-web-server'>LiteSpeed Enterprise</a> built-in WAF based on Free ModSecurity Rules from Comodo. 
@@ -81,15 +71,15 @@ settings:
 
 onInstall:
   - script: |
-      fixedCloudlets = 64;
-      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
+      flexibleCloudlets = 128;
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
 
   - install:
       jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Standalone
+      displayName: WordPress Elastic Pro
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
@@ -98,5 +88,3 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
-        fixedCloudlets: ${response.fixedCloudlets}
-        
