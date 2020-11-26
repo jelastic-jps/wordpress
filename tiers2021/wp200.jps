@@ -1,6 +1,6 @@
 type: install
 id: wordpress-200 
-name: WordPress Standalone Pro
+name: WordPress Elastic Pro
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ logo: /images/wp-standalone.png
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 description:
   text: /tiers2021/text/description-wp200.md
-  short: WordPress Standalone Pro
+  short: WordPress Elastic Pro
 
 settings:
   fields:
@@ -46,15 +46,6 @@ settings:
     markup:    
 
   - type: checkbox
-    name: autoscaling
-    caption: 'Auto scaling up to 2 x of the reserved resources'
-    tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
-      <br/><br/>  
-      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
-    value: true
-
-  - type: checkbox
     name: cdn-addon
     caption: Install Lightning-Fast Premium CDN with 130+ PoPs
     tooltip: |
@@ -81,7 +72,7 @@ settings:
 
 onInstall:
   - script: |
-      flexibleCloudlets = 16;
+      flexibleCloudlets = 128;
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
 
   - install:
@@ -89,7 +80,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Standalone
+      displayName: WordPress Elastic Pro
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
