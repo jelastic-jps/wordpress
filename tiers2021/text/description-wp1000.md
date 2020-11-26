@@ -1,4 +1,4 @@
-WordPress Cluster package provides integrated autoscaling and high availability for development and production environments of large projects. Clustered topology ensures effective handling of heavy workload with unexpected load spikes using optimal amount of allocated resources:
+WordPress Cluster package provides integrated autoscaling and high availability for development and production environments of large projects. Elastic clustered topology ensures effective handling of heavy workload with unexpected load spikes using optimal amount of allocated resources:
 
 * 24 GB RAM, 78 GHz CPU
 * 10 GB SSD Local Disk
