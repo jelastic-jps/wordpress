@@ -1,4 +1,4 @@
-WordPress CMS deployed as a lightweight standalone container for running medium websites and blogs with optimal amount of allocated resources for cost efficiency:
+WordPress CMS deployed as a lightweight standalone elastic container for running medium websites and blogs with optimal amount of allocated resources for cost efficiency:
 
 * 8 GB RAM, 25 GHz CPU
 * 40 GB SSD Local Disk
