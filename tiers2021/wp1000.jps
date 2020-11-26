@@ -40,15 +40,6 @@ settings:
     markup:
     
   - type: checkbox
-    name: vertical
-    caption: 'Vertical auto scaling up to 2 x of the reserved resources'
-    tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default plan resource capabilities to serve more users without downtimes. 
-      <br/><br/>
-      Vertical auto scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
-    value: true
-
-  - type: checkbox
     name: horizontal
     caption: 'Horizontal auto scaling based on tunnable trigers'
     tooltip: |
@@ -64,12 +55,11 @@ settings:
       HTTP/3 ready Premium CDN improves web application performance by up to 60%. 
       Web pages load faster, and viewers enjoy a better experience with content loading more efficiently. 
       HTTP/3 protocol provides better security since it was designed to require traffic encryption by default.
-    value: false
+    value: true
 
   - type: checkbox
     name: waf
-    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'  
-    
+    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'      
     value: false
     tooltip: |
       Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>Enterprise LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo. 
@@ -86,7 +76,7 @@ onInstall:
   - script: |
       bl_flexibleCloudlets = 6
       cp_flexibleCloudlets = 32
-      db_flexibleCloudlets = 8
+      db_flexibleCloudlets = 16
       st_flexibleCloudlets = 4
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
@@ -101,7 +91,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Cluster
+      displayName: WordPress Cluster Enterprise
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
