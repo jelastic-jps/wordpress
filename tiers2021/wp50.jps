@@ -46,15 +46,6 @@ settings:
     markup:
     
   - type: checkbox
-    name: autoscaling
-    caption: 'Auto scaling up to 2 x of the reserved resources'
-    tooltip: |
-      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
-      <br/><br/>  
-      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
-    value: true
-
-  - type: checkbox
     name: cdn-addon
     caption: Install Lightning-Fast Premium CDN with 130+ PoPs
     tooltip: |
@@ -80,7 +71,7 @@ settings:
 
 onInstall:
   - script: |
-      flexibleCloudlets = 16;
+      flexibleCloudlets = 32;
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
 
   - install:
