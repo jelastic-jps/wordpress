@@ -1,6 +1,6 @@
 type: install
 id: wordpress-25
-name: WordPress Standalone Starter
+name: WordPress Elastic Basic
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
   text: /tiers2021/text/description-wp25.md    
-  short: WordPress Standalone Starter
+  short: WordPress Elastic Basic
 
 settings:
   fields:
@@ -88,7 +88,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Standalone
+      displayName: WordPress Elastic Basic
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
