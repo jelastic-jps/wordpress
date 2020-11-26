@@ -1,6 +1,6 @@
 type: install
 id: wordpress-100 
-name: WordPress Standalone Starter
+name: WordPress Elastic Lite
 categories:
   - apps/blogs
   - apps/content-management
@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone.png
 description:
   text: /tiers2021/text/description-wp100.md    
-  short: WordPress Standalone Starter
+  short: WordPress Elastic Lite
 
 settings:
   fields:
@@ -80,7 +80,7 @@ settings:
 
 onInstall:
   - script: |
-      flexibleCloudlets = 16;
+      flexibleCloudlets = 64;
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
 
   - install:
@@ -88,7 +88,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WP Standalone
+      displayName: WordPress Elastic Lite
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
@@ -97,5 +97,3 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         flexibleCloudlets: ${response.flexibleCloudlets}
-        fixedCloudlets: ${response.fixedCloudlets}
-        
