@@ -1,8 +1,8 @@
-WordPress CMS deployed as a lightweight standalone elastic container for running smaller websites and blogs with minimal allocated resources for cost efficiency:
+WordPress CMS deployed as a lightweight standalone elastic container for running smaller and medium websites with average scaling limit and usage-based resource allocation:
 
-* 4 GB RAM, 12 GHz CPU
-* 20 GB SSD Local Disk
-* 200 GB CDN
+* Up to 64 cloudlets (8 GiB RAM, 25.6 GHz CPU)
+* Up to 20 GB of Disk
+* CDN per consumption
 * 1 Public IP
 
 **Topology inside Container:** 
@@ -19,5 +19,3 @@ WordPress CMS deployed as a lightweight standalone elastic container for running
 * Layer-7 Anti-DDoS Filtering
 * WordPress Multisite Network
 * Public IPv4 and Public IPv6
-
-**Price / Month:** $99
