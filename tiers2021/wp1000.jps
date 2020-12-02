@@ -26,14 +26,7 @@ settings:
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
-    
-  - caption: <b>$699 per month</b>
-    type: displayfield
-    name: displayfield
-    markup: billied on per hour basis
-    hideLabel: false
-    height: 20px
-    
+      
   - caption: Advanced Features
     type: displayfield
     name: displayfield

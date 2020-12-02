@@ -1,15 +1,14 @@
-WordPress Cluster package provides high availability for development and production environments of large projects. Elastic clustered topology ensures effective handling of heavy workload using optimal amount of allocated resources:
+WordPress Cluster package provides high availability for large projects development and production. Elastic clustered topology ensures effective scaling for heavy load handling and usage-based resource allocation:
 
-* 16 GB RAM, 52 GHz CPU
-* 10 GB SSD Local Disk
-* 100 GB Shared Storage
-* 500 GB CDN
+* Up to 244 cloudlets (30.5 GiB RAM, 97.6 GHz CPU)
+* Up to 180 GB of Disk
+* CDN per consumption
 * 1 Public IP
 
 **Topology:**  
 
 * LiteSpeed Web ADC
-* 2 x LiteSpeed Web Servers
+* 3+  LiteSpeed Web Servers
 * 2 x MariaDB Master-Master Databases
 * Redis 
 * Shared Storage
@@ -30,5 +29,3 @@ WordPress Cluster package provides high availability for development and product
 * Geo Distribution
 * Disaster Recovery
 * Failover DNS
-
-**Price / Month:** $499

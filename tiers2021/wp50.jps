@@ -32,14 +32,7 @@ settings:
     name: displayfield
     markup:    
     hideLabel: true
-    
-  - caption: '<b>$50 per month</b>'
-    type: displayfield
-    name: displayfield
-    markup: billed on per hour basis
-    height: 20px
-    hideLabel: false   
-    
+        
   - caption: Advanced Features
     type: displayfield
     name: displayfield
