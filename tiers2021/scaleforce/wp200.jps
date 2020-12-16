@@ -7,7 +7,7 @@ categories:
 logo: /images/wp-standalone-pro.png
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 description:
-  text: /tiers2021/text/description-wp200.md
+  text: /tiers2021/scaleforce/text/description-wp200.md
   short: WordPress Standalone Pro
 
 settings:
@@ -36,7 +36,16 @@ settings:
   - caption: Advanced Features
     type: displayfield
     name: displayfield
-    markup:    
+    markup:
+    
+  - type: checkbox
+    name: autoscaling
+    caption: 'Auto scaling up to 2 x of the reserved resources'
+    tooltip: |
+      Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
+      <br/><br/>  
+      Please note: auto-scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
+    value: true
 
   - type: checkbox
     name: cdn-addon
@@ -64,8 +73,8 @@ settings:
 
 onInstall:
   - script: |
-      flexibleCloudlets = 128;
-      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: flexibleCloudlets}
+      fixedCloudlets = 64;
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
       jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
@@ -82,3 +91,4 @@ onInstall:
         mu-addon: ${settings.mu-addon}
         diskLimit: 40
         flexibleCloudlets: ${response.flexibleCloudlets}
+        fixedCloudlets: ${response.fixedCloudlets}
