@@ -1,7 +1,7 @@
 WordPress CMS deployed as a lightweight standalone elastic container for running medium websites with optimal scaling limit and usage-based resource allocation:
 
-* Up to 128 cloudlets (16 GiB RAM, 51.2 GHz CPU)
-* Up to 40 GB of Disk
+* 128 cloudlets (16 GiB RAM, 51.2 GHz CPU)
+* 60 GB of Disk
 * CDN per consumption
 * 1 Public IP
 
