@@ -73,7 +73,7 @@ settings:
 
 onInstall:
   - script: |
-      fixedCloudlets = 64;
+      fixedCloudlets = 128;
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
