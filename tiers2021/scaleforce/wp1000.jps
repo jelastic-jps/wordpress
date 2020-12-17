@@ -76,10 +76,10 @@ settings:
 
 onInstall:
   - script: |
-      bl_flexibleCloudlets = 16
-      cp_flexibleCloudlets = 64
+      bl_flexibleCloudlets = 64
+      cp_flexibleCloudlets = 128
       db_flexibleCloudlets = 16
-      st_flexibleCloudlets = 8
+      st_flexibleCloudlets = 16
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
         bl_flexibleCloudlets: bl_flexibleCloudlets, 
@@ -111,6 +111,6 @@ onInstall:
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
-        st_diskLimit: 200
+        st_diskLimit: 150
         bl_diskLimit: 30
         

@@ -76,10 +76,10 @@ settings:
 
 onInstall:
   - script: | 
-      bl_fixedCloudlets = 8
-      cp_fixedCloudlets = 32
-      db_fixedCloudlets = 8
-      st_fixedCloudlets = 4
+      bl_fixedCloudlets = 64
+      cp_fixedCloudlets = 64
+      db_fixedCloudlets = 16
+      st_fixedCloudlets = 16
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
         bl_fixedCloudlets: bl_fixedCloudlets, 
