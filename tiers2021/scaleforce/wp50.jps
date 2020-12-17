@@ -73,7 +73,7 @@ settings:
 
 onInstall:
   - script: |
-      fixedCloudlets = 16;
+      fixedCloudlets = 32;
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
@@ -89,7 +89,7 @@ onInstall:
         le-addon: true
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
-        diskLimit: 20
+        diskLimit: 10
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
        
