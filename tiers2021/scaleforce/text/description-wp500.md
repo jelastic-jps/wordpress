@@ -26,6 +26,7 @@ WordPress Cluster package provides high availability for large projects developm
 
 
 **Functionality Available by Request:**
+* GlobalSign SSL
 * Geo Distribution
 * Disaster Recovery
 * Failover DNS
