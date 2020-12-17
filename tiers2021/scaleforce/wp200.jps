@@ -89,6 +89,6 @@ onInstall:
         le-addon: true
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
-        diskLimit: 40
+        diskLimit: 60
         flexibleCloudlets: ${response.flexibleCloudlets}
         fixedCloudlets: ${response.fixedCloudlets}
