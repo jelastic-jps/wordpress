@@ -33,7 +33,7 @@ settings:
     markup:
     
   - type: checkbox
-    name: autoscaling
+    name: vertical
     caption: 'Auto scaling up to 2 x of the reserved resources'
     tooltip: |
       Enable peace of mind with automatic handling of temporary load spikes above the default resource capabilities to serve more users without downtimes.   
