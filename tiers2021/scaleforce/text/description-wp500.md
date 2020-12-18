@@ -1,7 +1,7 @@
 WordPress Cluster package provides high availability for large projects development and production. Elastic clustered topology ensures effective scaling for heavy load handling and usage-based resource allocation:
 
-* 304 cloudlets (39 GiB RAM, 128 GHz CPU)
-* Up to 200 GB of Disk
+* 264 cloudlets (33 GiB RAM, 105.6 GHz CPU)
+* 200 GB of Disk
 * CDN per consumption
 * 1 Public IP
 
