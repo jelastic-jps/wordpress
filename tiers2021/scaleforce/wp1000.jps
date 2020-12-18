@@ -118,5 +118,5 @@ onInstall:
         bl_diskLimit: 30
         cp_diskLimit: 10
         db_diskLimit: 30
-        st_diskLimit: 100
+        st_diskLimit: 190
         
