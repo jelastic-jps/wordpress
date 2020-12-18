@@ -2,7 +2,7 @@ WordPress Cluster package provides high availability for large projects developm
 
 * Up to 244 cloudlets (30.5 GiB RAM, 97.6 GHz CPU)
 * Up to 180 GB of Disk
-* CDN per consumption
+* CDN - 100 GB free
 * 1 Public IP
 
 **Topology:**  
