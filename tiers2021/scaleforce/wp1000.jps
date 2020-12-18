@@ -111,6 +111,10 @@ onInstall:
         loadGrowth: fast
         cp_count: 5
         bl_count: 1
+        bl_fixedCloudlets: ${response.bl_fixedCloudlets}
+        cp_fixedCloudlets: ${response.cp_fixedCloudlets}
+        db_fixedCloudlets: ${response.db_fixedCloudlets}
+        st_fixedCloudlets: ${response.st_fixedCloudlets}
         bl_flexibleCloudlets: ${response.bl_flexibleCloudlets}
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
