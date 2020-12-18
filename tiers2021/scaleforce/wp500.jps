@@ -75,11 +75,11 @@ settings:
     tooltip: "IMPORTANT: CDN and Let's Ecrypt addons should be configured manually after adding each new website. Please contact support team if you need any assistance on configuration."
 
 onInstall:
-  - script: | 
-      bl_fixedCloudlets = 64
+  - script: |
+      bl_fixedCloudlets = 32
       cp_fixedCloudlets = 64
       db_fixedCloudlets = 16
-      st_fixedCloudlets = 16
+      st_fixedCloudlets = 8
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
         bl_fixedCloudlets: bl_fixedCloudlets, 
@@ -119,6 +119,8 @@ onInstall:
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
-        st_diskLimit: 100
         bl_diskLimit: 30
+        cp_diskLimit: 10
+        db_diskLimit: 20
+        st_diskLimit: 100
         

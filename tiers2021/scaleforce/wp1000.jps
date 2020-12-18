@@ -75,17 +75,21 @@ settings:
     tooltip: "IMPORTANT: CDN and Let's Ecrypt addons should be configured manually after adding each new website. Please contact support team if you need any assistance on configuration."
 
 onInstall:
-  - script: |
-      bl_flexibleCloudlets = 64
-      cp_flexibleCloudlets = 128
-      db_flexibleCloudlets = 16
-      st_flexibleCloudlets = 16
+  - script: | 
+      bl_fixedCloudlets = 64
+      cp_fixedCloudlets = 128
+      db_fixedCloudlets = 16
+      st_fixedCloudlets = 16
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
-        bl_flexibleCloudlets: bl_flexibleCloudlets, 
-        cp_flexibleCloudlets: cp_flexibleCloudlets, 
-        db_flexibleCloudlets: db_flexibleCloudlets, 
-        st_flexibleCloudlets: st_flexibleCloudlets
+        bl_fixedCloudlets: bl_fixedCloudlets, 
+        cp_fixedCloudlets: cp_fixedCloudlets, 
+        db_fixedCloudlets: db_fixedCloudlets, 
+        st_fixedCloudlets: st_fixedCloudlets, 
+        bl_flexibleCloudlets: ${settings.vertical} ? bl_fixedCloudlets * 2 : bl_fixedCloudlets, 
+        cp_flexibleCloudlets: ${settings.vertical} ? cp_fixedCloudlets * 2 : cp_fixedCloudlets, 
+        db_flexibleCloudlets: ${settings.vertical} ? db_fixedCloudlets * 2 : db_fixedCloudlets, 
+        st_flexibleCloudlets: ${settings.vertical} ? st_fixedCloudlets * 2 : st_fixedCloudlets
       }
 
   - install:
@@ -111,6 +115,8 @@ onInstall:
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
-        st_diskLimit: 150
         bl_diskLimit: 30
+        cp_diskLimit: 10
+        db_diskLimit: 30
+        st_diskLimit: 100
         
