@@ -34,7 +34,7 @@ settings:
     
   - type: checkbox
     name: horizontal
-    caption: 'Horizontal auto scaling based on tunnable trigers'
+    caption: 'Horizontal auto scaling based on tunable triggers'
     tooltip: |
       Enable enterprise-grade insurance for huge load spikes with automatic horizontal scaling - adding or removing nodes in the cluster based on demand.
       <br/><br/>
