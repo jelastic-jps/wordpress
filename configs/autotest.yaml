@@ -1,0 +1,4 @@
+jps: https://github.com/ihorstep/wordpress/blob/master/wordpress/manifest.jps
+component: wordpress
+subfolders:
+  - wordpress
