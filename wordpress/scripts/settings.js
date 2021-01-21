@@ -20,7 +20,83 @@ var settings = toNative(new Yaml().load(new Transport().get(url)));
 var fields = settings.fields;
 
 if (group.groupType == 'trial') {
-    
+     
+    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
+        settings.fields.push({
+            type: "checkbox",
+            name: "ls-addon",
+            caption: lsText,
+            value: true,
+            tooltip: "If this option is disabled, the topology will be installed using NGINX application server",
+           "showIf": {
+                "true": [{
+                    "type": "checkbox",
+                    "name": "waf",
+                    "caption": wafText,
+                    "value": true,
+                    "tooltip": "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
+                }, {
+                    "type": "checkbox",
+                    "name": "wp_protect",
+                    "caption": wpbfText,
+                    "value": true,
+                    "tooltip": "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
+                }],
+                "false": [{
+                    "type": "compositefield",
+                    "hideLabel": true,
+                    "pack": "left",
+                    "name": "waf",
+                    "value": false,
+                    "itemCls": "deploy-manager-grid",
+                    "cls": "x-grid3-row-unselected",
+                    "items": [{
+                        "type": "displayfield",
+                        "cls": "x-grid3-row-checker x-item-disabled",
+                        "margins": "0 0 0 -3",
+                        "width": 16,
+                        "height": 20
+                        
+                    }, {
+                        "type": "displayfield",
+                        "cls": "x-item-disabled",
+                        "value": wafText,
+                        "margins": "0 0 0 12"
+                    }]
+                }, {
+                   "type": "compositefield",
+                    "hideLabel": true,
+                    "pack": "left",
+                    "name": "wp_protect",
+                    "value": false,
+                    "itemCls": "deploy-manager-grid",
+                    "cls": "x-grid3-row-unselected",
+                    "items": [{
+                        "type": "displayfield",
+                        "cls": "x-grid3-row-checker x-item-disabled",
+                        "margins": "0 0 0 -3",
+                        "width": 16,
+                        "height": 20
+                        
+                    }, {
+                        "type": "displayfield",
+                        "cls": "x-item-disabled",
+                        "value": wpbfText,
+                        "margins": "0 0 0 12"
+                    }]   
+                }]
+            }
+        });
+    }
+
+    settings.fields.push({
+        type: "checkbox",
+        name: "mu-addon",
+        caption: muText,
+        value: false
+
+    });
+
     fields.push({
       "type": "displayfield",
       "cls": "warning",
@@ -28,30 +104,7 @@ if (group.groupType == 'trial') {
       "hideLabel": true,
       "markup": "The following advanced features are not available for " + group.groupType + " accounts. Please upgrade your account to access these features."
     })
- 
-    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            "type": "compositefield",
-            "hideLabel": true,
-            "pack": "left",
-            "itemCls": "deploy-manager-grid",
-            "cls": "x-grid3-row-unselected",
-            "items": [{
-                "type": "spacer",
-                "width": 4
-            }, {
-                "type": "displayfield",
-                "cls": "x-grid3-row-checker x-item-disabled",
-                "width": 30,
-                "height": 20
-            }, {
-                "type": "displayfield",
-                "cls": "x-item-disabled",
-                "value": lsText
-            }]
-        });
-    }
-
+    
     if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
         settings.fields.push({
             "type": "compositefield",
@@ -94,14 +147,6 @@ if (group.groupType == 'trial') {
             "cls": "x-item-disabled",
             "value": sslText
         }]
-    });
-
-    settings.fields.push({
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
-
     });
 
 } else {
