@@ -20,15 +20,7 @@ var settings = toNative(new Yaml().load(new Transport().get(url)));
 var fields = settings.fields;
 
 if (group.groupType == 'trial') {
-    
-    fields.push({
-      "type": "displayfield",
-      "cls": "warning",
-      "height": 30,
-      "hideLabel": true,
-      "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
-    })
- 
+     
     if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
         settings.fields.push({
             type: "checkbox",
@@ -97,6 +89,22 @@ if (group.groupType == 'trial') {
         });
     }
 
+    settings.fields.push({
+        type: "checkbox",
+        name: "mu-addon",
+        caption: muText,
+        value: false
+
+    });
+
+    fields.push({
+      "type": "displayfield",
+      "cls": "warning",
+      "height": 30,
+      "hideLabel": true,
+      "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
+    })
+    
     if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
         settings.fields.push({
             "type": "compositefield",
@@ -139,14 +147,6 @@ if (group.groupType == 'trial') {
             "cls": "x-item-disabled",
             "value": sslText
         }]
-    });
-
-    settings.fields.push({
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
-
     });
 
 } else {
