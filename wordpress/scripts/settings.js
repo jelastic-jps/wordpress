@@ -65,6 +65,8 @@ if ( !LE) {
   fields["displayfield"].height = 25;
   fields["le-addon"].disabled = true;
   fields["le-addon"].value = false;
+  fields["bl_count"].markup = "Let's Encrypt is not available. " + markup + "Please upgrade your account.";
+
 }
 
 return {
