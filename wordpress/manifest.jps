@@ -89,7 +89,6 @@ settings:
       hideLabel: true
       hidden: true
       name: bl_count   
-      value: 2
       markup:
 
 globals:
