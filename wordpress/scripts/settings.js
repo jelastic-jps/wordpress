@@ -8,7 +8,6 @@ var group = jelastic.billing.account.GetAccount(appid, session);
 var isCDN = jelastic.dev.apps.GetApp(cdnAppid);
 var isLS = jelastic.dev.apps.GetApp(lsAppid);
 
-//checking quotas
 var markup = "", cur = null, text = "used";
 
 var settings = jps.settings;
@@ -32,17 +31,48 @@ if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
   fields["cdn-addon"].hidden = true;
   fields["cdn-addon"].value = false;
 }
-    
-var extIP = jelastic.billing.account.GetQuotas('environment.externalip.enabled');
-var extIPperEnv = jelastic.billing.account.GetQuotas('environment.externalip.maxcount');
-var extIPperNode = jelastic.billing.account.GetQuotas('environment.externalip.maxcount.per.node');
 
-if ((extIP.result == 0 && extIP.array[0].value) && (extIPperEnv.result == 0 && extIPperEnv.array[0].value >= 1) && (extIPperNode.result == 0 && extIPperNode.array[0].value >= 1)) {
-  fields["le-addon"].disabled = false;
-  fields["le-addon"].value = true;
+//checking quotas
+var extIP = "environment.externalip.enabled",
+      extIPperEnv = "environment.externalip.maxcount",
+      extIPperNode = "environment.externalip.maxcount.per.node",
+      markup = "", cur = null, text = "used", LE = true;
+
+var quotas = jelastic.billing.account.GetQuotas(extIP + ";"+extIPperEnv+";" + extIPperNode ).array;
+for (var i = 0; i < quotas.length; i++){
+    var q = quotas[i], n = toNative(q.quota.name);
+
+     if (n == extIP &&  q.value){
+        err(q, "required", extIP, true);
+        LE  = false; 
+    }
+    
+    if (n == extIPperEnv && 1 > q.value){
+        if (!markup) err(q, "required", extIPperEnv, true);
+        LE = false;
+    }
+
+   if (n == extIPperNode && 1 > q.value){
+        if (!markup) err(q, "required", extIPperNode, true);
+        LE = false;
+    }
+}
+
+if ( !LE) {
+  fields["displayfield"].markup = "Some advanced features are not available. Please upgrade your account.";
+  fields["displayfield"].cls = "warning";
+  fields["displayfield"].hideLabel = true;
+  fields["displayfield"].height = 25;
+  fields["le-addon"].disabled = true;
+  fields["le-addon"].value = false;
 }
 
 return {
     result: 0,
     settings: settings
 };
+
+function err(e, text, cur, override){
+  var m = (e.quota.description || e.quota.name) + " - " + e.value + ", " + text + " - " + cur + ". ";
+  if (override) markup = m; else markup += m;
+}
