@@ -42,7 +42,7 @@ var quotas = jelastic.billing.account.GetQuotas(extIP + ";"+extIPperEnv+";" + ex
 for (var i = 0; i < quotas.length; i++){
     var q = quotas[i], n = toNative(q.quota.name);
 
-     if (n == extIP &&  q.value){
+     if (n == extIP &&  1 == q.value){
         err(q, "required", extIP, true);
         LE  = false; 
     }
