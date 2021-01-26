@@ -4,245 +4,45 @@ import com.hivext.api.core.utils.Transport;
 
 var cdnAppid = "c05ffa5b45628a2a0c95467ebca8a0b4";
 var lsAppid = "9e6afcf310004ac84060f90ff41a5aba";
-var baseUrl = "https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress";
-var cdnText = "Install Lightning-Fast Premium CDN with 130+ PoPs",
-    sslText = "Install Let's Encrypt SSL with Auto-Renewal";
-    lsText = "Install LiteSpeed High-Performance Web Server";
-    muText = "Install WordPress Multisite Network";
-    wafText = "Web Application Firewall";
-    wpbfText = "WordPress Brute Force Attack Protection";
 var group = jelastic.billing.account.GetAccount(appid, session);
 var isCDN = jelastic.dev.apps.GetApp(cdnAppid);
 var isLS = jelastic.dev.apps.GetApp(lsAppid);
 
-var url = baseUrl + "/configs/settings.yaml";
-var settings = toNative(new Yaml().load(new Transport().get(url)));
-var fields = settings.fields;
+//checking quotas
+var markup = "", cur = null, text = "used";
 
-if (group.groupType == 'trial') {
-     
-    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            type: "checkbox",
-            name: "ls-addon",
-            caption: lsText,
-            value: true,
-            tooltip: "If this option is disabled, the topology will be installed using NGINX application server",
-           "showIf": {
-                "true": [{
-                    "type": "checkbox",
-                    "name": "waf",
-                    "caption": wafText,
-                    "value": true,
-                    "tooltip": "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
-                }, {
-                    "type": "checkbox",
-                    "name": "wp_protect",
-                    "caption": wpbfText,
-                    "value": true,
-                    "tooltip": "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
-                }],
-                "false": [{
-                    "type": "compositefield",
-                    "hideLabel": true,
-                    "pack": "left",
-                    "name": "waf",
-                    "value": false,
-                    "itemCls": "deploy-manager-grid",
-                    "cls": "x-grid3-row-unselected",
-                    "items": [{
-                        "type": "displayfield",
-                        "cls": "x-grid3-row-checker x-item-disabled",
-                        "margins": "0 0 0 -3",
-                        "width": 16,
-                        "height": 20
-                        
-                    }, {
-                        "type": "displayfield",
-                        "cls": "x-item-disabled",
-                        "value": wafText,
-                        "margins": "0 0 0 12"
-                    }]
-                }, {
-                   "type": "compositefield",
-                    "hideLabel": true,
-                    "pack": "left",
-                    "name": "wp_protect",
-                    "value": false,
-                    "itemCls": "deploy-manager-grid",
-                    "cls": "x-grid3-row-unselected",
-                    "items": [{
-                        "type": "displayfield",
-                        "cls": "x-grid3-row-checker x-item-disabled",
-                        "margins": "0 0 0 -3",
-                        "width": 16,
-                        "height": 20
-                        
-                    }, {
-                        "type": "displayfield",
-                        "cls": "x-item-disabled",
-                        "value": wpbfText,
-                        "margins": "0 0 0 12"
-                    }]   
-                }]
-            }
-        });
-    }
+var settings = jps.settings;
+var fields = {};
+for (var i = 0, field; field = jps.settings.fields[i]; i++)
+  fields[field.name] = field;
 
-    settings.fields.push({
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
 
-    });
-
-    fields.push({
-      "type": "displayfield",
-      "cls": "warning",
-      "height": 30,
-      "hideLabel": true,
-      "markup": "Not available for " + group.groupType + " account. Please upgrade your account."
-    })
-    
-    if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            "type": "compositefield",
-            "hideLabel": true,
-            "pack": "left",
-            "itemCls": "deploy-manager-grid",
-            "cls": "x-grid3-row-unselected",
-            "items": [{
-                "type": "spacer",
-                "width": 4
-            }, {
-                "type": "displayfield",
-                "cls": "x-grid3-row-checker x-item-disabled",
-                "width": 30,
-                "height": 20
-            }, {
-                "type": "displayfield",
-                "cls": "x-item-disabled",
-                "value": cdnText
-            }]
-        });
-    }
-    
-    settings.fields.push({
-        "type": "compositefield",
-        "hideLabel": true,
-        "pack": "left",
-        "itemCls": "deploy-manager-grid",
-        "cls": "x-grid3-row-unselected",
-        "items": [{
-            "type": "spacer",
-            "width": 4
-        }, {
-            "type": "displayfield",
-            "cls": "x-grid3-row-checker x-item-disabled",
-            "width": 30,
-            "height": 20
-        }, {
-            "type": "displayfield",
-            "cls": "x-item-disabled",
-            "value": sslText
-        }]
-    });
-
+var q = quotas[i], n = toNative(q.quota.name);
+ 
+if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {  
+  fields["ls-addon"].hidden = false;
+  fields["ls-addon"].value = true;
 } else {
+  fields["ls-addon"].hidden = true;
+  fields["ls-addon"].value = false;
+  fields["ls-addon"].showIf = null;
+}
+  
+if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
+  fields["cdn-addon"].hidden = false;
+  fields["cdn-addon"].value = true;
+} else {
+  fields["cdn-addon"].hidden = true;
+  fields["cdn-addon"].value = false;
+}
+    
+var extIP = jelastic.billing.account.GetQuotas('environment.externalip.enabled');
+var extIPperEnv = jelastic.billing.account.GetQuotas('environment.externalip.maxcount');
+var extIPperNode = jelastic.billing.account.GetQuotas('environment.externalip.maxcount.per.node');
 
-    if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            type: "checkbox",
-            name: "ls-addon",
-            caption: lsText,
-            value: true,
-            tooltip: "If this option is disabled, the topology will be installed using NGINX application server",
-           "showIf": {
-                "true": [{
-                    "type": "checkbox",
-                    "name": "waf",
-                    "caption": wafText,
-                    "value": true,
-                    "tooltip": "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
-                }, {
-                    "type": "checkbox",
-                    "name": "wp_protect",
-                    "caption": wpbfText,
-                    "value": true,
-                    "tooltip": "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
-                }],
-                "false": [{
-                    "type": "compositefield",
-                    "hideLabel": true,
-                    "pack": "left",
-                    "name": "waf",
-                    "value": false,
-                    "itemCls": "deploy-manager-grid",
-                    "cls": "x-grid3-row-unselected",
-                    "items": [{
-                        "type": "displayfield",
-                        "cls": "x-grid3-row-checker x-item-disabled",
-                        "margins": "0 0 0 -3",
-                        "width": 16,
-                        "height": 20
-                        
-                    }, {
-                        "type": "displayfield",
-                        "cls": "x-item-disabled",
-                        "value": wafText,
-                        "margins": "0 0 0 12"
-                    }]
-                }, {
-                   "type": "compositefield",
-                    "hideLabel": true,
-                    "pack": "left",
-                    "name": "wp_protect",
-                    "value": false,
-                    "itemCls": "deploy-manager-grid",
-                    "cls": "x-grid3-row-unselected",
-                    "items": [{
-                        "type": "displayfield",
-                        "cls": "x-grid3-row-checker x-item-disabled",
-                        "margins": "0 0 0 -3",
-                        "width": 16,
-                        "height": 20
-                        
-                    }, {
-                        "type": "displayfield",
-                        "cls": "x-item-disabled",
-                        "value": wpbfText,
-                        "margins": "0 0 0 12"
-                    }]   
-                }]
-            }
-        });
-    }
-   
-    if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
-        settings.fields.push({
-            type: "checkbox",
-            name: "cdn-addon",
-            caption: cdnText,
-            value: true
-        });
-    }
-
-    var resp = jelastic.billing.account.GetQuotas('environment.externalip.enabled');
-    if (resp.result == 0 && resp.array[0].value) {
-        fields.push({
-            type: "checkbox",
-            name: "le-addon",
-            caption: sslText,
-            value: true
-        });
-    }
-    settings.fields.push({
-        type: "checkbox",
-        name: "mu-addon",
-        caption: muText,
-        value: false
-    });
+if ((extIP.result == 0 && extIP.array[0].value) && (extIPperEnv.result == 0 && extIPperEnv.array[0].value >= 2) && (extIPperNode.result == 0 && extIPperNode.array[0].value >= 1)) {
+  fields["le-addon"].disabled = false;
+  fields["le-addon"].value = true;
 }
 
 return {
