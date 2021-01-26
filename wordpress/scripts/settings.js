@@ -42,23 +42,23 @@ var quotas = jelastic.billing.account.GetQuotas(extIP + ";"+extIPperEnv+";" + ex
 for (var i = 0; i < quotas.length; i++){
     var q = quotas[i], n = toNative(q.quota.name);
 
-     if (n == extIP &&  1 == q.value){
+     if (n == extIP &&  q.value == true){
         err(q, "required", extIP, true);
         LE  = false; 
     }
     
-    if (n == extIPperEnv && 1 > q.value){
+    if (n == extIPperEnv && q.value < 1){
         if (!markup) err(q, "required", extIPperEnv, true);
         LE = false;
     }
 
-   if (n == extIPperNode && 1 > q.value){
+   if (n == extIPperNode && q.value < 1){
         if (!markup) err(q, "required", extIPperNode, true);
         LE = false;
     }
 }
 
-if ( !LE) {
+if (!LE) {
   fields["displayfield"].markup = "Some advanced features are not available. Please upgrade your account.";
   fields["displayfield"].cls = "warning";
   fields["displayfield"].hideLabel = true;
