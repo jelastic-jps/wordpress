@@ -43,7 +43,7 @@ for (var i = 0; i < quotas.length; i++){
     var q = quotas[i], n = toNative(q.quota.name);
 
      if (n == extIP &&  !q.value){
-        err(q, "required", "enabled", true);
+        err(q, "required", 1, true);
         LE  = false; 
     }
     
