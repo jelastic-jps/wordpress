@@ -38,13 +38,8 @@ var extIPperEnv = jelastic.billing.account.GetQuotas('environment.externalip.max
 var extIPperNode = jelastic.billing.account.GetQuotas('environment.externalip.maxcount.per.node');
 
 if ((extIP.result == 0 && extIP.array[0].value) && (extIPperEnv.result == 0 && extIPperEnv.array[0].value >= 1) && (extIPperNode.result == 0 && extIPperNode.array[0].value >= 1)) {
-  fields["displayfield"].markup = "Some advanced features are not available. Please upgrade your account.";
-  fields["displayfield"].cls = "warning";
-  fields["displayfield"].hideLabel = true;
-  fields["displayfield"].height = 25;
   fields["le-addon"].disabled = false;
   fields["le-addon"].value = true;
-  fields["bl_count"].markup = "External IP is not available. " + markup + "Please upgrade your account.";
 }
 
 return {
