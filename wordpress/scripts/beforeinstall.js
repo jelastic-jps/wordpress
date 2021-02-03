@@ -6,7 +6,7 @@ var resp = {
   nodes: []
 }
 
-if (${settings.ls-addon:false}) {
+if ('${settings.ls-addon:false}'== 'true') {
   resp.nodes.push({
     nodeType: "llsmp",
     count: 1,
@@ -23,9 +23,7 @@ if (${settings.ls-addon:false}) {
       WP_PROTECT_LIMIT: 100
     }
   })
-}
-
-if (!${settings.ls-addon:false}) {
+} else {
   resp.nodes.push({
     nodeType: "lemp",
     count: 1,

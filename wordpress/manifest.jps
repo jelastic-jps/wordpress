@@ -19,6 +19,78 @@ skipNodeEmails: true
 
 nodes: definedInOnBeforeInstall
 
+settings:
+  fields:
+  
+    - caption: Advanced Features
+      type: displayfield
+      name: displayfield
+      markup:
+ 
+    - caption: Install LiteSpeed High-Performance Web Server
+      type: checkbox
+      name: ls-addon
+      value: true
+      disabled: false
+      tooltip: "If this option is disabled, the cluster will be installed using NGINX load balancer and application servers"
+      showIf:
+        true:
+          - caption: WordPress Brute Force Attack Protection
+            type: checkbox
+            name: wp_protect
+            value: true
+            disabled: false
+            tooltip: "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
+
+          - caption: Web Application Firewall
+            type: checkbox
+            name: waf
+            value: true
+            disabled: false
+            tooltip: "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
+
+        false:
+          - caption: WordPress Brute Force Attack Protection
+            type: checkbox
+            name: wp_protect
+            value: false
+            disabled: true
+            tooltip: "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
+        
+          - caption: Web Application Firewall
+            type: checkbox
+            name: waf
+            value: false
+            disabled: true
+            tooltip: "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
+             
+    - caption: Install Let's Encrypt SSL with Auto-Renewal
+      type: checkbox
+      name: le-addon
+      value: true
+      disabled: false
+      tooltip: "Advanced integration with Let's Encrypt certificate authority that simplifies and automates the process of issuing, configuring and updating trusted custom SSL certificates."
+
+    - caption: Install Lightning-Fast Premium CDN
+      type: checkbox
+      name: cdn-addon
+      value: true
+      disabled: false
+      tooltip: "Jelastic CDN is an HTTP/3 premium content delivery network of 160+ Super PoPs (points of presence) with bandwidth capacity up to 115 Tbps, advanced caching and acceleration strategies based on best-in-class IP Anycast technology."
+
+    - caption: Install WordPress Multisite Network
+      type: checkbox
+      name: mu-addon
+      value: false
+      disabled: false
+      tooltip: "Multisite is a type of WordPress installation that allows you to create and manage a network of multiple websites from a single WordPress dashboard. This lets you easily make changes and keep all of your websites updated from one place."
+
+    - type: displayfield
+      hideLabel: true
+      hidden: true
+      name: bl_count   
+      markup:
+
 globals:
   DB_USER: jelastic-${fn.random}
   DB_PASS: ${fn.password(10)}
@@ -51,9 +123,6 @@ onInstall:
   - setGlobals:
       DOMAIN: ${response.domain}         
     
-  - log: Set Node Display Name
-  - setNodeDisplayName [cp]: AppServer
-
   - creatUserDB
 
   - setupNode:
