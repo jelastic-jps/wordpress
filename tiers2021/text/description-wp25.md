@@ -2,7 +2,7 @@ WordPress CMS deployed as a lightweight standalone elastic container for running
 
 * 4 GB RAM, 12 GHz CPU
 * 20 GB SSD Local Disk
-* 200 GB CDN
+* CDN - 100 GB free
 * 1 Public IP
 
 **Topology inside Container:** 

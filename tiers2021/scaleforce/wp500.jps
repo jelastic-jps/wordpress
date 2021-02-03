@@ -1,14 +1,14 @@
 type: install
-id: wordpress-1000
-name: WordPress Cluster Enterprise
+id: wordpress-500 
+name: WordPress Cluster Business
 categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
-logo: /images/wp-cluster-enterprise.png
+logo: /images/wp-cluster-business.png
 description:
-  text: /tiers2021/text/description-wp1000.md?_r=${fn.random}
-  short: WordPress Cluster Enterprise
+  text: /tiers2021/scaleforce/text/description-wp500.md?_r=${fn.random}
+  short: WordPress Cluster Business
 
 settings:
   fields:
@@ -33,6 +33,15 @@ settings:
     markup:
     
   - type: checkbox
+    name: vertical
+    caption: 'Vertical auto scaling up to 2 x of the reserved resources'
+    tooltip: |
+      Enable peace of mind with automatic handling of temporary load spikes above the default plan resource capabilities to serve more users without downtimes. 
+      <br/><br/>
+      Vertical auto scaling cost is $0.006 per 128 MiB per hour of actual usage of dynamic resources.
+    value: true
+    
+  - type: checkbox
     name: horizontal
     caption: 'Horizontal auto scaling based on tunable triggers'
     tooltip: |
@@ -52,7 +61,7 @@ settings:
 
   - type: checkbox
     name: waf
-    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'      
+    caption: 'Extra security with Enterprise LiteSpeed built-in WAF (Web Application Firewall)'   
     value: false
     tooltip: |
       Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>Enterprise LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo. 
@@ -67,16 +76,20 @@ settings:
 
 onInstall:
   - script: |
-      bl_flexibleCloudlets = 16
-      cp_flexibleCloudlets = 64
-      db_flexibleCloudlets = 16
-      st_flexibleCloudlets = 8
+      bl_fixedCloudlets = 32
+      cp_fixedCloudlets = 64
+      db_fixedCloudlets = 16
+      st_fixedCloudlets = 8
       return {
         result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, 
-        bl_flexibleCloudlets: bl_flexibleCloudlets, 
-        cp_flexibleCloudlets: cp_flexibleCloudlets, 
-        db_flexibleCloudlets: db_flexibleCloudlets, 
-        st_flexibleCloudlets: st_flexibleCloudlets
+        bl_fixedCloudlets: bl_fixedCloudlets, 
+        cp_fixedCloudlets: cp_fixedCloudlets, 
+        db_fixedCloudlets: db_fixedCloudlets, 
+        st_fixedCloudlets: st_fixedCloudlets, 
+        bl_flexibleCloudlets: ${settings.vertical} ? bl_fixedCloudlets * 2 : bl_fixedCloudlets, 
+        cp_flexibleCloudlets: ${settings.vertical} ? cp_fixedCloudlets * 2 : cp_fixedCloudlets, 
+        db_flexibleCloudlets: ${settings.vertical} ? db_fixedCloudlets * 2 : db_fixedCloudlets, 
+        st_flexibleCloudlets: ${settings.vertical} ? st_fixedCloudlets * 2 : st_fixedCloudlets
       }
 
   - install:
@@ -84,7 +97,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Cluster Enterprise
+      displayName: WP Cluster
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
@@ -92,16 +105,22 @@ onInstall:
         le-addon: true
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
-        galera: true
+        galera: false
         glusterfs: false
         is_trigger: ${settings.horizontal}
         loadGrowth: fast
-        cp_count: 5
+        cp_count: 3
         bl_count: 1
+        bl_fixedCloudlets: ${response.bl_fixedCloudlets}
+        cp_fixedCloudlets: ${response.cp_fixedCloudlets}
+        db_fixedCloudlets: ${response.db_fixedCloudlets}
+        st_fixedCloudlets: ${response.st_fixedCloudlets}
         bl_flexibleCloudlets: ${response.bl_flexibleCloudlets}
         cp_flexibleCloudlets: ${response.cp_flexibleCloudlets}
         db_flexibleCloudlets: ${response.db_flexibleCloudlets}
         st_flexibleCloudlets: ${response.st_flexibleCloudlets}
-        st_diskLimit: 200
         bl_diskLimit: 30
+        cp_diskLimit: 10
+        db_diskLimit: 20
+        st_diskLimit: 100
         

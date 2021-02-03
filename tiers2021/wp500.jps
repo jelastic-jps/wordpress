@@ -5,7 +5,7 @@ categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
-logo: /images/wp-cluster.png
+logo: /images/wp-cluster-business.png
 description:
   text: /tiers2021/text/description-wp500.md?_r=${fn.random}
   short: WordPress Cluster Business
@@ -34,7 +34,7 @@ settings:
     
   - type: checkbox
     name: horizontal
-    caption: 'Horizontal auto scaling based on tunnable trigers'
+    caption: 'Horizontal auto scaling based on tunable triggers'
     tooltip: |
       Enable enterprise-grade insurance for huge load spikes with automatic horizontal scaling - adding or removing nodes in the cluster based on demand.
       <br/><br/>

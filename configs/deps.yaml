@@ -1,0 +1,13 @@
+templates:
+  lemp:
+    - ^lemp
+  llsmp:
+    - ^llsmp
+  mysql:
+    - ^mysql5$
+  nginxbalancer:
+    - ^nginxbalancer
+  nginxphp:
+    - ^nginxphp
+  storage:
+    - ^storage

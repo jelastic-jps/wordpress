@@ -2,7 +2,7 @@ WordPress CMS deployed as a lightweight standalone elastic container for running
 
 * Up to 32 cloudlets (4 GiB RAM, 12.8 GHz CPU)
 * Up to 20 GB of Disk
-* CDN per consumption
+* CDN - 100 GB free
 * 1 Public IP
 
 **Topology inside Container:** 

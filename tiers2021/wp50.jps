@@ -5,7 +5,7 @@ categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
-logo: /images/wp-standalone.png
+logo: /images/wp-standalone-starter.png
 description:
   text: /tiers2021/text/description-wp50.md    
   short: WordPress Standalone Starter
