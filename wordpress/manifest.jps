@@ -118,15 +118,11 @@ onAfterClone:
           resp.onAfterReturn = {setGlobals: {PROTOCOL: "https"}}
         }
         return resp;
- 
+
   - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
     envName: ${event.response.env.envName}
     settings:
       domain: ${globals.PROTOCOL}://${event.response.env.domain}
-
-  - if (/litespeed/.test("${nodes.bl.nodeType}")):
-    - install: ${globals.PATH}/scripts/setupHA4LB.jps?_r=${fn.random}
-      envName: ${event.response.env.envName}
     
 onBeforeMigrate:
   - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=${SERVER_WEBROOT} | cut -d'/' -f3;
@@ -148,10 +144,7 @@ onAfterMigrate:
     - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
       settings:
         domain: ${globals.PROTOCOL}://${env.domain}
-      
-  - if (/litespeed/.test("${nodes.bl.nodeType}")):
-      - install: ${globals.PATH}/scripts/setupHA4LB.jps?_r=${fn.random}
-      
+         
   - cmd[cp]: sudo jem service restart
 
 onInstall:
