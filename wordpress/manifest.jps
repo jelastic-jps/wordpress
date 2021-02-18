@@ -91,7 +91,11 @@ settings:
       name: bl_count   
       markup:
 
+mixins:
+ - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
+
 globals:
+  PATH: ${baseUrl}
   DB_USER: jelastic-${fn.random}
   DB_PASS: ${fn.password(10)}
   DB_HOST: 127.0.0.1
@@ -107,6 +111,42 @@ onAfterInstallAddon [nodeGroup:cp, id:cdn]:
       PATH: ${baseUrl}
       
 onAfterBindSSL: setupDomain
+
+onAfterClone: 
+  - script: |
+        var resp = {result:0}
+        if (${event.response.env.sslstate}) {
+          resp.onAfterReturn = {setGlobals: {PROTOCOL: "https"}}
+        }
+        return resp;
+
+  - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
+    envName: ${event.response.env.envName}
+    settings:
+      domain: ${globals.PROTOCOL}://${event.response.env.domain}
+    
+onBeforeMigrate:
+  - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=${SERVER_WEBROOT} | cut -d'/' -f3;
+  - if (/${response.out}/.test(env.domain)):
+      cmd[${nodes.cp.master.id}]: echo true > ~/migrate
+  - else:
+      cmd[${nodes.cp.master.id}]: echo false > ~/migrate
+
+onAfterMigrate:
+  - cmd[${nodes.cp.master.id}]: if test -f ~/migrate; then cat ~/migrate; fi
+  - if (/${response.out}/.test(true)):
+    - script: |
+        var resp = {result:0}
+        if (${env.sslstate}) {
+          resp.onAfterReturn = {setGlobals: {PROTOCOL: "https"}}
+        }
+        return resp;
+ 
+    - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
+      settings:
+        domain: ${globals.PROTOCOL}://${env.domain}
+         
+  - cmd[cp]: sudo jem service restart
 
 onInstall:
 
@@ -193,6 +233,7 @@ actions:
         wp_admin_pass: ${globals.WP_ADMIN_PASS}
         wp_title: "Hello World"
         wp_url: ${globals.PROTOCOL}://${globals.DOMAIN}/
+        version_wordpress: ${globals.version_wordpress}
         targetNodeID: ${nodes.cp.master.id}
 
   setupNode:
