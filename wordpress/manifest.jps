@@ -10,7 +10,7 @@ homepage: http://wordpress.org/
 description:
   text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress/JE-56221/wordpress
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
 
 onBeforeInit: /scripts/settings.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeinstall.js?_r=${fn.random}
