@@ -170,8 +170,6 @@ onInstall:
 
   - install-wordpress
   
-  - initLEwebroot
-  
   - if (${settings.mu-addon:false}): configure-MU
     
   - if (${settings.le-addon:false}): 
@@ -192,8 +190,6 @@ actions:
       settings:
         customDomains: ${globals.DOMAIN}
         fallbackToX1: true
-        webroot: true
-        webrootPath: /var/www/webroot/ROOT
 
   initLEwebroot:
     - cmd[cp]: |-
