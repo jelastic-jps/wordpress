@@ -20,8 +20,7 @@ skipNodeEmails: true
 nodes: definedInOnBeforeInstall
 
 settings:
-  fields:
-  
+  fields:  
     - caption: Advanced Features
       type: displayfield
       name: displayfield
@@ -95,7 +94,7 @@ mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
 
 globals:
-  PATH: ${baseUrl}
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.0.0
   DB_USER: jelastic-${fn.random}
   DB_PASS: ${fn.password(10)}
   DB_HOST: 127.0.0.1
@@ -106,9 +105,7 @@ globals:
   STACK: nginx
 
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
-  - install: ${baseUrl}/scripts/setupCDN.jps
-    settings:
-      PATH: ${baseUrl}
+  install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
       
 onAfterBindSSL: setupDomain
 
@@ -120,7 +117,7 @@ onAfterClone:
         }
         return resp;
 
-  - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
+  - install: ${globals.WP_CLUSTER_PATH}/scripts/setupDomain.jps?_r=${fn.random}
     envName: ${event.response.env.envName}
     settings:
       domain: ${globals.PROTOCOL}://${event.response.env.domain}
@@ -142,14 +139,13 @@ onAfterMigrate:
         }
         return resp;
  
-    - install: ${globals.PATH}/scripts/setupDomain.jps?_r=${fn.random}
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/setupDomain.jps?_r=${fn.random}
       settings:
         domain: ${globals.PROTOCOL}://${env.domain}
          
   - cmd[cp]: sudo jem service restart
 
 onInstall:
-
   - script: |
         return {
           result:0,
@@ -159,11 +155,11 @@ onInstall:
       setGlobals:
         PROTOCOL: https
         
-  - script: ${baseUrl}/scripts/idna.js
+  - script: ${globals.WP_CLUSTER_PATH}/scripts/idna.js
   - setGlobals:
       DOMAIN: ${response.domain}         
     
-  - creatUserDB
+  - createUserDB
 
   - setupNode:
       nodeId: cp
@@ -173,6 +169,8 @@ onInstall:
           PROTOCOL: https
 
   - install-wordpress
+  
+  - initLEwebroot
   
   - if (${settings.mu-addon:false}): configure-MU
     
@@ -187,7 +185,6 @@ onInstall:
         STACK: ls
           
 actions:
-
   install-LE-addon:
     - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
       nodeGroup: cp
@@ -195,6 +192,15 @@ actions:
       settings:
         customDomains: ${globals.DOMAIN}
         fallbackToX1: true
+        webroot: true
+        webrootPath: /var/www/webroot/ROOT
+
+  initLEwebroot:
+    - cmd[cp]: |-
+        [ ! -d /var/lib/jelastic/keys/letsencrypt ] && mkdir -p /var/lib/jelastic/keys/letsencrypt;
+        echo "webroot=true" > /var/lib/jelastic/keys/letsencrypt/settings-custom;
+        echo "webrootPath=/var/www/webroot/ROOT" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
+      user: root
 
   setupDomain:
     - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
@@ -215,17 +221,16 @@ actions:
         SUCCESS: success-cdn
         EMAIL: cdn
     - cmd[${nodes.cp.master.id}]: |-
-        wget ${baseUrl}/scripts/setupWP.sh?_r=${fn.random} -O ~/bin/setupWP.sh &>> /var/log/run.log
-        wget ${baseUrl}/scripts/checkCdnContent.txt?_r=${fn.random} -O ~/bin/checkCdnContent.txt &>> /var/log/run.log
+        wget ${globals.WP_CLUSTER_PATH}/scripts/checkCdnContent.txt?_r=${fn.random} -O ~/bin/checkCdnContent.txt &>> /var/log/run.log
         bash ~/bin/setupWP.sh --edgeportCDN true --CDN_URL ${globals.CDN}
 
   configure-MU:
-    - install: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/addon/WPMU.jps
+    - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
       settings:
         mode: subdir
 
   install-wordpress:
-    - install: ${baseUrl}/scripts/installWP.jps
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/installWP.jps
       settings:
         db_host: ${globals.DB_HOST}
         db_user: ${globals.DB_USER}
@@ -234,7 +239,7 @@ actions:
         wp_title: "Hello World"
         wp_url: ${globals.PROTOCOL}://${globals.DOMAIN}/
         version_wordpress: ${globals.version_wordpress}
-        targetNodeID: ${nodes.cp.master.id}
+        cluster: false
 
   setupNode:
     - log: OPTIMIZATION
@@ -243,13 +248,8 @@ actions:
         targetGroup: cp
         targetNodes: ${this.nodeId}
         optimization: wordpress
-
-    - log: Wordpress CLI Installation
-    - install: ${baseUrl}/scripts/WP-CLI.jps?_r=${fn.random}
-      settings:
-        TARGET_NODES: ${this.nodeId}
         
-  creatUserDB:
+  createUserDB:
     - log: Create user for DataBase
     - cmd [cp]: |-
         wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log
