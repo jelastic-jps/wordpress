@@ -10,7 +10,7 @@ homepage: http://wordpress.org/
 description:
   text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.1.0
 
 onBeforeInit: /scripts/settings.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeinstall.js?_r=${fn.random}
@@ -94,7 +94,7 @@ mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
 
 globals:
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.0.0
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.1.0
   DB_USER: jelastic-${fn.random}
   DB_PASS: ${fn.password(10)}
   DB_HOST: 127.0.0.1
@@ -216,8 +216,8 @@ actions:
         note: ${settings.noteCDN:}
     - script: return jelastic.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.info", {partnerCode:1})
     - setGlobals:
-        CDN_URL: ${globals.PROTOCOL}://${env.envName}-${response.response.partnerCode}.cdn.edgeport.net/
-        CDN: ${env.envName}-${response.response.partnerCode}.cdn.edgeport.net
+        CDN_URL: ${globals.PROTOCOL}://${env.envName}-${response.response.partnerCode}.cdn.jelastic.net/
+        CDN: ${env.envName}-${response.response.partnerCode}.cdn.jelastic.net
         SUCCESS: success-cdn
         EMAIL: cdn
     - cmd[${nodes.cp.master.id}]: |-
