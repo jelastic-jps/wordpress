@@ -107,7 +107,7 @@ globals:
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
       
-onAfterBindSSL: setupDomain
+onAfterInstallAddon [nodeGroup:bl, id:letsencrypt-ssl-addon]: setup-LE-domain
 
 onAfterClone: 
   - script: |
@@ -174,7 +174,7 @@ onInstall:
     
   - if (${settings.le-addon:false}): 
       - install-LE-addon
-      - setupDomain
+      - setup-LE-domain
 
   - if (${settings.cdn-addon:false}): install-edgeport-CDN
   
@@ -198,7 +198,7 @@ actions:
         echo "webrootPath=/var/www/webroot/ROOT" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
       user: root
 
-  setupDomain:
+  setup-LE-domain:
     - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
     - set:
         domain: ${response.out}
