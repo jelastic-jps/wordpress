@@ -7,7 +7,7 @@ categories:
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-cluster-enterprise.png
 description:
-  text: /tiers2021/scaleforce/text/description-wp1000.md?_r=${fn.random}
+  text: /tiers2022/scaleforce/text/description-wp1000.md?_r=${fn.random}
   short: WordPress Cluster Enterprise
 
 settings:
