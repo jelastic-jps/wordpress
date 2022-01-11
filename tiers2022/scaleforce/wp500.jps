@@ -93,7 +93,7 @@ onInstall:
       }
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/load2021/manifest.yml?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/load2022/manifest.yml?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
