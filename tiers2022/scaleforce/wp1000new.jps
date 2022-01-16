@@ -81,7 +81,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Standalone Pro
+      displayName: WordPress Enterprise
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
