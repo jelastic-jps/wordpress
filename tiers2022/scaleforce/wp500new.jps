@@ -8,7 +8,7 @@ baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-cluster-business.png
 description:
   text: /tiers2022/scaleforce/text/description-wp500.md?_r=${fn.random}
-  short: WordPress Standalone Business
+  short: WordPress Business
 
 settings:
   fields:
