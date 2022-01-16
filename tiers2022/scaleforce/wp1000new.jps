@@ -1,5 +1,5 @@
 type: install
-id: wordpress-1000
+id: wordpress-standalone-1000
 name: WordPress Enterprise
 categories:
   - apps/blogs
