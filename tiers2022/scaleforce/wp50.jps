@@ -7,7 +7,7 @@ categories:
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master
 logo: /images/wp-standalone-starter.png
 description:
-  text: /tiers2021/scaleforce/text/description-wp50.md    
+  text: /tiers2022/scaleforce/text/description-wp50.md    
   short: WordPress Standalone Starter
 
 settings:
@@ -77,7 +77,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups, flexibleCloudlets: ${settings.autoscaling} ? fixedCloudlets * 2 : fixedCloudlets, fixedCloudlets: fixedCloudlets}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2022/wordpress/manifest.jps?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
