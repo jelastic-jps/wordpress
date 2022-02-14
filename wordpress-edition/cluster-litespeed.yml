@@ -115,7 +115,9 @@ onInstall:
         ls-addon: true
         waf: ${settings.waf}
         wp_protect: ${settings.wp_protect}
+        galera: ${settings.galera}
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
+        glusterfs: ${settings.glusterfs}
         mu-addon: ${settings.mu-addon}
         woocommerce: false
