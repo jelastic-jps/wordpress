@@ -87,7 +87,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Edition Standalone Nginx
+      displayName: WordPress Edition Cluster LiteSpeed
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
