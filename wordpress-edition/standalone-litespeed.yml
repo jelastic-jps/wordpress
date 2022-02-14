@@ -83,7 +83,7 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/load2021/wordpress/manifest.jps?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0/manifest.yml?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
