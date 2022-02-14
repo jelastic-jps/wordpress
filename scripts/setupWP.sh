@@ -6,6 +6,7 @@ objectcache=false;
 edgeportCDN=false;
 wpmu=false;
 DOMAIN=false;
+woocommerce=false;
 
 SERVER_WEBROOT=/var/www/webroot/ROOT
 
@@ -22,6 +23,7 @@ ARGUMENT_LIST=(
     "CDN_ORI"
     "MODE"
     "DOMAIN"
+    "woocommerce"
 
 )
 
@@ -97,6 +99,11 @@ while [[ $# -gt 0 ]]; do
             DOMAIN=$2
             shift 2
             ;;
+	    
+	--woocommerce)
+	    woocommerce=$2
+	    shift 2
+	    ;;
 
         *)
             break
@@ -247,4 +254,8 @@ if [ $DOMAIN != 'false' ] ; then
 	${CACHE_FLUSH}  &>> /var/log/run.log
 	${WP} cache flush --path=${SERVER_WEBROOT} &>> /var/log/run.log
   fi
+fi
+
+if [ $woocommerce == 'true' ] ; then
+  ${WP} plugin install woocommerce --activate --path=${SERVER_WEBROOT} &>> /var/log/run.log
 fi
