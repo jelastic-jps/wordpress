@@ -1,0 +1,85 @@
+type: install
+id: wp-edition-standalone-nginx 
+name: WordPress Edition Standalone Nginx
+categories:
+  - apps/blogs
+  - apps/content-management
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
+logo: /images/wp-standalone.png
+description:
+  text: /text/standalone-nginx.md    
+  short: WordPress Edition Standalone Nginx
+
+settings:
+  fields:
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+    
+  - caption: 1
+    type: displayfield
+    name: displayfield
+    markup:    
+    hideLabel: true
+        
+  - caption: Advanced Features
+    type: displayfield
+    name: displayfield
+    markup:
+
+  - caption: Install Let's Encrypt SSL with Auto-Renewal
+    type: checkbox
+    name: le-addon
+    value: true
+    disabled: false
+    tooltip: "Advanced integration with Let's Encrypt certificate authority that simplifies and automates the process of issuing, configuring and updating trusted custom SSL certificates."
+
+  - caption: Install Lightning-Fast Premium CDN
+    type: checkbox
+    name: cdn-addon
+    value: true
+    disabled: false
+    tooltip: "Jelastic CDN is an HTTP/3 premium content delivery network of 160+ Super PoPs (points of presence) with bandwidth capacity up to 115 Tbps, advanced caching and acceleration strategies based on best-in-class IP Anycast technology."
+
+  - caption: Install WordPress Multisite Network
+    type: checkbox
+    name: mu-addon
+    value: false
+    disabled: false
+    tooltip: "Multisite is a type of WordPress installation that allows you to create and manage a network of multiple websites from a single WordPress dashboard. This lets you easily make changes and keep all of your websites updated from one place."
+
+  - type: displayfield
+    hideLabel: true
+    hidden: true
+    name: bl_count   
+    markup:
+
+onInstall:
+  - script: |
+      return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
+
+  - install:
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0/manifest.yml?_r=${fn.random}
+      envName: ${settings.envName}
+      region: ${settings.region}
+      loggerName: ${settings.envName}
+      displayName: WordPress Edition Standalone Nginx
+      envGroups: ${response.envGroups}    
+      settings:
+        ls-addon: false
+        waf: false
+        wp_protect: false
+        le-addon: ${settings.le-addon}
+        cdn-addon: ${settings.cdn-addon}
+        mu-addon: ${settings.mu-addon}
+        woocommerce: false
