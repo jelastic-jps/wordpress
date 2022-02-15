@@ -1,14 +1,15 @@
 type: install
-id: wp-edition-standalone-nginx 
-name: WordPress Edition Standalone Nginx
+jpsVersion: 7.1.1
+id: wp-edition-standalone
+name: Standalone
 categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/wp-standalone.png
+logo: /images/standalone.png
 description:
-  text: /text/standalone-nginx.md    
-  short: WordPress Edition Standalone Nginx
+  text: /text/standalone.md    
+  short: Single instance powered by NGINX Web Server 
 
 settings:
   fields:
@@ -73,7 +74,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Edition Standalone Nginx
+      displayName: Standalone
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: false
