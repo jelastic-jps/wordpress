@@ -1,14 +1,14 @@
 type: install
-id: wp-edition-standalone-litespeed 
-name: WordPress Edition Standalone LiteSpeed
+id: wp-edition-standalone-pro
+name: Standalone Pro
 categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/wp-standalone.png
+logo: /images/standalone-pro.png
 description:
-  text: /text/wp-edition-standalone-litespeed.md    
-  short: WordPress Edition Standalone LiteSpeed
+  text: /text/standalone-pro.md    
+  short: Single instance powered by LiteSpeed
 
 settings:
   fields:
@@ -87,7 +87,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Edition Standalone LiteSpeed
+      displayName: Standalone Pro
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
