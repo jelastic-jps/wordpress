@@ -1,14 +1,15 @@
 type: install
-id: wp-edition-cluster-liteSpeed 
-name: WordPress Edition Cluster LiteSpeed
+jpsVersion: 7.1.1
+id: wp-edition-cluster
+name: Cluster
 categories:
   - apps/blogs
   - apps/content-management
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/wp-cluster.png
+logo: /images/cluster.png
 description:
-  text: /text/cluster-litespeed.md    
-  short: WordPress Edition Cluster Litespeed
+  text: /text/cluster.md    
+  short: WordPress Cluster powered by LiteSpeed
 
 settings:
   fields:
@@ -87,7 +88,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WordPress Edition Cluster LiteSpeed
+      displayName: Cluster
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
