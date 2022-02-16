@@ -64,11 +64,9 @@ settings:
     name: bl_count   
     markup:
     
-  - caption: Env Name    
+  - caption: Environment
     type: envname
     name: envName
-    randomName: true
-    showFullDomain: true
     dependsOn: region
 
   - caption: Region
