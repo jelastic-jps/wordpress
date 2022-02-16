@@ -1,6 +1,8 @@
 type: install
 jpsVersion: 7.1.1
 id: wp-edition-standalone
+categories:
+  - wordpress
 name: Standalone
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
 logo: /images/standalone.png

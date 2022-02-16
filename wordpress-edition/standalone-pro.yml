@@ -1,6 +1,8 @@
 type: install
 jpsVersion: 7.1.1
 id: wp-edition-standalone-pro
+categories:
+  - wordpress
 name: Standalone Pro
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
 logo: /images/standalone-pro.png
