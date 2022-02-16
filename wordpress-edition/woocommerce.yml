@@ -62,7 +62,6 @@ settings:
     name: region
     disableInactive: true
     selectFirstAvailable: true
-    message: unavailable region
 
 onInstall:
   - script: |
