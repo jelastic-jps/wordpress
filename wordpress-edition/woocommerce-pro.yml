@@ -87,7 +87,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: Standalone Pro
+      displayName: WooCommerce Pro
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true
