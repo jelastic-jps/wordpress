@@ -11,21 +11,7 @@ description:
   short: Single instance WooCommerce powered by LiteSpeed
 
 settings:
-  fields:
-  - caption: Env Name    
-    type: envname
-    name: envName
-    randomName: true
-    showFullDomain: true
-    dependsOn: region
-
-  - caption: Region
-    type: regionlist
-    name: region
-    disableInactive: true
-    selectFirstAvailable: true
-    message: unavailable region
-    
+  fields:    
   - caption: 1
     type: displayfield
     name: displayfield
@@ -77,6 +63,20 @@ settings:
     hidden: true
     name: bl_count   
     markup:
+
+  - caption: Env Name    
+    type: envname
+    name: envName
+    randomName: true
+    showFullDomain: true
+    dependsOn: region
+
+  - caption: Region
+    type: regionlist
+    name: region
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
 
 onInstall:
   - script: |
