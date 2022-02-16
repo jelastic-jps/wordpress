@@ -1,2 +1,1 @@
-## Standalone 
 The WordPress Standalone package is an isolated instance/VPS with a pre-configured software stack based on CentOS and NGINX as a Web Server with PHP-FPM handler engine, and a MariaDB SQL as a database engine. 
