@@ -50,16 +50,26 @@ settings:
     name: bl_count   
     markup:
   
-  - caption: Environment
-    type: envname
+  - type: envname
     name: envName
+    caption: Environment
     dependsOn: region
+    required: true
+
+  - type: string
+    name: displayName
+    caption: Display Name
+    default: WooCommerce
 
   - caption: Region
     type: regionlist
     name: region
     disableInactive: true
     selectFirstAvailable: true
+   
+  - type: owner
+    name: ownerUid
+    caption: Owner
 
 onInstall:
   - script: |
