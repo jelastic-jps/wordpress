@@ -1,5 +1,5 @@
 jpsType: install
-jpsVersion: '1.1'
+jpsVersion: '1.7.2'
 id: wordpress
 name: WordPress Standalone Kit
 categories:
