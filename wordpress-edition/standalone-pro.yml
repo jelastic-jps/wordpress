@@ -64,19 +64,26 @@ settings:
     name: bl_count   
     markup:
     
-  - caption: Env Name    
-    type: envname
+  - type: envname
     name: envName
-    randomName: true
-    showFullDomain: true
+    caption: Environment
     dependsOn: region
+    required: true
+
+  - type: string
+    name: displayName
+    caption: Display Name
+    default: Standalone Pro
 
   - caption: Region
     type: regionlist
     name: region
     disableInactive: true
     selectFirstAvailable: true
-    message: unavailable region
+   
+  - type: owner
+    name: ownerUid
+    caption: Owner
 
 onInstall:
   - script: |
