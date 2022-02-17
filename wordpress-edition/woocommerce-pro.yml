@@ -73,7 +73,7 @@ settings:
   - type: string
     name: displayName
     caption: Display Name
-    default: Kubernetes Cluster
+    default: WooCommerce Pro
 
   - caption: Region
     type: regionlist
