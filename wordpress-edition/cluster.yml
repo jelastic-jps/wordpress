@@ -37,6 +37,13 @@ settings:
     disabled: false
     tooltip: "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
 
+  - caption: Install MariaDB Galera Cluster
+    type: checkbox
+    name: galera
+    value: true
+    disabled: false
+    tooltip: "<h3>Requirements for All Tables:</h3> * run on InnoDB storage engine <p>* have a primary key</p>Read more about <a href='https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-limitations/'>limitations</a>"
+  
   - caption: Install Let's Encrypt SSL with Auto-Renewal
     type: checkbox
     name: le-addon
@@ -51,6 +58,13 @@ settings:
     disabled: false
     tooltip: "Jelastic CDN is an HTTP/3 premium content delivery network of 160+ Super PoPs (points of presence) with bandwidth capacity up to 115 Tbps, advanced caching and acceleration strategies based on best-in-class IP Anycast technology."
 
+  - caption: 'Install GlusterFS Cluster'
+    type: checkbox
+    name: glusterfs
+    value: false
+    disabled: false
+    tooltip: "Shared Storage auto-clustering is based on GlusterFS software that provides a fault-tolerant distributed file system with automatic data synchronization across the cluster nodes."
+  
   - caption: Install WordPress Multisite Network
     type: checkbox
     name: mu-addon
@@ -99,6 +113,8 @@ onInstall:
       settings:
         ls-addon: true
         waf: ${settings.waf}
+        galera: ${settings.galera}
+        glusterfs: ${settings.glusterfs}
         wp_protect: ${settings.wp_protect}
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
