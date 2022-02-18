@@ -1,2 +1,1 @@
-The WooCommerce package is an isolated instance/VPS with a pre-configured software stack based on CentOS and NGINX as a Web Server with PHP-FPM handler engine, 
-a MariaDB SQL as a database engine. In addition to the standard WordPress package, it includes a pre-configured WooCommerce add-on. 
+It is the Standalone package, with a pre-installed and optimized WooCommerce plugin for eCommerce business based on WordPress. Designed for SMB's that don't require to serve hundreds or thousands of concurrent users on their shopping cart and to handle unexpected load-spikes. 
