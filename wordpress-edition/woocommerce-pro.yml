@@ -63,6 +63,8 @@ settings:
     hidden: true
     name: bl_count   
     markup:
+    
+  - type: separator
 
   - type: envname
     name: envName
