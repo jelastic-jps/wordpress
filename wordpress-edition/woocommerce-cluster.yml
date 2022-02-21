@@ -1,14 +1,14 @@
 type: install
 jpsVersion: 7.1.1
-id: wp-edition-woocommerce-pro
+id: wp-edition-woocommerce-cluster
 categories:
   - wordpress
-name: WooCommerce Pro
+name: WooCommerce Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/woocommerce-pro.png
+logo: /images/woocommerce-cluster.png
 description:
-  text: /text/woocommerce-pro.md    
-  short: Single instance WooCommerce powered by LiteSpeed
+  text: /text/woocommerce-cluster.md    
+  short: WooCommerce Cluster powered by LiteSpeed
 
 settings:
   fields:    
@@ -75,7 +75,7 @@ settings:
   - type: string
     name: displayName
     caption: Display Name
-    default: WooCommerce Pro
+    default: WooCommerce Cluster
 
   - caption: Region
     type: regionlist
@@ -92,11 +92,11 @@ onInstall:
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0/manifest.yml?_r=${fn.random}
+      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0/manifest.yml?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WooCommerce Pro
+      displayName: WooCommerce Cluster
       envGroups: ${response.envGroups}    
       settings:
         ls-addon: true

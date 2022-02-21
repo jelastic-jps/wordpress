@@ -78,6 +78,8 @@ settings:
     name: bl_count   
     markup:
 
+  - type: separator
+  
   - type: envname
     name: envName
     caption: Environment
