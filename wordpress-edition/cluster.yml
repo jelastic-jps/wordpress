@@ -3,6 +3,7 @@ jpsVersion: 7.1.1
 id: wp-edition-cluster
 categories:
   - wordpress
+targetEditions: wordpress
 name: Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
 logo: /images/cluster.png
@@ -11,13 +12,7 @@ description:
   short: WordPress Cluster powered by LiteSpeed
 
 settings:
-  fields:    
-  - caption: 1
-    type: displayfield
-    name: displayfield
-    markup:    
-    hideLabel: true
-        
+  fields:            
   - caption: Advanced Features
     type: displayfield
     name: displayfield
