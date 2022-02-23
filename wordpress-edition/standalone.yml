@@ -5,7 +5,7 @@ categories:
   - wordpress
 name: Standalone
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/standalone.png
+logo: /images/logo/standalone.png
 description:
   text: /text/standalone.md    
   short: Single instance powered by NGINX Web Server 
