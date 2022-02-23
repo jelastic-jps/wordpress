@@ -5,7 +5,7 @@ categories:
   - wordpress
 name: Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/cluster.png
+logo: /images/logo/cluster.png
 description:
   text: /text/cluster.md    
   short: WordPress Cluster powered by LiteSpeed
