@@ -6,7 +6,7 @@ categories:
 targetEditions: wordpress  
 name: WooCommerce Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/woocommerce-cluster.png
+logo: /images/logo/woocommerce-cluster.png
 description:
   text: /text/woocommerce-cluster.md    
   short: WooCommerce Cluster powered by LiteSpeed
@@ -60,6 +60,11 @@ settings:
     markup:
     
   - type: separator
+
+  - caption: Topology
+    type: displayfield
+    name: topology
+    tooltip: "<h3>WooCommerce Cluster powered by LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/woocommerce-cluster.svg'>"
 
   - type: envname
     name: envName

@@ -6,7 +6,7 @@ categories:
 targetEditions: wordpress
 name: Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/cluster.png
+logo: /images/logo/cluster.png
 description:
   text: /text/cluster.md    
   short: WordPress Cluster powered by LiteSpeed
@@ -78,7 +78,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h3>WordPress Cluster based on LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/sych74/wordpress/master/wordpress-edition/images/topo/woocommerce-cluster.svg'>"
+    tooltip: "<h3>WordPress Cluster based on LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/woocommerce-cluster.svg'>"
   
   - type: envname
     name: envName

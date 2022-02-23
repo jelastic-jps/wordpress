@@ -6,7 +6,7 @@ categories:
 targetEditions: wordpress  
 name: WooCommerce Pro
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/woocommerce-pro.png
+logo: /images/logo/woocommerce-pro.png
 description:
   text: /text/woocommerce-pro.md    
   short: Single instance WooCommerce powered by LiteSpeed
@@ -60,6 +60,11 @@ settings:
     markup:
     
   - type: separator
+
+  - caption: Topology
+    type: displayfield
+    name: topology
+    tooltip: "<h3>Single instance WooCommerce powered by LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/woocommerce-pro.svg'>"
 
   - type: envname
     name: envName
