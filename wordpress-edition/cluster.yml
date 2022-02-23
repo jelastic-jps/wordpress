@@ -75,6 +75,11 @@ settings:
 
   - type: separator
   
+  - caption: Topology
+    type: displayfield
+    name: topology
+    tooltip: "<h3>WordPress Cluster based on LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/sych74/wordpress/master/wordpress-edition/images/topo/woocommerce-cluster.svg'>"
+  
   - type: envname
     name: envName
     caption: Environment
