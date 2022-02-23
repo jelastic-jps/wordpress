@@ -102,7 +102,8 @@ onInstall:
       region: ${settings.region}
       loggerName: ${settings.envName}
       displayName: Cluster
-      envGroups: ${response.envGroups}    
+      envGroups: ${response.envGroups}
+      ownerUid: ${settings.ownerUid}
       settings:
         ls-addon: true
         waf: ${settings.waf}
