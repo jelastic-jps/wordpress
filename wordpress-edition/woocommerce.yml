@@ -83,7 +83,8 @@ onInstall:
       region: ${settings.region}
       loggerName: ${settings.envName}
       displayName: WooCommerce
-      envGroups: ${response.envGroups}    
+      envGroups: ${response.envGroups}
+      ownerUid: ${settings.ownerUid}
       settings:
         ls-addon: false
         waf: false
