@@ -55,7 +55,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h3>WordPress Cluster based on LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/sych74/wordpress/master/wordpress-edition/images/topo/standalone-pro.svg'>"
+    tooltip: "<h3>Single instance powered by NGINX Web Server</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone.svg'>"
 
   - type: envname
     name: envName
