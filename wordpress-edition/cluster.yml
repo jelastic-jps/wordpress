@@ -119,6 +119,7 @@ onInstall:
         galera: ${settings.galera}
         glusterfs: ${settings.glusterfs}
         wp_protect: ${settings.wp_protect}
+        galera: true
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
