@@ -189,7 +189,13 @@ onInstall:
   - if (${settings.ls-addon:false}):
       setGlobals:
         STACK: ls
-          
+
+  - if ('${settings.success_email}' != 'false'):
+    - return:
+        type: success
+        message: success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
+        email: success/email/success-${globals.STACK}-${globals.SUCCESS}.md?_r=${fn.random}
+
 actions:
   install-LE-addon:
     - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
@@ -263,9 +269,5 @@ actions:
       
   install-woocommerce:
     cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --woocommerce true
-        
-success:
-  email: success/email/success-${globals.STACK}-${globals.SUCCESS}.md?_r=${fn.random}
-  text: success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
 
 startPage: ${globals.PROTOCOL}://${env.domain}/
