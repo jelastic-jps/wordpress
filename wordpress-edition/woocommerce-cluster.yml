@@ -111,4 +111,5 @@ onInstall:
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
+        galera: true
         woocommerce: true
