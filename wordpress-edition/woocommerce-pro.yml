@@ -96,7 +96,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WooCommerce Pro
+      displayName: ${settings.displayName}
       envGroups: ${response.envGroups}
       ownerUid: ${settings.ownerUid}
       settings:
