@@ -101,7 +101,7 @@ onInstall:
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
-      displayName: WooCommerce Cluster
+      displayName: ${settings.displayName}
       envGroups: ${response.envGroups}
       ownerUid: ${settings.ownerUid}
       settings:
