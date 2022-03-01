@@ -1,8 +1,8 @@
-**WordPress environment**: [https://${env.domain}/](https://${env.domain}/)  
+**WordPress environment**: [${env.url}/](${env.url}/)  
 
 Use the following credentials to access the admin panel:   
 
-**Admin Panel**: [https://${env.domain}/wp-admin/](https://${env.domain}/wp-admin/)  
+**Admin Panel**: [${env.url}/wp-admin/](${env.url}/wp-admin/)  
 **Login**: ${user.email}  
 **Password**: ${globals.wp_admin_pass}  
 
