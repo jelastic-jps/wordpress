@@ -99,10 +99,11 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         woocommerce: false
-        DB_USER: ${settings.db_user}
-        DB_PASS: ${settings.db_pass}
-        WP_ADMIN_PASS: ${settings.wp_admin_pass}
+        DB_USER: ${globals.db_user}
+        DB_PASS: ${globals.db_pass}
+        WP_ADMIN_PASS: ${globals.wp_admin_pass}
+        success_email: false
 
 success:
   email: success/email/standalone.md?_r=${fn.random}
-  text: success/text/standalone.md.md?_r=${fn.random}
+  text: success/text/standalone.md?_r=${fn.random}
