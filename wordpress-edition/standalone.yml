@@ -5,7 +5,7 @@ categories:
   - wordpress
 targetEditions: wordpress
 name: Standalone
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress-edition
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
 logo: /images/logo/standalone.png
 description:
   text: /text/standalone.md    
