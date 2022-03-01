@@ -105,5 +105,5 @@ onInstall:
         success_email: false
 
 success:
-  email: success/email/standalone.md?_r=${fn.random}
-  text: success/text/standalone.md?_r=${fn.random}
+  email: /success/email/standalone.md?_r=${fn.random}
+  text: /success/text/standalone.md?_r=${fn.random}
