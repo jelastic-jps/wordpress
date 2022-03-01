@@ -9,7 +9,7 @@ var resp = {
 if ('${settings.ls-addon:false}'== 'true') {
   resp.nodes.push({
     nodeType: "llsmp",
-    tag: "6.0.11-php-8.0.15",
+    engine: "php8.0",
     count: 1,
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
@@ -26,7 +26,7 @@ if ('${settings.ls-addon:false}'== 'true') {
 } else {
   resp.nodes.push({
     nodeType: "lemp",
-    tag: "1.20.2-php-8.0.16",
+    engine: "php8.0",
     count: 1,
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
