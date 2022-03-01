@@ -5,7 +5,7 @@ categories:
   - wordpress
 targetEditions: wordpress
 name: Standalone
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
+baseUrl: https://raw.githubusercontent.com/sych74/wordpress/master/wordpress-edition
 logo: /images/logo/standalone.png
 description:
   text: /text/standalone.md    
@@ -73,12 +73,18 @@ settings:
     name: ownerUid
     caption: Owner
 
+globals:
+  wp_jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
+  wp_admin_pass: ${fn.password(10)}
+  db_user: jelastic-${fn.random}
+  db_pass: ${fn.password(10)}
+
 onInstall:
   - script: |
       return {result:0, envGroups:eval('(' + MANIFEST + ')').envGroups}
 
   - install:
-      jps: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0/manifest.yml?_r=${fn.random}
+      jps: ${globals.wp_jps}/manifest.yml?_r=${fn.random}
       envName: ${settings.envName}
       region: ${settings.region}
       loggerName: ${settings.envName}
@@ -93,3 +99,10 @@ onInstall:
         cdn-addon: ${settings.cdn-addon}
         mu-addon: ${settings.mu-addon}
         woocommerce: false
+        DB_USER: ${settings.db_user}
+        DB_PASS: ${settings.db_pass}
+        WP_ADMIN_PASS: ${settings.wp_admin_pass}
+
+success:
+  email: success/email/standalone.md?_r=${fn.random}
+  text: success/text/standalone.md.md?_r=${fn.random}
