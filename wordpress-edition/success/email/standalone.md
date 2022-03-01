@@ -1,13 +1,13 @@
-**WordPress environment**: [https://${env.domain}/](https://${env.domain}/)
+**WordPress environment**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
 
 Use the following credentials to access the admin panel:
 
-**Admin Panel**: [https://${env.domain}/wp-admin/](https://${env.domain}/wp-admin/)  
+**Admin Panel**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
 **Login**: ${user.email}  
 **Password**: ${globals.wp_admin_pass}  
 
 Manage the database nodes using the next credentials:
 
-**phpMyAdmin Panel**: [https://${env.domain}:8443/](https://${env.domain}:8443/)  
+**phpMyAdmin Panel**: [https://${settings.envName}.${globals.domain}:8443/](https://${settings.envName}.${globals.domain}:8443/)  
 **Username**: ${globals.db_user}    
 **Password**: ${globals.db_pass}  
