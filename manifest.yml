@@ -152,6 +152,12 @@ onAfterMigrate:
   - cmd[cp]: sudo jem service restart
 
 onInstall:
+
+  - env.control.ApplyNodeGroupData[cp]:
+      data:
+        validation : 
+          maxCount: 1
+
   - script: |
         return {
           result:0,
