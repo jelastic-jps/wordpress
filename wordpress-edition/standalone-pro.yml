@@ -117,7 +117,7 @@ onInstall:
       region: ${settings.region}
       loggerName: ${settings.envName}
       displayName: ${settings.displayName}
-      envGroups: ${response.envGroups}
+      envGroups: ${globals.envGroups}
       ownerUid: ${settings.ownerUid}
       settings:
         ls-addon: true
