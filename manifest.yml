@@ -276,4 +276,4 @@ actions:
   install-woocommerce:
     cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --woocommerce true
 
-startPage: ${globals.PROTOCOL}://${env.domain}/
+startPage: ${env.url}
