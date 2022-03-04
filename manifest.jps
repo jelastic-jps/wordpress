@@ -258,4 +258,4 @@ success:
   email: success/email/success-${globals.STACK}-${globals.EMAIL}.md?_r=${fn.random}
   text: success/text/${globals.SUCCESS}.md?_r=${fn.random}
 
-startPage: ${globals.PROTOCOL}://${env.domain}/
+startPage: ${env.url}
