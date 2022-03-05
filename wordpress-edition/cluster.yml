@@ -149,6 +149,11 @@ onInstall:
         WP_ADMIN_PASS: ${globals.wp_admin_pass}
         LS_ADMIN_PASS: ${globals.ls_admin_pass}
         success_email: false
+        
+  - env.control.ApplyNodeGroupData[cp]:
+      envName: ${settings.envName}
+      data:
+        fixedTopologyLayers: 1
 
 success:
   email: /success/email/cluster.md?_r=${fn.random}
