@@ -131,6 +131,11 @@ onInstall:
         DB_PASS: ${globals.db_pass}
         WP_ADMIN_PASS: ${globals.wp_admin_pass}
         success_email: false
+        
+  - env.control.ApplyNodeGroupData[cp]:
+      envName: ${settings.envName}
+      data:
+        fixedTopologyLayers: 1
 
 success:
   email: /success/email/woocommerce-pro.md?_r=${fn.random}
