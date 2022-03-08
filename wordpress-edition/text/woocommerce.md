@@ -1,1 +1,1 @@
-It is the Standalone package, with a pre-installed and optimized WooCommerce plugin for eCommerce business based on WordPress. Designed for SMB's that don't require to serve hundreds or thousands of concurrent users on their shopping cart and to handle unexpected load-spikes. 
+Same as the Standalone package, but with a pre-installed and optimized WooCommerce plugin. Ideal for smaller e-commerce businesses that don't need to serve hundreds or thousands of concurrent shopping cart users, or deal with unexpected load-spikes.
