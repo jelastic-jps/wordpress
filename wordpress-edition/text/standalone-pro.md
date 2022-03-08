@@ -1,1 +1,1 @@
-It is the Standalone package, whereas a replacement of the NGINX Web Server with the commercial edition of the LiteSpeed Web Server. Additionally, it includes seamless integration with the LiteSpeed WordPress Plugin for better quality, resource utilization, and performance. 
+Same as the Standalone package, but using the commercial edition of the LiteSpeed Web Server instead of NGINX. Also includes seamless integration with the LiteSpeed WordPress Plugin for better quality, resource utilization and performance. 
