@@ -64,7 +64,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h3>Single instance powered by LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone-pro.svg'>"
+    tooltip: "<h2 align=center>Single instance powered by<br>LiteSpeed Web Server</h2><br><img width='214' height='280' src='https://raw.githubusercontent.com/vlobzakov/wordpress/master/wordpress-edition/images/standalone-pro.svg?sanitize=true'><br>"
     
   - type: envname
     name: envName
