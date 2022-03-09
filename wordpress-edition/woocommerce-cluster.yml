@@ -71,7 +71,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h3>WooCommerce Cluster powered by LiteSpeed</h3><br><img width='314' height='380' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/woocommerce-cluster.svg'>"
+    tooltip: "<h2 align=center>WooCommerce Cluster powered<br>by LiteSpeed</h2><br><img width='280' height='510' src='https://raw.githubusercontent.com/vlobzakov/wordpress/master/wordpress-edition/images/cluster.svg'><br>"
 
   - type: envname
     name: envName
