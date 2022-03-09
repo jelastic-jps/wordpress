@@ -50,7 +50,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h2 align=center>Single instance WooCommerce<br>powered by NGINX</h2><br><img width='214' height='280' src='https://raw.githubusercontent.com/vlobzakov/wordpress/master/wordpress-edition/images/standalone.svg?sanitize=true'><br>"
+    tooltip: "<h2 align=center>Single instance WooCommerce<br>powered by NGINX</h2><br><img width='214' height='220' src='https://raw.githubusercontent.com/vlobzakov/wordpress/master/wordpress-edition/images/standalone.svg?sanitize=true'><br>"
 
   - type: envname
     name: envName
