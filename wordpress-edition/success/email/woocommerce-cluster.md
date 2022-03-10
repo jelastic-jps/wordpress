@@ -1,25 +1,25 @@
-**WordPress environment**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
+**WordPress URL**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
 
-Use the following credentials to access the admin panel:
+WordPress Admin Panel:
 
-**Admin Panel**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
+**URL**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
 **Login**: ${user.email}  
 **Password**: ${globals.wp_admin_pass}  
 
-Use the following credentials to access the LiteSpeed ADC admin console:
+LiteSpeed ADC admin Panel:
 
-**Admin Console**: [https://node${nodes.bl.master.id}-${settings.envName}.${globals.domain}:4848](https://node${nodes.bl.master.id}-${settings.envName}.${globals.domain}:4848)  
+**URL**: [https://node${nodes.bl.master.id:[globals.targetNodes.master.bl.id]}-${settings.envName}.${globals.domain}:4848](https://node${nodes.bl.master.id:[globals.targetNodes.master.bl.id]}-${settings.envName}.${globals.domain}:4848)  
 **Login**: admin  
 **Password**: ${globals.ls_admin_pass}  
 
-Use the following credentials to access the LiteSpeed WEB Server admin console:
+LiteSpeed WEB Server admin Panel:
 
-**Admin Console**: [https://node${nodes.cp.master.id}-${settings.envName}.${globals.domain}:4848](https://node${nodes.cp.master.id}-${settings.envName}.${globals.domain}:4848)  
+**URL**: [https://node${nodes.cp.master.id:[globals.targetNodes.master.cp.id]}-${settings.envName}.${globals.domain}:4848](https://node${nodes.bl.master.id:[globals.targetNodes.master.cp.id]}-${settings.envName}.${globals.domain}:4848)  
 **Login**: admin  
 **Password**: ${globals.ls_admin_pass}  
 
-Manage the database nodes using the next credentials:
+PhpMyAdmin Admin Panel:
 
-**phpMyAdmin Panel**: [https://node${nodes.sqldb.master.id}-${settings.envName}.${globals.domain}/](https://node${nodes.sqldb.master.id}-${settings.envName}.${globals.domain}/)  
+**URL**: [https://node${nodes.sqldb.master.id:[globals.targetNodes.master.sqldb.id]}-${settings.envName}.${globals.domain}/](https://node${nodes.sqldb.master.id:[globals.targetNodes.master.sqldb.id]}-${settings.envName}.${globals.domain}/)  
 **Username**: ${globals.db_user}    
 **Password**: ${globals.db_pass}  
