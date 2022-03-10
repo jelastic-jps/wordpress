@@ -1,19 +1,18 @@
-**WordPress environment**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
+**WordPress URL**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
 
-Use the following credentials to access the admin panel:
+Please use the following data to access the admin panels:
 
-**Admin Panel**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
+WordPress Admin Panel:   
+**URL**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
 **Login**: ${user.email}  
 **Password**: ${globals.wp_admin_pass}  
 
-Please use the following data to access LiteSpeed WebAdmin Console:
-
-**Admin Console**: [https://${settings.envName}.${globals.domain}:4848/](https://${settings.envName}.${globals.domain}:4848/)   
+LiteSpeed Admin Panel:   
+**URL**: [https://${settings.envName}.${globals.domain}:4848/](https://${settings.envName}.${globals.domain}:4848/)   
 **Login**: admin    
 **Password**: ${globals.db_pass}  
 
-Manage the database nodes using the next credentials:
-
+PhpMyAdmin Admin Panel:   
 **phpMyAdmin Panel**: [https://${settings.envName}.${globals.domain}:8443/](https://${settings.envName}.${globals.domain}:8443/)  
 **Username**: ${globals.db_user}    
-**Password**: ${globals.db_pass}
+**Password**: ${globals.db_pass}  
