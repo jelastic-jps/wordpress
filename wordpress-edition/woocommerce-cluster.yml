@@ -142,11 +142,39 @@ onInstall:
         WP_ADMIN_PASS: ${globals.wp_admin_pass}
         LS_ADMIN_PASS: ${globals.ls_admin_pass}
         success_email: false
-        
+
+  - initNodes:
+      envName: ${settings.envName}
+      namespace: targetNodes
+
   - env.control.ApplyNodeGroupData[cp]:
       envName: ${settings.envName}
       data:
         fixedTopologyLayers: 1
+
+actions:
+  initNodes:
+    envName: ${this.envName}
+    namespace: ${this.namespace} 
+    script: |
+      let nodes = {}, resp = api.env.control.GetEnvInfo(envName, session);
+      if (resp.result != 0) return resp;
+      
+      resp.nodes.sort((node1, node2) => node1.id - node2.id);
+      
+      for (let node of resp.nodes) {
+        nodes[node.nodeGroup] = nodes[node.nodeGroup] || [];
+        nodes[node.nodeGroup].push(node);
+      
+        if (node.ismaster) {
+          nodes.master = nodes.master || {}; 
+          nodes.master[node.nodeGroup] = node;
+        }
+      }
+      let globals = {};
+      globals[namespace] = nodes;
+      
+      return { result: 0, onAfterReturn: { setGlobals: globals } }
 
 success:
   email: /success/email/woocommerce-cluster.md?_r=${fn.random}

@@ -1,8 +1,9 @@
-**WordPress environment**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)  
+**WordPress URL**: [https://${settings.envName}.${globals.domain}/](https://${settings.envName}.${globals.domain}/)
 
-Use the following credentials to access the admin panel:   
+Please use the following data to access the admin panels:
 
-**Admin Panel**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
+WordPress Admin Panel:   
+**URL**: [https://${settings.envName}.${globals.domain}/wp-admin/](https://${settings.envName}.${globals.domain}/wp-admin/)  
 **Login**: ${user.email}  
 **Password**: ${globals.wp_admin_pass}  
 
