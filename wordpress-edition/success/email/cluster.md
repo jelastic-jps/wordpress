@@ -17,7 +17,7 @@ LiteSpeed WEB Server admin Panel:
 **Login**: admin  
 **Password**: ${globals.ls_admin_pass}  
 
-PhpMyAdmin Admin Panel:
+PhpMyAdmin Admin Panel: 
 **URL**: [https://node${nodes.sqldb.master.id:[globals.targetNodes.master.sqldb.id]}-${settings.envName}.${globals.domain}/](https://node${nodes.sqldb.master.id:[globals.targetNodes.master.sqldb.id]}-${settings.envName}.${globals.domain}/)  
 **Username**: ${globals.db_user}    
 **Password**: ${globals.db_pass}  
