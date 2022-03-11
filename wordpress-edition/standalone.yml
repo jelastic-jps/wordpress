@@ -50,7 +50,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h2 align=center>Single instance powered by<br>NGINX Web Server</h2><br><img width='214' height='220' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone.svg?sanitize=true'><br>"
+    tooltip: "<h2 align=center>Single instance powered by<br>NGINX Web Server</h2><br><img width='214' height='320' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone.svg?sanitize=true'><br>"
 
   - type: envname
     name: envName

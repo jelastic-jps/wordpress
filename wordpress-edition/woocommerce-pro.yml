@@ -64,7 +64,7 @@ settings:
   - caption: Topology
     type: displayfield
     name: topology
-    tooltip: "<h2 align=center>Single instance WooCommerce<br>powered by LiteSpeed<br>Web Server</h2><br><img width='224' height='280' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone-pro.svg?sanitize=true'><br>"
+    tooltip: "<h2 align=center>Single instance WooCommerce<br>powered by LiteSpeed<br>Web Server</h2><br><img width='214' height='340' src='https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition/images/topo/standalone-pro.svg?sanitize=true'><br>"
 
   - type: envname
     name: envName
