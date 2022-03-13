@@ -11,6 +11,8 @@ description:
   text: /text/woocommerce-pro.md    
   short: Single instance WooCommerce powered by LiteSpeed
 
+onBeforeInit: /scripts/onBeforeInit.js
+
 settings:
   fields:
   - caption: Advanced Features
