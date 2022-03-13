@@ -10,6 +10,8 @@ logo: /images/logo/standalone-pro.png
 description:
   text: /text/standalone-pro.md    
   short: Single instance powered by LiteSpeed
+  
+onBeforeInit: /scripts/onBeforeInit.js
 
 settings:
   fields:
