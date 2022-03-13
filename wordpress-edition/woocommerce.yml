@@ -11,6 +11,8 @@ description:
   text: /text/woocommerce.md    
   short: Single instance WooCommerce powered by NGINX
 
+onBeforeInit: /scripts/onBeforeInit.js
+
 settings:
   fields:
   - caption: Advanced Features
