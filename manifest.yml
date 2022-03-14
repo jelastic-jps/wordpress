@@ -108,7 +108,6 @@ globals:
   PROTOCOL: http
   WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
   SUCCESS: default
-  STACK: nginx
 
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
@@ -151,14 +150,11 @@ onInstall:
       - setupLEdomain
   - if (${settings.cdn-addon:false}): installCDN
   - if (${settings.woocommerce:false}): installWoocommerce
-  - if (${settings.ls-addon:false}):
-      setGlobals:
-        STACK: ls
   - if ('${settings.success_email}' != 'false'):
     - return:
         type: success
         message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
-        email: /success/email/success-${globals.STACK}-${globals.SUCCESS}.md?_r=${fn.random}
+        email: /success/email/success-${nodes.cp.master.nodeType}-${globals.SUCCESS}.md?_r=${fn.random}
 
 actions:
 
