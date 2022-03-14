@@ -28,23 +28,13 @@ for (var i = 0, n = jps.settings.fields.length; i < n; i++) {
 if (fields[CDN]) defineAppFields(cdnAppid, CDN);
 if (fields[LE]) defineAppFields(lsAppid, LE);
 
-if (!fields[LE].hidden) {
-    resp = jelastic.billing.account.GetQuotas(appid, session, [
-    'environment.externalip.enabled',
-    'environment.externalip.maxcount',
-    'environment.externalip.maxcount.per.node',
-    'environment.externalipv6.enabled',
-    'environment.externalipv6.maxcount',
-    'environment.externalipv6.maxcount.per.node'
-    ].join(";"));
-    if (resp.result != 0) return resp;
-
-    if ((!resp.array[0].value || !resp.array[1].value || !resp.array[2].value) &&
-        (!resp.array[3].value || !resp.array[4].value || !resp.array[5].value)) {
-        fields[LE].hidden = true;
-        fields[LE].value = false;
-    };
-}
+  if (!fields[LE].hidden) {
+      if (("${quota.environment.externalip.enabled}" == 0 || "${quota.environment.externalip.maxcount}" == 0 || "${quota.environment.externalip.maxcount.per.node" == 0) &&
+          ("${quota.environment.externalipv6.enabled}" == 0 || "${quota.environment.externalipv6.maxcount}" == 0 || "${quota.environment.externalipv6.maxcount.per.node}" == 0)) {
+          fields[LE].hidden = true;
+          fields[LE].value = false;
+      };
+  }
 
 return {
     result: 0,
