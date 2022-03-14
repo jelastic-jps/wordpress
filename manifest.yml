@@ -129,7 +129,7 @@ onAfterClone:
       domain: ${globals.PROTOCOL}://${event.response.env.domain}
     
 onBeforeMigrate:
-  - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=${SERVER_WEBROOT} | cut -d'/' -f3;
+  - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=/var/www/webroot/ROOT | cut -d'/' -f3;
   - if (/${response.out}/.test(env.domain)):
       cmd[${nodes.cp.master.id}]: echo true > ~/migrate
   - else:
@@ -153,57 +153,53 @@ onAfterMigrate:
 
 onInstall:
 
-  - env.control.ApplyNodeGroupData[cp]:
-      data:
-        validation : 
-          maxCount: 1
+  - limits
+  - setProtocol
+  - setDomain            
+  - createUserDB
+  - initLEwebroot
+  - setupNode:
+      nodeId: cp
+  - installWordpress 
+  - if (${settings.mu-addon:false}): installMultisite    
+  - if (${settings.le-addon:false}): 
+      - installLEaddon
+      - setupLEdomain
+  - if (${settings.cdn-addon:false}): installCDN
+  - if (${settings.woocommerce:false}): installWoocommerce
+  - if (${settings.ls-addon:false}):
+      setGlobals:
+        STACK: ls
+  - if ('${settings.success_email}' != 'false'):
+    - return:
+        type: success
+        message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
+        email: /success/email/success-${globals.STACK}-${globals.SUCCESS}.md?_r=${fn.random}
 
-  - script: |
+actions:
+
+  limits:
+    - env.control.ApplyNodeGroupData[cp]:
+        data:
+          validation : 
+            maxCount: 1
+            
+  setProtocol:
+    - script: |
         return {
           result:0,
           ssl: jelastic.billing.account.GetQuotas('environment.jelasticssl.enabled').array[0].value
         }
-  - if (${response.ssl}):
-      setGlobals:
-        PROTOCOL: https
-        
-  - script: ${globals.WP_CLUSTER_PATH}/scripts/idna.js
-  - setGlobals:
-      DOMAIN: ${response.domain}         
-    
-  - createUserDB
-
-  - setupNode:
-      nodeId: cp
-
-  - if (${settings.le-addon:false}):
-      - setGlobals:
+    - if (${response.ssl} || ${settings.le-addon:false}):
+        setGlobals:
           PROTOCOL: https
 
-  - install-wordpress
-  
-  - if (${settings.mu-addon:false}): configure-MU
-    
-  - if (${settings.le-addon:false}): 
-      - install-LE-addon
-      - setup-LE-domain
+  setDomain:
+    - script: ${globals.WP_CLUSTER_PATH}/scripts/idna.js
+    - setGlobals:
+        DOMAIN: ${response.domain}         
 
-  - if (${settings.cdn-addon:false}): install-edgeport-CDN
-  
-  - if (${settings.woocommerce:false}): install-woocommerce
-  
-  - if (${settings.ls-addon:false}):
-      setGlobals:
-        STACK: ls
-
-  - if ('${settings.success_email}' != 'false'):
-    - return:
-        type: success
-        message: success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
-        email: success/email/success-${globals.STACK}-${globals.SUCCESS}.md?_r=${fn.random}
-
-actions:
-  install-LE-addon:
+  installLEaddon:
     - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
       nodeGroup: cp
       skipEmail: true
@@ -216,15 +212,16 @@ actions:
         [ ! -d /var/lib/jelastic/keys/letsencrypt ] && mkdir -p /var/lib/jelastic/keys/letsencrypt;
         echo "webroot=true" > /var/lib/jelastic/keys/letsencrypt/settings-custom;
         echo "webrootPath=/var/www/webroot/ROOT" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
+        echo "test=false" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
       user: root
 
-  setup-LE-domain:
+  setupLEdomain:
     - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
     - set:
         domain: ${response.out}
     - cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --DOMAIN https://${this.domain}
 
-  install-edgeport-CDN:
+  installCDN:
     - install: https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}
       nodeGroup: cp
       skipEmail: true
@@ -239,12 +236,12 @@ actions:
         wget ${globals.WP_CLUSTER_PATH}/scripts/checkCdnContent.txt?_r=${fn.random} -O ~/bin/checkCdnContent.txt &>> /var/log/run.log
         bash ~/bin/setupWP.sh --edgeportCDN true --CDN_URL ${globals.CDN}
 
-  configure-MU:
+  installMultisiteMode:
     - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
       settings:
         mode: subdir
 
-  install-wordpress:
+  installWordpress:
     - install: ${globals.WP_CLUSTER_PATH}/scripts/installWP.jps
       settings:
         db_host: ${globals.DB_HOST}
@@ -267,13 +264,13 @@ actions:
   createUserDB:
     - log: Create user for DataBase
     - cmd [cp]: |-
-        wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log
-        wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log
-        bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log
-        jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log 
+        wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log;
+        wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log;
+        bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log;
+        jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log;
       user: root
       
-  install-woocommerce:
+  installWoocommerce:
     cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --woocommerce true
 
 startPage: ${env.url}
