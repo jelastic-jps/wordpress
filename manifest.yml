@@ -202,10 +202,9 @@ actions:
       user: root
 
   setupLEdomain:
-    - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
-    - set:
-        domain: ${response.out}
-    - cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --domain https://${this.domain}
+    - cmd[cp]: |-
+        source /opt/letsencrypt/settings;
+        bash ~/bin/setupWP.sh --url https://${domain};
 
   installCDN:
     - install: https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}
