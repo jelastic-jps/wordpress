@@ -44,7 +44,7 @@ if (jps.settings.fields.length) {
 resp = api.environment.control.GetEnvs();
 if (resp.result != 0) return resp;
 
-if ("${quota.environment.maxcount}" <= resp.infos.length) {
+if (parseInt("${quota.environment.maxcount:0}", 10) <= resp.infos.length) {
   jps.settings.fields.push({
     type: "displayfield",
     cls: "warning",
