@@ -163,6 +163,7 @@ onInstall:
           type: success
           message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
           email: /success/email/success-${nodes.cp.master.nodeType}-${globals.SUCCESS}.md?_r=${fn.random}
+    - install: /scripts/addons.jps
 
 actions:
 
