@@ -119,7 +119,10 @@ onAfterClone:
     envName: ${event.response.env.envName}
     settings:
       domain: ${event.response.env.domain}
-    
+
+  - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps?_r=${fn.random}
+    envName: ${event.response.env.envName}
+
 onBeforeMigrate:
   - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=/var/www/webroot/ROOT | cut -d'/' -f3;
   - if (/${response.out}/.test(env.domain)):
@@ -148,7 +151,9 @@ onInstall:
   - if (${settings.le-addon:false}): 
       - installLEaddon
       - setupLEdomain
-  - if (${settings.cdn-addon:false}): installCDN
+  - if (${settings.cdn-addon:false}):
+      - installCDN
+      - setupCDN
   - if (${settings.woocommerce:false}): installWoocommerce
   - if ('${settings.success_email}' != 'false'):
     - return:
@@ -197,10 +202,9 @@ actions:
       user: root
 
   setupLEdomain:
-    - cmd[cp]: source /opt/letsencrypt/settings && echo $domain
-    - set:
-        domain: ${response.out}
-    - cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --domain https://${this.domain}
+    - cmd[cp]: |-
+        source /opt/letsencrypt/settings;
+        bash ~/bin/setupWP.sh --url https://${domain};
 
   installCDN:
     - install: https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}
@@ -208,15 +212,15 @@ actions:
       skipEmail: true
       settings:
         note: ${settings.noteCDN:}
+  
+  setupCDN:
     - script: return jelastic.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.info", {partnerCode:1})
     - setGlobals:
         CDN_URL: ${globals.PROTOCOL}://${env.envName}-${response.response.partnerCode}.cdn.jelastic.net/
         CDN: ${env.envName}-${response.response.partnerCode}.cdn.jelastic.net
         SUCCESS: cdn
-    - cmd[${nodes.cp.master.id}]: |-
-        wget ${globals.WP_CLUSTER_PATH}/scripts/checkCdnContent.txt?_r=${fn.random} -O ~/bin/checkCdnContent.txt &>> /var/log/run.log
-        bash ~/bin/setupWP.sh --edgeportCDN true --CDN_URL ${globals.CDN}
-
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
+  
   installMultisiteMode:
     - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
       settings:
