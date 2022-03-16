@@ -101,6 +101,7 @@ mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
 
 globals:
+  isSingleDeploy: ${settings.isSingleDeploy:true}
   WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
   DB_USER: ${settings.DB_USER:jelastic-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
@@ -140,26 +141,28 @@ onAfterMigrate:
 onInstall:
 
   - limits
-  - setProtocol
-  - setDomain            
-  - createUserDB
-  - initLEwebroot
+  - initLEwebroot  
   - setupNode:
       nodeId: cp
-  - installWordpress 
-  - if (${settings.mu-addon:false}): installMultisite    
-  - if (${settings.le-addon:false}): 
+  - if (${globals.isSingleDeploy}):
+    - setProtocol
+    - setDomain            
+    - createUserDB
+    - initLEwebroot
+    - installWordpress 
+    - if (${settings.mu-addon:false}): installMultisite    
+    - if (${settings.le-addon:false}): 
       - installLEaddon
       - setupLEdomain
-  - if (${settings.cdn-addon:false}):
+    - if (${settings.cdn-addon:false}):
       - installCDN
       - setupCDN
-  - if (${settings.woocommerce:false}): installWoocommerce
-  - if ('${settings.success_email}' != 'false'):
-    - return:
-        type: success
-        message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
-        email: /success/email/success-${nodes.cp.master.nodeType}-${globals.SUCCESS}.md?_r=${fn.random}
+    - if (${settings.woocommerce:false}): installWoocommerce
+    - if ('${settings.success_email}' != 'false'):
+      - return:
+          type: success
+          message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
+          email: /success/email/success-${nodes.cp.master.nodeType}-${globals.SUCCESS}.md?_r=${fn.random}
 
 actions:
 
