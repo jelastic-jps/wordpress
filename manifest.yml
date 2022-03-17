@@ -225,7 +225,7 @@ actions:
         SUCCESS: cdn
     - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
   
-  installMultisiteMode:
+  installMultisite:
     - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
       settings:
         mode: subdir
