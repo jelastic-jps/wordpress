@@ -110,34 +110,6 @@ globals:
   WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
   SUCCESS: default
 
-onAfterInstallAddon [nodeGroup:cp, id:cdn]:
-  install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
-      
-onAfterInstallAddon [nodeGroup:bl, id:letsencrypt-ssl-addon]: setupLEdomain
-
-onAfterClone: 
-  - install: ${globals.WP_CLUSTER_PATH}/scripts/setupDomain.jps?_r=${fn.random}
-    envName: ${event.response.env.envName}
-    settings:
-      domain: ${event.response.env.domain}
-
-  - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps?_r=${fn.random}
-    envName: ${event.response.env.envName}
-
-onBeforeMigrate:
-  - cmd[${nodes.cp.master.id}]: wp option get siteurl --path=/var/www/webroot/ROOT | cut -d'/' -f3;
-  - if (/${response.out}/.test(env.domain)):
-      cmd[${nodes.cp.master.id}]: echo true > ~/migrate
-  - else:
-      cmd[${nodes.cp.master.id}]: echo false > ~/migrate
-
-onAfterMigrate:
-  - cmd[${nodes.cp.master.id}]: if test -f ~/migrate; then cat ~/migrate; fi
-  - if (/${response.out}/.test(true)): 
-    - install: ${globals.WP_CLUSTER_PATH}/scripts/setupDomain.jps?_r=${fn.random}
-      settings:
-        domain: ${env.domain}         
-
 onInstall:
 
   - limits
