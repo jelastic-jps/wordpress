@@ -55,13 +55,6 @@ settings:
     disabled: false
     tooltip: "Shared Storage auto-clustering is based on GlusterFS software that provides a fault-tolerant distributed file system with automatic data synchronization across the cluster nodes."
 
-  - caption: Install WordPress Multisite Network
-    type: checkbox
-    name: mu-addon
-    value: false
-    disabled: false
-    tooltip: "Multisite is a type of WordPress installation that allows you to create and manage a network of multiple websites from a single WordPress dashboard. This lets you easily make changes and keep all of your websites updated from one place."
-
   - type: displayfield
     hideLabel: true
     hidden: true
@@ -137,7 +130,7 @@ onInstall:
         galera: true
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
-        mu-addon: ${settings.mu-addon}
+        mu-addon: false
         woocommerce: true
         DB_USER: ${globals.db_user}
         DB_PASS: ${globals.db_pass}
