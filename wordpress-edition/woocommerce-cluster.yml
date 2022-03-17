@@ -6,7 +6,7 @@ categories:
 targetEditions: wordpress  
 name: WooCommerce Cluster
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress-edition
-logo: /images/logo/woocommerce-cluster.png
+logo: /images/logo/woocommerce-cluster.svg
 description:
   text: /text/woocommerce-cluster.md    
   short: WooCommerce Cluster powered by LiteSpeed
