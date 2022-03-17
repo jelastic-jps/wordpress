@@ -11,6 +11,8 @@ description:
   text: /text/cluster.md    
   short: WordPress Cluster powered by LiteSpeed
 
+onBeforeInit: /scripts/onBeforeInit.js
+
 settings:
   fields:            
   - caption: Advanced Features
