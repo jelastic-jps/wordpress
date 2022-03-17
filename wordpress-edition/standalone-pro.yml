@@ -127,7 +127,7 @@ onInstall:
         wp_protect: ${settings.wp_protect}
         le-addon: ${settings.le-addon}
         cdn-addon: ${settings.cdn-addon}
-        mu-addon: ${settings.mu-addon}
+        mu-addon: false
         woocommerce: false
         DB_USER: ${globals.db_user}
         DB_PASS: ${globals.db_pass}
