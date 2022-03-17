@@ -11,8 +11,6 @@ description:
   text: /text/standalone.md    
   short: Single instance powered by NGINX Web Server 
 
-onBeforeInit: /scripts/onBeforeInit.js
-
 settings:
   fields:  
   - caption: Advanced Features
