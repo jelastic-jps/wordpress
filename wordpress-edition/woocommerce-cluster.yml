@@ -93,7 +93,7 @@ globals:
   wp_jps: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0
   wp_admin_pass: ${fn.password(10)}
   ls_admin_pass: ${fn.password(10)}  
-  db_user: jelastic-${fn.random}
+  db_user: user-${fn.random}
   db_pass: ${fn.password(10)}
 
 onInstall:
