@@ -8,7 +8,7 @@ WordPress Admin Panel:
 **Password**: ${globals.wp_admin_pass}  
 
 LiteSpeed ADC admin Panel:   
-**URL**: [https://node${nodes.bl.master.id:[globals.targetNodes.master.bl.id]}-${settings.envName}.${globals.domain}:4848](https://node${nodes.bl.master.id:[globals.targetNodes.master.bl.id]}-${settings.envName}.${globals.domain}:4848)  
+**URL**: [https://${settings.envName}.${globals.domain}:4848](https://${settings.envName}.${globals.domain}:4848)  
 **Login**: admin  
 **Password**: ${globals.ls_admin_pass}  
 
