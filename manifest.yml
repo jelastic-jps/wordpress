@@ -102,7 +102,7 @@ mixins:
 
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
   DB_HOST: 127.0.0.1
