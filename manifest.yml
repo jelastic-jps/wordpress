@@ -1,50 +1,31 @@
-type: install
+jpsType: install
 jpsVersion: '1.7.2'
-name: WordPress Cluster Kit v2
-id: wordpress-cluster
+id: wordpress
+name: WordPress Standalone Kit
 categories:
-  - apps/clusters
+  - apps/blogs
   - apps/content-management
+logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
+homepage: http://wordpress.org/
 description:
-  text: WordPress Cluster Kit with highly available Load Balancer and Shared Storage with GlusterFS, database clustering, and scaling mode to create an optimal environment for highly-loaded projects. The package provides integrated autoscaling and high availability for development and production environments. Clustered topology ensures effective handling of heavy workload.
-  short: WordPress Cluster with built-in kit v2 for choosing optimal servers, database clustering type, scaling mode and a set of advanced features for highly-loaded projects
-logo: /images/wp-cluster-kit.svg
+  text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
+  short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
-
-skipNodeEmails: true
 nodes: definedInOnBeforeInstall
 
-settings:
-  fields:
-    - caption: Scaling Strategy
-      type: list
-      name: loadGrowth
-      default: slow
-      required: true
-      width: 225
-      tooltip: |
-        Configure auto-scaling triggers, i.e. how fast the system responds to load spikes by adding or removing nodes.
-        <p>Read more about <a href="https://docs.jelastic.com/automatic-horizontal-scaling">Automatic Horizontal Scaling</a></p>
-      values:
-        - value: slow
-          caption: Low Load
-          tooltip: <h2>Low load scaling strategy</h2>add 1 new node when CPU > 70% <p>remove when CPU < 20%</p>
-        - value: medium
-          caption: Medium Load
-          tooltip: <h3>Medium load scaling strategy</h3>add 1 new node when CPU > 50% <p>remove when CPU < 20%</p>
-        - value: fast
-          caption: High Load
-          tooltip: <h3>High load scaling strategy</h3>add 2 new nodes when CPU > 30% <p>remove when CPU < 10%</p>
+skipNodeEmails: true
 
+settings:
+  fields:  
     - caption: Advanced Features
       type: displayfield
       name: displayfield
       markup:
-
+ 
     - caption: Install LiteSpeed High-Performance Web Server
       type: checkbox
       name: ls-addon
@@ -74,26 +55,19 @@ settings:
             value: false
             disabled: true
             tooltip: "Secure WordPress Admin Panel with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:config:wordpress-protection' target='_blank'>LiteSpeed Brute Force Protection</a> that limits failed login attempts. Default action is <b>Throttle</b> and number of allowed attempts is <b>100</b>"
-
+        
           - caption: Web Application Firewall
             type: checkbox
             name: waf
             value: false
             disabled: true
             tooltip: "Protect web sites with <a href='https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:waf' target='_blank'>LiteSpeed built-in WAF</a> based on Free ModSecurity Rules from Comodo"
-
-    - caption: Install MariaDB Galera Cluster
-      type: checkbox
-      name: galera
-      value: true
-      disabled: false
-      tooltip: "<h3>Requirements for All Tables:</h3> * run on InnoDB storage engine <p>* have a primary key</p>Read more about <a href='https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-limitations/'>limitations</a>"
-
+             
     - caption: Install Let's Encrypt SSL with Auto-Renewal
       type: checkbox
       name: le-addon
-      value: false
-      disabled: true
+      value: true
+      disabled: false
       tooltip: "Advanced integration with Let's Encrypt certificate authority that simplifies and automates the process of issuing, configuring and updating trusted custom SSL certificates."
 
     - caption: Install Lightning-Fast Premium CDN
@@ -103,20 +77,13 @@ settings:
       disabled: false
       tooltip: "Jelastic CDN is an HTTP/3 premium content delivery network of 160+ Super PoPs (points of presence) with bandwidth capacity up to 115 Tbps, advanced caching and acceleration strategies based on best-in-class IP Anycast technology."
 
-    - caption: 'Install GlusterFS Cluster'
-      type: checkbox
-      name: glusterfs
-      value: false
-      disabled: false
-      tooltip: "Shared Storage auto-clustering is based on GlusterFS software that provides a fault-tolerant distributed file system with automatic data synchronization across the cluster nodes."
-
     - caption: Install WordPress Multisite Network
       type: checkbox
       name: mu-addon
       value: false
       disabled: false
       tooltip: "Multisite is a type of WordPress installation that allows you to create and manage a network of multiple websites from a single WordPress dashboard. This lets you easily make changes and keep all of your websites updated from one place."
-      
+
     - caption: Install WooCommerce
       type: checkbox
       name: woocommerce
@@ -127,68 +94,44 @@ settings:
     - type: displayfield
       hideLabel: true
       hidden: true
-      name: bl_count
-      value: 2
+      name: bl_count   
       markup:
 
 mixins:
- - https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/configs/vers.yaml
+ - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
 
 globals:
-  PATH: ${baseUrl}
+  isSingleDeploy: ${settings.isSingleDeploy:true}
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
-  DB_HOST: sqldb
+  DB_HOST: 127.0.0.1
   PROTOCOL: http
   WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
-  LS_ADMIN_PASS: ${settings.LS_ADMIN_PASS:[fn.password(10)]}
   SUCCESS: default
 
 onInstall:
 
   - limits
-  - setProtocol
-  - setDomain
-  - initLEwebroot
-  - if (${settings.is_trigger:true}): setTriggers
-  - optimization
-  - setupCacheSync
-  - storageMount: NFS4
-  - if (/litespeed/.test("${nodes.cp.nodeType}")): setPassword
-  - installWordpress
-  - if ('${settings.mu-addon:false}' == 'true'): configureMultisite  
-  - if (${settings.woocommerce:false}): installWoocommerce
-  - if (('${settings.le-addon:false}' == 'true') || ('${settings.cdn-addon:false}' == 'true')):
-    - script: |
-        var actions = [];
-        if ('${settings.le-addon:false}' == 'true')
-          actions.push({
-            jps: "https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}?_r=${fn.random}",
-            nodeGroup: "bl",
-            skipEmail: "true",
-            settings: {
-              customDomains: "${globals.DOMAIN}",
-              fallbackToX1: "true"
-            }
-          });
-        if ('${settings.cdn-addon:false}' == 'true')
-          actions.push({
-            jps: "https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}",
-            nodeGroup: "bl",
-            skipEmail: "true",
-            settings: {
-              note: "${settings.noteCDN:}"
-            }
-          });
-        return { result: 0, onAfterReturn: { install: actions } };
-
-  - if ('${settings.le-addon:false}' == 'true'): setupLEdomain
-  - if ('${settings.cdn-addon:false}' == 'true'): setupCDN
-  - install: /scripts/cacheClean.jps?_r=${fn.random}
-  - install:
-    - jps: /scripts/addons.jps?_r=${fn.random}
-    - jps: /scripts/events.jps?_r=${fn.random}
-  - if ('${settings.success_email}' != 'false'):
+  - initLEwebroot  
+  - setupNode:
+      nodeId: cp
+  - if (${globals.isSingleDeploy}):
+    - setProtocol
+    - setDomain            
+    - createUserDB
+    - initLEwebroot
+    - installWordpress 
+    - if (${settings.mu-addon:false}): installMultisite    
+    - if (${settings.le-addon:false}): 
+      - installLEaddon
+      - setupLEdomain
+    - if (${settings.cdn-addon:false}):
+      - installCDN
+      - setupCDN
+    - if (${settings.woocommerce:false}): installWoocommerce
+    - install: /scripts/events.jps
+    - if ('${settings.success_email}' != 'false'):
       - return:
           type: success
           message: /success/text/success-${globals.SUCCESS}.md?_r=${fn.random}
@@ -197,10 +140,11 @@ onInstall:
 actions:
 
   limits:
-    - env.control.ApplyNodeGroupData[bl,cp,sqldb,storage]:
+    - env.control.ApplyNodeGroupData[cp]:
         data:
-          isRequired: true
-
+          validation : 
+            maxCount: 1
+            
   setProtocol:
     - script: |
         return {
@@ -212,78 +156,54 @@ actions:
           PROTOCOL: https
 
   setDomain:
-    - script: /scripts/idna.js
+    - script: ${globals.WP_CLUSTER_PATH}/scripts/idna.js
       domains: ${env.domain}
     - setGlobals:
-        DOMAIN: ${response.domains}
-        
-  setTriggers:
-    - log: Auto Scaling Triggers
-    - script: /scripts/addTriggers.js
+        DOMAIN: ${response.domains} 
+
+  installLEaddon:
+    - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
       nodeGroup: cp
-      resourceType: CPU
-      loadGrowth: ${settings.loadGrowth}
-      cleanOldTriggers: true
-      scaleDownLimit: ${nodes.cp.length}
+      skipEmail: true
+      settings:
+        customDomains: ${globals.DOMAIN}
+        fallbackToX1: true
 
   initLEwebroot:
-    - cmd[cp, bl]: |-
+    - cmd[cp]: |-
         [ ! -d /var/lib/jelastic/keys/letsencrypt ] && mkdir -p /var/lib/jelastic/keys/letsencrypt;
-        echo "webroot=false" > /var/lib/jelastic/keys/letsencrypt/settings-custom;
+        echo "webroot=true" > /var/lib/jelastic/keys/letsencrypt/settings-custom;
         echo "webrootPath=/var/www/webroot/ROOT" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
         echo "test=false" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
       user: root
 
   setupLEdomain:
-    - cmd[${nodes.bl.master.id}]: source /opt/letsencrypt/settings && echo $domain
-    - cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --url https://${response.out};
+    - cmd[cp]: |-
+        source /opt/letsencrypt/settings;
+        bash ~/bin/setupWP.sh --url https://${domain};
 
-  optimization:
-    - log: Load Balancers and App servers optimization
-    - install:
-      - jps: https://raw.githubusercontent.com/jelastic/templates/master/config_v2.jps?_r=${fn.random}
-        settings:
-          targetGroup: bl
-          targetNodes: bl
-          optimization: wordpress
-      - jps: https://raw.githubusercontent.com/jelastic/templates/master/config_v2.jps?_r=${fn.random}
-        settings:
-          targetGroup: cp
-          targetNodes: cp
-          optimization: wordpress
-    - cmd[cp, bl]: if test -f /usr/local/sbin/optimization.sh; then bash /usr/local/sbin/optimization.sh &>> /var/log/run.log; fi
+  installCDN:
+    - install: https://raw.githubusercontent.com/edgeport/cdn/master/manifest.yml?_r=${fn.random}
+      nodeGroup: cp
+      skipEmail: true
+      settings:
+        note: ${settings.noteCDN:}
   
-  setPassword:
-    - cmd[cp, bl]: jem passwd set -p ${globals.LS_ADMIN_PASS}
-      user: root
-
-  storageMount:
-    - log: Mount Storage
-    - api:
-      - method: jelastic.environment.file.AddMountPointByGroup
-        params:
-          nodeGroup: cp
-          sourceNodeId: ${nodes.storage.master.id}
-          sourcePath: /data
-          path: /var/www/webroot/ROOT
-          sourceAddressType: NODE_GROUP
-          protocol: ${this}
-
   setupCDN:
     - script: return jelastic.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.info", {partnerCode:1})
     - setGlobals:
         CDN_URL: ${globals.PROTOCOL}://${env.envName}-${response.response.partnerCode}.cdn.jelastic.net/
         CDN: ${env.envName}-${response.response.partnerCode}.cdn.jelastic.net
         SUCCESS: cdn
-    - install: /scripts/setupCDN.jps
-
-  configureMultisite:
-    - install: ${globals.PATH}/addon/WPMU.jps
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
+  
+  installMultisite:
+    - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
       settings:
         mode: subdir
 
   installWordpress:
-    - install: ${baseUrl}/scripts/installWP.jps
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/installWP.jps
       settings:
         db_host: ${globals.DB_HOST}
         db_user: ${globals.DB_USER}
@@ -292,17 +212,26 @@ actions:
         wp_title: "Hello World"
         wp_url: ${globals.PROTOCOL}://${globals.DOMAIN}/
         version_wordpress: ${globals.version_wordpress}
+        cluster: false
 
-  setupCacheSync:
-    - if (/litespeed/.test("${nodes.bl.nodeType}")):
-      - install: /scripts/setupHA4LB.jps?_r=${fn.random}
-  
-  updateTriggers:
-    if (!${event.params.auto:true}):
-      - log: update scaling trigger
-      - script: /scripts/updateTriggers.js
-        count: ${nodes.cp.length}
-          
+  setupNode:
+    - log: OPTIMIZATION
+    - install: https://raw.githubusercontent.com/jelastic/templates/master/config_v2.jps?_r=${fn.random}
+      settings:
+        targetGroup: cp
+        targetNodes: ${this.nodeId}
+        optimization: wordpress
+        
+  createUserDB:
+    - log: Create user for DataBase
+    - cmd [cp]: |-
+        wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log;
+        wget https://raw.githubusercontent.com/jelastic-jps/mysql-cluster/master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log;
+        bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log;
+        jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log;
+      user: root
+      
   installWoocommerce:
     cmd[${nodes.cp.master.id}]: bash ~/bin/setupWP.sh --woocommerce true
-  
+
+startPage: ${env.url}
