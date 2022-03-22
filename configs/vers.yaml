@@ -1,2 +1,5 @@
 globals:
   version_wordpress: 5.9.2
+  version_lscache: 
+  version_w3total:
+  version_woocommerce:
