@@ -11,7 +11,7 @@ description:
   text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
+baseUrl: https://raw.githubusercontent.com/sych74/wordpress/WP-169
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
@@ -97,12 +97,9 @@ settings:
       name: bl_count   
       markup:
 
-mixins:
- - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
-
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/WP-166
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/WP-169
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
   DB_HOST: 127.0.0.1
@@ -209,7 +206,6 @@ actions:
         wp_admin_pass: ${globals.WP_ADMIN_PASS}
         wp_title: "Hello World"
         wp_url: ${globals.PROTOCOL}://${globals.DOMAIN}/
-        version_wordpress: ${globals.version_wordpress}
         cluster: false
 
   setupNode:
