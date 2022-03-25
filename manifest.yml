@@ -97,6 +97,9 @@ settings:
       name: bl_count   
       markup:
 
+mixins:
+ - https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/configs/vers.yaml
+
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
   WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/WP-169
