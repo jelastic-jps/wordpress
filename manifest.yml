@@ -195,9 +195,7 @@ actions:
     - install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
   
   installMultisite:
-    - install: ${globals.WP_CLUSTER_PATH}/addon/WPMU.jps
-      settings:
-        mode: subdir
+    - install: ${globals.WP_CLUSTER_PATH}/addons/multisite.jps
 
   installWordpress:
     - install: ${globals.WP_CLUSTER_PATH}/scripts/installWP.jps
