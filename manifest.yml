@@ -203,7 +203,7 @@ actions:
         mode: subdir
 
   installWordpress:
-    - install: /scripts/installWP.jps
+    - install: ${globals.WP_CLUSTER_PATH}/scripts/installWP.jps
       settings:
         db_host: ${globals.DB_HOST}
         db_user: ${globals.DB_USER}
