@@ -98,6 +98,7 @@ settings:
       markup:
 
 globals:
+  isSingleDeploy: ${settings.isSingleDeploy:true}
   WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/WP-166
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
