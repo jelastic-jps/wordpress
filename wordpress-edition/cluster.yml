@@ -84,6 +84,7 @@ settings:
     name: region
     disableInactive: true
     selectFirstAvailable: true
+    stateId: "wp"
    
   - type: owner
     name: ownerUid
