@@ -74,6 +74,7 @@ globals:
   wp_admin_pass: ${fn.password(10)}
   db_user: user-${fn.random}
   db_pass: ${fn.password(10)}
+  PROTOCOL: http
 
 onInstall:
   - script: |
@@ -118,6 +119,19 @@ onInstall:
       envName: ${settings.envName}
       data:
         fixedTopologyLayers: 1
+  
+  - setProtocol
+
+actions:
+  setProtocol:
+    - script: |
+        return {
+          result:0,
+          ssl: jelastic.billing.account.GetQuotas('environment.jelasticssl.enabled').array[0].value
+        }
+    - if (${response.ssl} || "${settings.le-addon:false}"):
+        setGlobals:
+          PROTOCOL: https
 
 success:
   email: /success/email/standalone.md?_r=${fn.random}
