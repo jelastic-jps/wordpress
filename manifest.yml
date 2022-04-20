@@ -20,6 +20,7 @@ nodes: definedInOnBeforeInstall
 skipNodeEmails: true
 
 settings:
+  onBeforeInit: return settings;
   fields:  
     - caption: Advanced Features
       type: displayfield
