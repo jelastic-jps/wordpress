@@ -11,7 +11,7 @@ description:
   text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
+baseUrl: https://raw.githubusercontent.com/sych74/wordpress/JE-61517
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
@@ -20,6 +20,7 @@ nodes: definedInOnBeforeInstall
 skipNodeEmails: true
 
 settings:
+  onBeforeInit: return settings;
   fields:  
     - caption: Advanced Features
       type: displayfield

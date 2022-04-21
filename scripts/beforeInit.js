@@ -38,7 +38,21 @@ var extIP = "environment.externalip.enabled",
       extIPperNode = "environment.externalip.maxcount.per.node",
       markup = "", cur = null, text = "used", LE = true;
 
-var quotas = jelastic.billing.account.GetQuotas(extIP + ";"+extIPperEnv+";" + extIPperNode ).array;
+var hasCollaboration = (parseInt('${fn.compareEngine(7.0)}', 10) >= 0),
+    quotas = [], group;
+
+if (hasCollaboration) {
+    quotas = [
+        { quota : { name: extIP }, value: parseInt('${quota.environment.externalip.enabled}', 10) },
+        { quota : { name: extIPperEnv }, value: parseInt('${quota.environment.externalip.maxcount}', 10) },
+        { quota : { name: extIPperNode }, value: parseInt('${quota.environment.externalip.maxcount.per.node}', 10) }
+    ];
+    group = { groupType: '${account.groupType}' };
+} else {
+    quotas = jelastic.billing.account.GetQuotas(extIP + ";"+extIPperEnv+";" + extIPperNode).array;
+    group = jelastic.billing.account.GetAccount(appid, session);
+}
+
 for (var i = 0; i < quotas.length; i++){
     var q = quotas[i], n = toNative(q.quota.name);
 
