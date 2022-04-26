@@ -101,7 +101,7 @@ mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/master/configs/vers.yaml
 
 globals:
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/WP-197
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
   DB_HOST: 127.0.0.1
@@ -129,7 +129,9 @@ onInstall:
       - installCDN
       - setupCDN
     - if (${settings.woocommerce:false}): installWoocommerce
-    - install: /scripts/events.jps
+    - install: 
+      - jps: /scripts/events.jps?_r=${fn.random}
+      - jps: ${globals.WP_CLUSTER_PATH}/scripts/addons.jps?_r=${fn.random}
     - if ('${settings.success_email}' != 'false'):
       - return:
           type: success
