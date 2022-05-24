@@ -3,7 +3,7 @@ id: wordpress-standalone-events
 name: WordPress Standalone Events
 
 globals:
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0
 
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   install: ${globals.WP_CLUSTER_PATH}/scripts/setupCDN.jps
