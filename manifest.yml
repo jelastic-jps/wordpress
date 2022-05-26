@@ -11,7 +11,7 @@ description:
   text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
-baseUrl: https://raw.githubusercontent.com/sych74/wordpress/v2.2.0
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
@@ -102,7 +102,7 @@ mixins:
 
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/sych74/wordpress-cluster/v2.2.0
+  WP_CLUSTER_PATH: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0
   DB_USER: ${settings.DB_USER:user-[fn.random]}
   DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
   DB_HOST: 127.0.0.1
