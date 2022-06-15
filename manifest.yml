@@ -167,6 +167,7 @@ actions:
       settings:
         customDomains: ${globals.DOMAIN}
         fallbackToX1: true
+        withExtIp: ${globals.isExtIP}
 
   initLEsettings:
     - script: |
@@ -174,13 +175,15 @@ actions:
           result:0,
           extIP: Boolean(jelastic.billing.account.GetQuotas('environment.externalip.enabled').array[0].value)
         }
-  
+    - setGlobals:
+        isExtIP: ${response.extIP}
+
     - cmd[cp]: |-
         [ ! -d /var/lib/jelastic/keys/letsencrypt ] && mkdir -p /var/lib/jelastic/keys/letsencrypt;
         echo "webroot=true" > /var/lib/jelastic/keys/letsencrypt/settings-custom;
         echo "webrootPath=/var/www/webroot/ROOT" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
         echo "test=false" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
-        echo "withExtIp=${response.extIP}" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
+        echo "withExtIp=${globals.isExtIP}" >> /var/lib/jelastic/keys/letsencrypt/settings-custom;
       user: root
 
   setupLEdomain:
