@@ -172,7 +172,7 @@ actions:
     - script: |
         return {
           result:0,
-          extIP: jelastic.billing.account.GetQuotas('environment.externalip.enabled').array[0].value
+          extIP: Boolean(jelastic.billing.account.GetQuotas('environment.externalip.enabled').array[0].value)
         }
   
     - cmd[cp]: |-
