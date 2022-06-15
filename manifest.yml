@@ -120,7 +120,6 @@ onInstall:
     - setProtocol
     - setDomain            
     - createUserDB
-    - initLEwebroot
     - installWordpress 
     - if (${settings.mu-addon:false}): installMultisite    
     - if (${settings.le-addon:false}): 
