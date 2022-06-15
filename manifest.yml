@@ -130,7 +130,9 @@ onInstall:
       - installCDN
       - setupCDN
     - if (${settings.woocommerce:false}): installWoocommerce
-    - install: /scripts/events.jps
+    - install: 
+      - jps: /scripts/events.jps?_r=${fn.random}
+      - jps: ${globals.WP_CLUSTER_PATH}/scripts/addons.jps?_r=${fn.random}
     - if ('${settings.success_email}' != 'false'):
       - return:
           type: success
