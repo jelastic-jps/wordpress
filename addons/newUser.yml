@@ -1,7 +1,12 @@
 type: update
 id: wp-users
 name: Add-on for creates a new WordPress user.
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/addons
 description: Add-on for creates a new WordPress user.
+
+globals:
+  password: ${fn.password(10)}
+
 settings:
   fields:
     - type: string
@@ -13,13 +18,6 @@ settings:
     - type: string
       name: email
       caption: User email
-      default: ''
-      required: true
-
-    - type: string
-      inputType: password
-      name: password
-      caption: User password
       default: ''
       required: true
 
@@ -42,4 +40,8 @@ settings:
 
 onInstall:
   cmd[${nodes.cp.master.id}]: |-
-    wp user create ${settings.user} ${settings.email} --user_pass=${settings.password} --role=${settings.role} --path=/var/www/webroot/ROOT;
+    wp user create ${settings.user} ${settings.email} --user_pass=${globals.password} --role=${settings.role} --path=/var/www/webroot/ROOT;
+
+success:
+  text: /success.md?_r=${fn.random}
+  email: /success.md?_r=${fn.random}
