@@ -1,1 +1,44 @@
+type: update
+id: wp-users
+name: Add-on for creates a new WordPress user.
+description: Add-on for creates a new WordPress user.
+settings:
+  fields:
+    - type: string
+      name: user
+      caption: User login
+      default: ''
+      required: true
 
+    - type: string
+      name: email
+      caption: User email
+      default: ''
+      required: true
+
+    - type: string
+      name: password
+      caption: User password
+      default: ''
+      required: true
+
+    - caption: User role
+      type: list
+      name: role
+      default: administrator
+      required: true
+      values:        
+        - value: administrator
+          caption: Administrator
+        - value: editor
+          caption: Editor
+        - value: author
+          caption: Author
+        - value: contributor
+          caption: Contributor
+        - value: subscriber
+          caption: Subscriber
+
+onInstall:
+  cmd[${nodes.cp.master.id}]: |-
+    wp user create ${settings.user} ${settings.email} --user_pass=${settings.password} --role=${settings.role} --path=/var/www/webroot/ROOT;
