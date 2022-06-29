@@ -17,6 +17,7 @@ settings:
       required: true
 
     - type: string
+      inputType: password
       name: password
       caption: User password
       default: ''
