@@ -142,7 +142,8 @@ actions:
   limits:
     - env.control.ApplyNodeGroupData[cp]:
         data:
-          project: ${settings.project:production}
+          project: ${settings.project:default}
+          projectScope: ${settings.projectScope:production}
           validation : 
             maxCount: 1
             
