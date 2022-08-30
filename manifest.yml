@@ -20,7 +20,21 @@ nodes: definedInOnBeforeInstall
 skipNodeEmails: true
 
 settings:
-  fields:  
+  fields:
+    - caption: PHP version
+      type: list
+      name: php_engine
+      default: php8.1
+      required: true
+      width: 225
+      values:
+        - value: php8.1
+          caption: PHP 8.1
+        - value: php8.0
+          caption: PHP 8.0
+        - value: php7.4
+          caption: PHP 7.4
+  
     - caption: Advanced Features
       type: displayfield
       name: displayfield
