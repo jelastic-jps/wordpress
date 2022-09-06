@@ -184,3 +184,12 @@ Code result: **99**
   }
 }
 ```
+read logs
+https://app.{hoster}/JElastic/env/file/rest/read?appid=[appid]&nodeid=[nodeid]&nodeGroup=cp&path=%2Ftmp%2Fjapp.log&session=[string]   
+
+```
+{
+  "result": 0,
+  "body": "\n[2022-09-05 11:09:12]: Install WP-CLI...done\n[2022-09-05 11:09:13]: Get plugins list...failed\n==============ERROR==================\nError: 'wp-config.php' not found.\nEither create one manually or use `wp config create`.\n============END ERROR================\n"
+}
+```
