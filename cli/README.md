@@ -124,4 +124,42 @@ or
   }
 }
 ```
+### Errors    
 
+**The system result (for example script does not exist)**   
+```
+{
+  "result": 1702,
+  "debug": {
+    "cpu": {
+      "usage": "13",
+      "time": 34
+    },
+    "time": 63
+  },
+  "response": null,
+  "source": "hx-core",
+  "error": "script = wordpress.failmethod not found"
+}
+```
+**Script result (for examle, if environment does not exist, or not running ……)**    
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "1",
+      "time": 12
+    },
+    "time": 206
+  },
+  "response": {
+    "result": 2212,
+    "responses": [
+      
+    ],
+    "source": "JEL",
+    "error": "Not allowed to execute this service for current Environment status [ENV_STATUS_TYPE_SLEEP]. Required statuses [ENV_STATUS_TYPE_RUNNING]"
+  }
+}
+```
