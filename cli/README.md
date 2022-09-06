@@ -1,6 +1,6 @@
-getversion - Get Wordpress current version  
-checkforupdate - Get major and minor updates
-getplugins - Get all plugins (name, version, status)  
+getversion - Get Wordpress current version    
+getplugins - Get all plugins (name, version, status)    
+checkforupdate - Get major and minor updates    
 
 https://app.{hoster}/wordpress/getversion?appid=ext&session=[string]&envName=[string]   
 ```
@@ -74,3 +74,54 @@ https://app.{hoster}/wordpress/getplugins?appid=ext&session=[string]&envName=[st
   }
 }
 ```
+
+https://app.{hoster}/wordpress/checkforupdate?appid=ext&session=[string]&envName=[string]   
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "0",
+      "time": 70
+    },
+    "time": 4605
+  },
+  "response": {
+    "result": 0,
+    "out": {
+      "result": 0,
+      "response": "WordPress is up to date"
+    }
+  }
+}
+```
+or    
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "0",
+      "time": 39
+    },
+    "time": 4242
+  },
+  "response": {
+    "result": 0,
+    "out": {
+      "result": 0,
+      "response": [
+        {
+          "update_type": "minor",
+          "version": "5.5.10"
+        },
+        {
+          "update_type": "major",
+          "version": "6.0.2"
+        }
+      ]
+    }
+  }
+}
+```
+
