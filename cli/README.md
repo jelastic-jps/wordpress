@@ -163,3 +163,24 @@ or
   }
 }
 ```
+**WP-CLI result (for examle, wp-config.php does not exist**    
+Code result: **99**
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "0",
+      "time": 33
+    },
+    "time": 3051
+  },
+  "response": {
+    "result": 0,
+    "out": {
+      "result": 99,
+      "response": "Get plugins list failed, please check /tmp/japp.log for details"
+    }
+  }
+}
+```
