@@ -136,3 +136,42 @@ https://app.{hoster}/wordpress/coreupdate?appid=ext&session=[string]&envName=[st
   }
 }
 ```
+
+**Wordpress does not installed**
+
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "0",
+      "time": 16
+    },
+    "time": 1873
+  },
+  "response": {
+    "result": 13001,
+    "errOut": "Error: This does not seem to be a WordPress installation.\nPass --path=`path/to/wordpress` or run `wp core download`."
+  }
+}
+```
+
+**Error conection to DB**
+
+```
+{
+  "result": 0,
+  "debug": {
+    "cpu": {
+      "usage": "0",
+      "time": 24
+    },
+    "time": 1618
+  },
+  "response": {
+    "result": 13001,
+    "errOut": "Error: Error establishing a database connection."
+  }
+}
+```
+
