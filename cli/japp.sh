@@ -10,8 +10,6 @@ wpCommandExec(){
   ~/bin/wp --path=$WP_PATH $command
 }
 
-echo "" > ${RUN_LOG}
-
 log(){
   local message="$1"
   local timestamp
@@ -21,13 +19,14 @@ log(){
 
 execResponse(){
   local result=$1
-  local response=$2
-  local isJSON="$3"
+  local key_name=$2
+  local response=$3
+  local isJSON=$4
 
   if ${isJSON}; then
-    output=$(jq -cn --raw-output --argjson result "$result" --argjson response "${response}" '{result: $result, response: $response}')
+    output=$(jq -cn --raw-output --argjson result "$result" --arg key $key_name --argjson response "${response}" '{result: $result, ($key): $response}')
   else
-    output=$(jq -cn --raw-output --argjson result "$result" --arg response "${response}" '{result: $result, response: $response}')
+    output=$(jq -cn --raw-output --argjson result "$result" --arg key $key_name --arg response "${response}" '{result: $result, ($key): $response}')
   fi
   echo ${output}
 }
@@ -73,21 +72,21 @@ execAction "installWP_CLI" 'Install WP-CLI'
 case ${1} in
     getVersion)
         execAction "getCoreVersion" 'Get core version'
-        execResponse "${SUCCESS_CODE}" "${stdout}" "false"
+        execResponse "${SUCCESS_CODE}" "version" "${stdout}" "false"
         ;;
 
     getPlugins)
         execAction "getPluginsList" 'Get plugins list'
-        execResponse "${SUCCESS_CODE}" "${stdout}" "true"
+        execResponse "${SUCCESS_CODE}" "plugins" "${stdout}" "true"
         ;;
 
     checkForUpdate)
         execAction "checkForUpdate" 'Checks for WordPress updates'
-	[ x${stdout} == x"" ] && { execResponse "${SUCCESS_CODE}" "WordPress is up to date" "false"; } || { execResponse "${SUCCESS_CODE}" "${stdout}" "true"; }
+	[ x${stdout} == x"" ] && { execResponse "${SUCCESS_CODE}" "versionsToUpdate" "[]" "false"; } || { execResponse "${SUCCESS_CODE}" "versionsToUpdate"  "${stdout}" "true"; }
         ;;
 
     coreUpdate)
         execAction "coreUpdate" 'Wordpress core update'
         execAction "getCoreVersion" 'Get core version'
-        execResponse "${SUCCESS_CODE}" "${stdout}" "false"
+        execResponse "${SUCCESS_CODE}" "version" "${stdout}" "false"
 esac
