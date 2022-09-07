@@ -37,7 +37,7 @@ execAction(){
 
   stdout=$( { ${action}; } 2>&1 ) && { log "${message}...done";  } || {
     error="${message} failed, please check ${RUN_LOG} for details"
-    execResponse "${FAIL_CODE}" "${error}" "false"
+    execResponse "${FAIL_CODE}" "errOut" "${stdout}" "false"
     log "${message}...failed\n==============ERROR==================\n${stdout}\n============END ERROR================";
     exit 0
   }
