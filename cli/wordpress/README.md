@@ -118,70 +118,21 @@ https://app.{hoster}/wordpress/coreupdate?appid=ext&session=[string]&envName=[st
 
 ### Errors    
 
-**The system result (for example script does not exist)**   
-```
-{
-  "result": 1702,
-  "debug": {
-    "cpu": {
-      "usage": "13",
-      "time": 34
-    },
-    "time": 63
-  },
-  "response": null,
-  "source": "hx-core",
-  "error": "script = wordpress.failmethod not found"
-}
-```
-**Script result (for examle, if environment does not exist, or not running ……)**    
-```
-{
-  "result": 0,
-  "debug": {
-    "cpu": {
-      "usage": "1",
-      "time": 12
-    },
-    "time": 206
-  },
-  "response": {
-    "result": 2212,
-    "responses": [
-      
-    ],
-    "source": "JEL",
-    "error": "Not allowed to execute this service for current Environment status [ENV_STATUS_TYPE_SLEEP]. Required statuses [ENV_STATUS_TYPE_RUNNING]"
-  }
-}
-```
 **WP-CLI result (for examle, wp-config.php does not exist**    
-Code result: **99**
+
 ```
 {
   "result": 0,
   "debug": {
     "cpu": {
       "usage": "0",
-      "time": 33
+      "time": 28
     },
-    "time": 3051
+    "time": 2396
   },
   "response": {
-    "result": 0,
-    "out": {
-      "result": 99,
-      "response": "Get plugins list failed, please check /tmp/japp.log for details"
-    }
+    "result": 13001,
+    "errOut": "Error: 'wp-config.php' not found.\nEither create one manually or use `wp config create`."
   }
-}
-```
-read logs
-https://app.{hoster}/JElastic/env/file/rest/read?appid=[appid]&nodeid=[nodeid]&nodeGroup=cp&path=%2Ftmp%2Fjapp.log&session=[string]   
-
-```
-{
-  "result": 0,
-  "body": "\n[2022-09-05 11:09:12]: Install WP-CLI...done\n[2022-09-05 11:09:13]: Get plugins list...failed\n==============ERROR==================\nError: 'wp-config.php' not found.\nEither create one manually or use `wp config create`.\n============END ERROR================\n"
 }
 ```
