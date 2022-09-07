@@ -3,7 +3,7 @@
 WP_PATH="/var/www/webroot/ROOT"
 RUN_LOG="/tmp/japp.log"
 SUCCESS_CODE=0
-FAIL_CODE=99
+FAIL_CODE=13001
 
 wpCommandExec(){
   command="$1"
