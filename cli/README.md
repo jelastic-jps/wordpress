@@ -153,6 +153,83 @@ Response
   }
 ```
 
+#### ActivatePlugin 
+Activate plugin
+
+https://app.{hoster}/wordpress/activateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**pluginName**: "Plugin name" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "pluginStatus": "active"
+  }
+```
+
+#### DeactivatePlugin 
+Dectivate plugin
+
+https://app.{hoster}/wordpress/deactivateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**pluginName**: "Plugin name" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "pluginStatus": "inactive"
+  }
+```
+
+
+#### UpdatePlugin 
+Update plugin
+
+https://app.{hoster}/wordpress/updateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**pluginName**: "Plugin name" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "version": {
+      "oldVersion": "1.6",
+      "newVersion": "1.7.2"
+    }
+  }
+```
+
+#### DeletePlugin 
+Delete plugin
+
+https://app.{hoster}/wordpress/deleteplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**pluginName**: "Plugin name" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "pluginStatus": "deleted"
+  }
+```
+
+
 #### UpdateEngine 
 Update Wordpress engine
 
@@ -173,6 +250,19 @@ Response
     }
   }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 getversion - Get Wordpress current version    
