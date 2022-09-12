@@ -42,6 +42,36 @@ Response
     ]
   }
 ```
+if version is up to date
+
+```
+  "response": {
+    "result": 0,
+    "versionsToUpdate": []
+  }
+
+```
+
+#### UpdateEngine 
+Update Wordpress engine
+
+https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**engineVersion**: "Engine version" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "version": {
+      "oldVersion": "5.5.3",
+      "newVersion": "6.0.2"
+    }
+  }
+```
 
 
 
