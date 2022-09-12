@@ -17,6 +17,31 @@ Response
   }
 ```
 
+#### GetEngineUpdates 
+Get major and minor versions for engine update 
+
+https://app.{hoster}/wordpress/getengineupdates?appid=ext&session=[string]&envName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "versionsToUpdate": [
+      {
+        "update_type": "minor",
+        "version": "5.5.10"
+      },
+      {
+        "update_type": "major",
+        "version": "6.0.2"
+      }
+    ]
+  }
+```
 
 
 
