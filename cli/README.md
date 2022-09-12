@@ -1,4 +1,4 @@
-### WordPress API methods for WordPress environments
+## WordPress API methods for WordPress environments
 
 
 
