@@ -1,8 +1,7 @@
 ## WordPress API methods for WordPress environments
 
 
-#### GetEngineVersion
-Get Wordpress current version
+#### GetEngineVersion #### Get Wordpress current version
 
 
 
