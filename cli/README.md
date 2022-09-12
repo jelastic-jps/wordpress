@@ -73,6 +73,102 @@ Response
   }
 ```
 
+#### GetPlugins 
+Get plugins list
+
+https://app.{hoster}/wordpress/getplugins?appid=ext&session=[string]&envName=[string]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "plugins": [
+      {
+        "name": "akismet",
+        "update": "none",
+        "version": "5.0",
+        "status": "inactive"
+      },
+      {
+        "name": "hello",
+        "update": "none",
+        "version": "1.7.2",
+        "status": "inactive"
+      },
+      {
+        "name": "nginx-cache",
+        "update": "none",
+        "version": "1.0.5",
+        "status": "active"
+      },
+      {
+        "name": "w3-total-cache",
+        "update": "none",
+        "version": "2.2.4",
+        "status": "active"
+      },
+      {
+        "name": "advanced-cache.php",
+        "update": "none",
+        "version": "",
+        "status": "dropin"
+      },
+      {
+        "name": "object-cache.php",
+        "update": "none",
+        "version": "",
+        "status": "dropin"
+      }
+    ]
+  }
+
+```
+
+#### UpdateEngine 
+Update Wordpress engine
+
+https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**engineVersion**: "Engine version" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "version": {
+      "oldVersion": "5.5.3",
+      "newVersion": "6.0.2"
+    }
+  }
+```
+
+#### UpdateEngine 
+Update Wordpress engine
+
+https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]   
+
+Parameters  
+**envName** : "string"  
+**session** : "string"  
+**engineVersion**: "Engine version" 
+
+Response  
+```
+  "response": {
+    "result": 0,
+    "version": {
+      "oldVersion": "5.5.3",
+      "newVersion": "6.0.2"
+    }
+  }
+```
 
 
 getversion - Get Wordpress current version    
