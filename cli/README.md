@@ -3,6 +3,11 @@
 #### GetEngineVersion 
 Get Wordpress current version
 
+Parameters
+envName : "string"
+session : "string"
+
+
 
 
 getversion - Get Wordpress current version    
