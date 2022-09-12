@@ -128,23 +128,27 @@ Response
 
 ```
 
-#### UpdateEngine 
-Update Wordpress engine
+#### GetPluginInfo 
+Get info about plugin
 
-https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]   
+https://app.{hoster}/wordpress/getplugininfo?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
 
 Parameters  
 **envName** : "string"  
 **session** : "string"  
-**engineVersion**: "Engine version" 
+**pluginName**: "Plugin name" 
 
 Response  
 ```
   "response": {
     "result": 0,
-    "version": {
-      "oldVersion": "5.5.3",
-      "newVersion": "6.0.2"
+    "pluginInfo": {
+      "author": "Matt Mullenweg",
+      "name": "hello",
+      "description": "This is not just a plugin, it symbolizes the hope and enthusiasm of an\nentire generation summed up in two words sung most famously by Louis\nArmstrong: Hello, Dolly. When activated you will randomly see a lyric from\n<cite>Hello, Dolly<\/cite> in the upper right of your admin screen on every\npage.",
+      "title": "Hello Dolly",
+      "version": "1.7.2",
+      "status": "inactive"
     }
   }
 ```
