@@ -6,8 +6,8 @@ Get Wordpress current version
 https://app.{hoster}/wordpress/getengineversion?appid=ext&session=[string]&envName=[string]   
 
 Parameters  
-envName : "string"  
-session : "string"  
+**envName** : "string"  
+**session** : "string"  
 
 Response  
 ```
