@@ -1,3 +1,8 @@
+### WordPress API methods for WordPress environments
+
+
+
+
 getversion - Get Wordpress current version    
 getplugins - Get all plugins (name, version, status)    
 checkforupdate - Get major and minor updates    
