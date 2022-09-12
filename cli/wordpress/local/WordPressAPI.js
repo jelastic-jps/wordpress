@@ -72,5 +72,4 @@ var WordPressAPI = function (envName) {
         var cmd = "deletePlugin " + pluginName;
         return this.ReturnResult(this.execCmd(cmd));
     };
-
 }
