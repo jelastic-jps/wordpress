@@ -1,5 +1,7 @@
 //@local
 
+import com.hivext.api.Response;
+
 var WordPressAPI = function (envName) {
     this.getMasterNode = function () {
         var resp = jelastic.env.control.GetEnvInfo(envName, session);
@@ -15,33 +17,60 @@ var WordPressAPI = function (envName) {
 
     this.execCmd = function (cmd) {
         var cmd = "bash ~/bin/japp.sh " + cmd;
-
         var resp = api.env.control.ExecCmdById(envName, session, this.getMasterNode(), toJSON([{ command: cmd }]));
         if (resp.result != 0) return resp;
         return resp;
     };
 
-    this.ReturnResult = function (scriptResp, apiName) {
+    this.ReturnResult = function (scriptResp) {
         try {
             scriptResp = JSON.parse(scriptResp.responses[0].out);
         } catch(ex) {
-            scriptResp = { result: Response.ERROR_UNKNOWN, error: ex, resp: resp }
+            scriptResp = { result: Response.ERROR_UNKNOWN, error: ex, resp: scriptResp }
         }
 
-        return { result: 0, apiName: scriptResp };
+        return scriptResp;
     };
-    
-    this.getVersion = function () {
-        var scriptResp = this.execCmd('getVersion');
-        return this.ReturnResult(scriptResp, 'version');
+
+    this.getEngineVersion = function () {
+        return this.ReturnResult(this.execCmd('getEngineVersion'));
     };
 
     this.getPlugins = function () {
-        return this.execCmd('getPlugins');
+        return this.ReturnResult(this.execCmd('getPlugins'));
+    };    
+
+    this.getEngineUpdates = function () {
+        return this.ReturnResult(this.execCmd('getEngineUpdates'));
+    };   
+    
+    this.updateEngine = function () {
+        return this.ReturnResult(this.execCmd('updateEngine'));
     };
-    
-    
+
+    this.getPluginInfo = function (pluginName) {
+        var cmd = "getPluginInfo " + pluginName;
+        return this.ReturnResult(this.execCmd(cmd));
+    };
+
+    this.updatePlugin = function (pluginName) {
+        var cmd = "updatePlugin " + pluginName;
+        return this.ReturnResult(this.execCmd(cmd));
+    };
+
     this.activatePlugin = function (pluginName) {
-        return this.execCmd('activatePlugin --pluginName ' + pluginName);
+        var cmd = "activatePlugin " + pluginName;
+        return this.ReturnResult(this.execCmd(cmd));
     };
+
+    this.deactivatePlugin = function (pluginName) {
+        var cmd = "deactivatePlugin " + pluginName;
+        return this.ReturnResult(this.execCmd(cmd));
+    };
+
+    this.deletePlugin = function (pluginName) {
+        var cmd = "deletePlugin " + pluginName;
+        return this.ReturnResult(this.execCmd(cmd));
+    };
+
 }
