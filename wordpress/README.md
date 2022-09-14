@@ -16,7 +16,7 @@ This package is designed to handle big load spikes by adjusting the allocated re
 
 In order to get this solution instantly deployed, click the **Get It Hosted Now** button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.  
 
-[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/wordpress/master/wordpress/manifest.jps)
+[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?https://raw.githubusercontent.com/hostpapa/jelastic-wordpress-jps/DEVOPS-52/wordpress/manifest.jps)
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../../raw/master/wordpress/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 

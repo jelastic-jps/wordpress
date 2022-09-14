@@ -15,22 +15,22 @@ var fields = {};
 for (var i = 0, field; field = jps.settings.fields[i]; i++)
   fields[field.name] = field;
  
-if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {  
-  fields["ls-addon"].hidden = false;
-  fields["ls-addon"].value = true;
-} else {
-  fields["ls-addon"].hidden = true;
-  fields["ls-addon"].value = false;
-  fields["ls-addon"].showIf = null;
-}
+// if (isLS.result == 0 || isLS.result == Response.PERMISSION_DENIED) {  
+//   fields["ls-addon"].hidden = false;
+//   fields["ls-addon"].value = true;
+// } else {
+//   fields["ls-addon"].hidden = true;
+//   fields["ls-addon"].value = false;
+//   fields["ls-addon"].showIf = null;
+// }
   
-if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
-  fields["cdn-addon"].hidden = false;
-  fields["cdn-addon"].value = true;
-} else {
-  fields["cdn-addon"].hidden = true;
-  fields["cdn-addon"].value = false;
-}
+// if (isCDN.result == 0 || isCDN.result == Response.PERMISSION_DENIED) {
+//   fields["cdn-addon"].hidden = false;
+//   fields["cdn-addon"].value = true;
+// } else {
+//   fields["cdn-addon"].hidden = true;
+//   fields["cdn-addon"].value = false;
+// }
 
 //checking quotas
 var extIP = "environment.externalip.enabled",
@@ -63,8 +63,8 @@ if (!LE) {
   fields["displayfield"].cls = "warning";
   fields["displayfield"].hideLabel = true;
   fields["displayfield"].height = 25;
-  fields["le-addon"].disabled = true;
-  fields["le-addon"].value = false;
+  //fields["le-addon"].disabled = true;
+  //fields["le-addon"].value = false;
   fields["bl_count"].markup = "Let's Encrypt is not available. " + markup + "Please upgrade your account.";
   fields["bl_count"].cls = "warning";
   fields["bl_count"].hidden = false;
