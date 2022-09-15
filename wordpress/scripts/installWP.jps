@@ -10,11 +10,8 @@ globals:
   DB_USER: "${settings.db_user}"
   DB_PASS: "${settings.db_pass}"
   WP_URL: "${settings.wp_url}"
+  VERSION_WORDPRESS: "${settings.version_wordpress}"
   TARGET_NODE_ID: "${settings.targetNodeID}"
-  GITHUB_TOKEN: "${settings.github_token}"
-  GITHUB_OWNER: "${settings.github_owner}"
-  GITHUB_REPO: "${settings.github_repo}"
-  GITHUB_REPO_RELEASE: "${settings.github_repo_release}"
 
 onInstall:
   - installWP
@@ -26,8 +23,7 @@ onInstall:
 actions:
   installWP:
     - cmd[${globals.TARGET_NODE_ID}]: |-
-        cd /var/www/webroot/ROOT && wget -qO- --header 'Authorization: token ${globals.GITHUB_TOKEN}' https://api.github.com/repos/${globals.GITHUB_OWNER}/${globals.GITHUB_REPO}/tarball/${globals.GITHUB_REPO_RELEASE} | tar xz --strip-components=1
-        cd /var/www/webroot/ROOT && composer config --no-plugins allow-plugins.composer/installers true && composer install --no-interaction
+        wget -qO- 'https://wordpress.org/wordpress-${globals.VERSION_WORDPRESS}.tar.gz' | tar xz -C /tmp && mv /tmp/wordpress/* ${SERVER_WEBROOT}
         mysql -u${globals.DB_USER} -p${globals.DB_PASS} -h ${globals.DB_HOST} -e "CREATE DATABASE IF NOT EXISTS ${globals.DB_NAME};"
         cd /var/www/webroot/ROOT && wp core config --dbhost=${globals.DB_HOST} --dbname=${globals.DB_NAME} --dbuser=${globals.DB_USER} --dbpass=${globals.DB_PASS} --path=${SERVER_WEBROOT}
         cd /var/www/webroot/ROOT && wp core install --title="${globals.WP_TITLE}" --admin_user=${user.email} --admin_password=${globals.WP_ADMIN_PASS} --url=${globals.WP_URL} --admin_email=${user.email} --skip-email --path=${SERVER_WEBROOT}
