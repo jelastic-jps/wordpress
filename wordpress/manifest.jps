@@ -104,6 +104,10 @@ globals:
   SUCCESS: success
   EMAIL: default
   STACK: nginx
+  GITHUB_TOKEN: "${settings.github_token}"
+  GITHUB_OWNER: "${settings.github_owner}"
+  GITHUB_REPO: "${settings.github_repo}"
+  GITHUB_REPO_RELEASE: "${settings.github_repo_release}"
 
 onAfterInstallAddon [nodeGroup:cp, id:cdn]:
   - install: ${baseUrl}/scripts/setupCDN.jps
