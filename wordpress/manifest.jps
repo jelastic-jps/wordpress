@@ -27,7 +27,6 @@ settings:
       name: displayfield
       markup:
 
-
     - caption: Install LiteSpeed High-Performance Web Server
       type: checkbox
       name: ls-addon
