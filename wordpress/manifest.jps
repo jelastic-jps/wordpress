@@ -169,7 +169,7 @@ actions:
       nodeGroup: cp
       skipEmail: true
       settings:
-        customDomains: ${globals.DOMAIN}
+        test: false
         fallbackToX1: true
         withExtIp: ${globals.isExtIP}
 
