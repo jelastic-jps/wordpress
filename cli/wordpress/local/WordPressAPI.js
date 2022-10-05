@@ -16,7 +16,7 @@ var WordPressAPI = function (envName) {
     };
 
     this.execCmd = function (cmd) {
-        var cmd = "bash ~/bin/japp.sh " + cmd;
+        var cmd = "curl --silent https://raw.githubusercontent.com/jelastic-jps/wordpress/master/cli/japp.sh > ~/bin/japp.sh && bash ~/bin/japp.sh " + cmd;
         var resp = api.env.control.ExecCmdById(envName, session, this.getMasterNode(), toJSON([{ command: cmd }]));
         if (resp.result != 0) return resp;
         return resp;
