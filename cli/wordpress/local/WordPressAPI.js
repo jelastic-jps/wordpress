@@ -2,6 +2,8 @@
 
 import com.hivext.api.Response;
 
+include_once com.hivext.scripting.wordpress.local.Constants;
+
 var WordPressAPI = function (envName) {
     this.getMasterNode = function () {
         var resp = jelastic.env.control.GetEnvInfo(envName, session);
@@ -87,14 +89,14 @@ var WordPressAPI = function (envName) {
 
     this.validatePluginName = function (pluginName) {
         if (!/^[A-Za-z0-9,_,-]*$/.test(pluginName)) {
-            return { result: 13001, errOut: "PluginName is not valid" }
+            return { result: INVALID_PARAM, errOut: "PluginName is not valid" }
         }
         return { result: 0, pluginName: pluginName }
     };
 
     this.validateVersion = function (version) {
         if (!/^[0-9,.]*$/.test(version)) {
-            return { result: 13001, errOut: "Version is not valid" }
+            return { result: INVALID_PARAM, errOut: "Version is not valid" }
         }
         return { result: 0, version: version }
     };
