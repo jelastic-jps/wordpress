@@ -139,15 +139,20 @@ onInstall:
           email: /success/email/success-${nodes.cp.master.nodeType}-${globals.SUCCESS}.md?_r=${fn.random}
 
 actions:
-
+  
   limits:
     - env.control.ApplyNodeGroupData[cp]:
         data:
-          project: ${settings.project:default}
-          projectScope: ${settings.projectScope:production}
           validation : 
             maxCount: 1
-            
+
+  metadata:
+    - env.control.ApplyEnvProperty[cp]:
+        properties:
+          project: ${settings.project:default}
+          projectScope: ${settings.projectScope:production}
+
+
   setProtocol:
     - script: |
         return {
