@@ -112,7 +112,7 @@ globals:
 
 onInstall:
 
-  - limits
+  - metadata
   - initLEsettings  
   - setupNode:
       nodeId: cp
@@ -140,18 +140,28 @@ onInstall:
 
 actions:
   
-  limits:
-    - env.control.ApplyNodeGroupData[cp]:
-        data:
-          validation : 
-            maxCount: 1
-
   metadata:
-    - env.control.ApplyEnvProperty[cp]:
-        properties:
-          project: ${settings.project:default}
-          projectScope: ${settings.projectScope:production}
-
+    script: |
+      var apiList = [],
+          metadata = { project: "${settings.project:default}", projectScope: "${settings.projectScope:production}" };
+      if (api.env.control.ApplyEnvProperty) {
+        apiList.push({
+          method: "env.control.ApplyEnvProperty",
+          properties: metadata
+        });
+        } else {
+        apiList.push({
+          method: "env.control.ApplyNodeGroupData",
+          nodeGroup: "cp",
+          data: metadata
+        });     
+      }
+      apiList.push({
+        method: "env.control.ApplyNodeGroupData",
+        nodeGroup: "cp",
+        data: { validation: { maxCount: 1 } }
+      });     
+      return { result: 0, onAfterReturn: { api: apiList } };
 
   setProtocol:
     - script: |
