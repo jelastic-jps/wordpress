@@ -111,8 +111,8 @@ globals:
   SUCCESS: default
 
 onInstall:
-
-  - limits
+  - addLimits
+  - addMetadata
   - initLEsettings  
   - setupNode:
       nodeId: cp
@@ -140,14 +140,19 @@ onInstall:
 
 actions:
 
-  limits:
+  addLimits:
     - env.control.ApplyNodeGroupData[cp]:
         data:
-          project: ${settings.project:default}
-          projectScope: ${settings.projectScope:production}
           validation : 
             maxCount: 1
-            
+
+  addMetadata:
+    script: |
+      var metadata = { project: "${settings.project:default}", projectScope: "${settings.projectScope:production}" };
+      return api.env.control.ApplyEnvProperty ?
+        api.env.control.ApplyEnvProperty('${env.name}', session, metadata) :
+        api.env.control.ApplyNodeGroupData('${env.name}', session, 'cp', metadata);
+
   setProtocol:
     - script: |
         return {
