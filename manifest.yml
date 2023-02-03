@@ -28,6 +28,8 @@ settings:
       required: true
       width: 225
       values:
+        - value: php8.2
+          caption: PHP 8.2
         - value: php8.1
           caption: PHP 8.1
         - value: php8.0
