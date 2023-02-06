@@ -24,7 +24,7 @@ settings:
     - caption: PHP version
       type: list
       name: php_engine
-      default: php8.1
+      default: php8.2
       required: true
       width: 225
       values:
