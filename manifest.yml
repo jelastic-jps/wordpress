@@ -191,6 +191,7 @@ actions:
       skipEmail: true
       settings:
         test: false
+        skipEmail: true
         fallbackToX1: true
         withExtIp: ${globals.isExtIP}
 
