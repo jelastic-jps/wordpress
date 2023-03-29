@@ -14,6 +14,7 @@ if ('${settings.ls-addon:false}'== 'true') {
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
     nodeGroup: "cp",
+    skipNodeEmails: "true",
     displayName: "AppServer",
     env: {
       SERVER_WEBROOT: "/var/www/webroot/ROOT",
@@ -31,6 +32,7 @@ if ('${settings.ls-addon:false}'== 'true') {
     flexibleCloudlets: ${settings.flexibleCloudlets:16},
     fixedCloudlets: ${settings.fixedCloudlets:1},
     nodeGroup: "cp",
+    skipNodeEmails: "true",
     displayName: "AppServer",
     env: {
       SERVER_WEBROOT: "/var/www/webroot/ROOT",
