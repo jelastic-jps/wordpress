@@ -115,6 +115,7 @@ settings:
 
 mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
+ - /scripts/common.yml
 
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
