@@ -7,12 +7,12 @@ actions:
                 let resp = jelastic.env.control.GetEnvInfo(targetAppid, session);
                 if (resp.result != 0) return resp;
                 let node = resp.nodes[0];
-                if (String(node.flexibleCloudlets) != '${this.cloudlets}') {
-                  resp = jelastic.env.control.SetCloudletsCountByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, fixedCloudlets: node.fixedCloudlets, flexibleCloudlets: '${this.cloudlets}'});
+                if (String(node.flexibleCloudlets) != '${this.flexibleCloudlets}') {
+                  resp = jelastic.env.control.SetCloudletsCountByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, fixedCloudlets: node.fixedCloudlets, flexibleCloudlets: '${this.flexibleCloudlets}'});
                   if (resp.result != 0) return resp;
                 }
-                if (String(node.diskLimit) != '${this.diskspace}') {
-                  resp = jelastic.env.control.SetDiskLimitByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, limit: '${this.diskspace}' });
+                if (String(node.diskLimit) != '${this.diskLimit}') {
+                  resp = jelastic.env.control.SetDiskLimitByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, diskLimit: '${this.diskLimit}' });
                   if (resp.result != 0) return resp;
                 }
               }
