@@ -6,13 +6,15 @@ var resp = {
   nodes: []
 }
 
+var diskLimit =  jelastic.billing.account.GetQuotas('disk.limitation').array[0].value;
+
 if ('${settings.ls-addon:false}'== 'true') {
   resp.nodes.push({
     nodeType: "llsmp",
     engine: "${settings.php_engine:php8.2}",
     count: 1,
     cloudlets: "${settings.cloudlets:16}",
-    diskLimit: "${settings.diskspace:30}",
+    diskspace: "${settings.diskspace:diskLimit}",
     nodeGroup: "cp",
     skipNodeEmails: "true",
     displayName: "AppServer",
@@ -30,7 +32,7 @@ if ('${settings.ls-addon:false}'== 'true') {
     engine: "${settings.php_engine:php8.2}",
     count: 1,
     cloudlets: "${settings.cloudlets:16}",
-    diskLimit: "${settings.diskspace:30}",
+    diskspace: "${settings.diskspace:diskLimit}",
     nodeGroup: "cp",
     skipNodeEmails: "true",
     displayName: "AppServer",
