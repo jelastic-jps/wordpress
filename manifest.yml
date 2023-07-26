@@ -115,6 +115,7 @@ settings:
 
 mixins:
  - https://raw.githubusercontent.com/jelastic-jps/wordpress/master/configs/vers.yaml
+ - /scripts/common.yml
 
 globals:
   isSingleDeploy: ${settings.isSingleDeploy:true}
@@ -191,6 +192,7 @@ actions:
       skipEmail: true
       settings:
         test: false
+        skipEmail: true
         fallbackToX1: true
         withExtIp: ${globals.isExtIP}
 

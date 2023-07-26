@@ -1,0 +1,19 @@
+actions:
+  applyEnvSettings:
+    script: |
+      var envs = '${this.targetAppid}'.split(',');
+      for (var i=0, n = envs.length; i < n; i++) {
+        let targetAppid = envs[i];
+        let resp = jelastic.env.control.GetEnvInfo(targetAppid, session);
+        if (resp.result != 0) return resp;
+        let node = resp.nodes[0];
+        if (String(node.flexibleCloudlets) != '${this.cloudlets}') {
+          resp = jelastic.env.control.SetCloudletsCountByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, fixedCloudlets: node.fixedCloudlets, flexibleCloudlets: '${this.cloudlets}'});
+          if (resp.result != 0) return resp;
+        }
+        if (String(node.diskLimit) != '${this.diskspace}') {
+          resp = jelastic.env.control.SetDiskLimitByGroup({ appid: targetAppid, session: session, nodeGroup: node.nodeGroup, limit: '${this.diskspace}' });
+          if (resp.result != 0) return resp;
+        }
+      }
+      return { result: 0 };
