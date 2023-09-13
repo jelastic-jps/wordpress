@@ -2,6 +2,8 @@
 
 import com.hivext.api.Response;
 
+include_once com.hivext.scripting.wordpress.local.Constants;
+
 var WordPressAPI = function (envName) {
     this.getMasterNode = function () {
         var resp = jelastic.env.control.GetEnvInfo(envName, session);
@@ -18,11 +20,10 @@ var WordPressAPI = function (envName) {
     this.execCmd = function (cmd) {
         var cmd = "curl --silent https://raw.githubusercontent.com/jelastic-jps/wordpress/master/cli/japp.sh > ~/bin/japp.sh && bash ~/bin/japp.sh " + cmd;
         var resp = api.env.control.ExecCmdById(envName, session, this.getMasterNode(), toJSON([{ command: cmd }]));
-        if (resp.result != 0) return resp;
         return resp;
     };
 
-    this.ReturnResult = function (scriptResp) {
+    this.returnResult = function (scriptResp) {
         try {
             scriptResp = JSON.parse(scriptResp.responses[0].out);
         } catch(ex) {
@@ -33,43 +34,71 @@ var WordPressAPI = function (envName) {
     };
 
     this.getEngineVersion = function () {
-        return this.ReturnResult(this.execCmd('getEngineVersion'));
+        return this.returnResult(this.execCmd('getEngineVersion'));
     };
 
     this.getPlugins = function () {
-        return this.ReturnResult(this.execCmd('getPlugins'));
+        return this.returnResult(this.execCmd('getPlugins'));
     };    
 
     this.getEngineUpdates = function () {
-        return this.ReturnResult(this.execCmd('getEngineUpdates'));
+        return this.returnResult(this.execCmd('getEngineUpdates'));
     };   
     
-    this.updateEngine = function () {
-        return this.ReturnResult(this.execCmd('updateEngine'));
+    this.updateEngine = function (engineVersion) {
+        var resp = this.validateVersion(engineVersion);
+        if (resp.result != 0) return resp;
+        var cmd = "updateEngine " + resp.version;
+        return this.returnResult(this.execCmd(cmd));
     };
 
     this.getPluginInfo = function (pluginName) {
-        var cmd = "getPluginInfo " + pluginName;
-        return this.ReturnResult(this.execCmd(cmd));
+        var resp = this.validatePluginName(pluginName);
+        if (resp.result != 0) return resp;
+        var cmd = "getPluginInfo " + resp.pluginName;
+        return this.returnResult(this.execCmd(cmd));
     };
 
     this.updatePlugin = function (pluginName) {
-        var cmd = "updatePlugin " + pluginName;
-        return this.ReturnResult(this.execCmd(cmd));
+        var resp = this.validatePluginName(pluginName);
+        if (resp.result != 0) return resp;
+        var cmd = "updatePlugin " + resp.pluginName;
+        return this.returnResult(this.execCmd(cmd));
     };
 
     this.activatePlugin = function (pluginName) {
-        var cmd = "activatePlugin " + pluginName;
-        return this.ReturnResult(this.execCmd(cmd));
+        var resp = this.validatePluginName(pluginName);
+        if (resp.result != 0) return resp;
+        var cmd = "activatePlugin " + resp.pluginName;
+        return this.returnResult(this.execCmd(cmd));
     };
 
     this.deactivatePlugin = function (pluginName) {
-        var cmd = "deactivatePlugin " + pluginName;
-        return this.ReturnResult(this.execCmd(cmd));
+        var resp = this.validatePluginName(pluginName);
+        if (resp.result != 0) return resp;
+        var cmd = "deactivatePlugin " + resp.pluginName;
+        return this.returnResult(this.execCmd(cmd));
     };
 
     this.deletePlugin = function (pluginName) {
-        var cmd = "deletePlugin " + pluginName;
-        return this.ReturnResult(this.execCmd(cmd));
+        var resp = this.validatePluginName(pluginName);
+        if (resp.result != 0) return resp;
+        var cmd = "deletePlugin " + resp.pluginNamep;
+        return this.returnResult(this.execCmd(cmd));
     };
+
+    this.validatePluginName = function (pluginName) {
+        if (!/^[A-Za-z0-9,_,-]*$/.test(pluginName)) {
+            return { result: INVALID_PARAM, errOut: "PluginName is not valid" }
+        }
+        return { result: 0, pluginName: pluginName }
+    };
+
+    this.validateVersion = function (version) {
+        if (!/^[0-9,.]*$/.test(version)) {
+            return { result: INVALID_PARAM, errOut: "Version is not valid" }
+        }
+        return { result: 0, version: version }
+    };
+  
 }
