@@ -1,15 +1,16 @@
-## WordPress API methods for WordPress environments
+## API Methods for WordPress Environments
 
-#### GetEngineVersion 
-Get Wordpress current version
+#### GetEngineVersion
 
-https://app.{hoster}/wordpress/getengineversion?appid=ext&session=[string]&envName=[string]   
+Returns the current version of the WordPress engine.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
+https://app.{hoster}/wordpress/getengineversion?appid=ext&session=[string]&envName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -17,16 +18,17 @@ Response
   }
 ```
 
-#### GetEngineUpdates 
-Get major and minor versions for engine update 
+#### GetEngineUpdates
 
-https://app.{hoster}/wordpress/getengineupdates?appid=ext&session=[string]&envName=[string]   
+Returns the latest minor and major versions to which the current WordPress engine can be updated.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
+https://app.{hoster}/wordpress/getengineupdates?appid=ext&session=[string]&envName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -42,27 +44,27 @@ Response
     ]
   }
 ```
-if version is up to date
 
+If the version is up to date:
 ```
   "response": {
     "result": 0,
     "versionsToUpdate": []
   }
-
 ```
 
-#### UpdateEngine 
-Update Wordpress engine
+#### UpdateEngine
 
-https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]   
+Updates the WordPress engine to the specified version.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**engineVersion**: "Engine version" 
+https://app.{hoster}/wordpress/updateengine?appid=ext&session=[string]&envName=[string]&engineVersion=[version]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **engineVersion**: "engine version" - WordPress engine version to update to (see the *GetEngineUpdates* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -73,16 +75,17 @@ Response
   }
 ```
 
-#### GetPlugins 
-Get plugins list
+#### GetPlugins
 
-https://app.{hoster}/wordpress/getplugins?appid=ext&session=[string]&envName=[string]   
+Returns the list of currently installed WordPress plugins.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
+https://app.{hoster}/wordpress/getplugins?appid=ext&session=[string]&envName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -128,17 +131,18 @@ Response
 
 ```
 
-#### GetPluginInfo 
-Get info about plugin
+#### GetPluginInfo
 
-https://app.{hoster}/wordpress/getplugininfo?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+Returns detailed information on the specific WordPress plugin.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**pluginName**: "Plugin name" 
+https://app.{hoster}/wordpress/getplugininfo?appid=ext&session=[string]&envName=[string]&pluginName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **pluginName**: "plugin name" - target WordPress plugin name (see the *GetPlugins* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -153,17 +157,18 @@ Response
   }
 ```
 
-#### ActivatePlugin 
-Activate plugin
+#### ActivatePlugin
 
-https://app.{hoster}/wordpress/activateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+Activates a specific WordPress plugin.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**pluginName**: "Plugin name" 
+https://app.{hoster}/wordpress/activateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **pluginName**: "plugin name" - target WordPress plugin name (see the *GetPlugins* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -171,17 +176,18 @@ Response
   }
 ```
 
-#### DeactivatePlugin 
-Dectivate plugin
+#### DeactivatePlugin
 
-https://app.{hoster}/wordpress/deactivateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+Deactivates a specific WordPress plugin.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**pluginName**: "Plugin name" 
+https://app.{hoster}/wordpress/deactivateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **pluginName**: "plugin name" - target WordPress plugin name (see the *GetPlugins* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -190,17 +196,18 @@ Response
 ```
 
 
-#### UpdatePlugin 
-Update plugin
+#### UpdatePlugin
 
-https://app.{hoster}/wordpress/updateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+Updates a specific WordPress plugin.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**pluginName**: "Plugin name" 
+https://app.{hoster}/wordpress/updateplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **pluginName**: "plugin name" - target WordPress plugin name (see the *GetPlugins* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -211,17 +218,18 @@ Response
   }
 ```
 
-#### DeletePlugin 
-Delete plugin
+#### DeletePlugin
 
-https://app.{hoster}/wordpress/deleteplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]   
+Deletes a specific WordPress plugin.
 
-Parameters  
-**envName** : "string"  
-**session** : "string"  
-**pluginName**: "Plugin name" 
+https://app.{hoster}/wordpress/deleteplugin?appid=ext&session=[string]&envName=[string]&pluginName=[string]
 
-Response  
+Parameters:
+- **envName** : "string" - target environment name
+- **session** : "string" - user session or personal access token
+- **pluginName**: "plugin name" - target WordPress plugin name (see the *GetPlugins* method)
+
+Response:
 ```
   "response": {
     "result": 0,
@@ -230,10 +238,10 @@ Response
 ```
 
 
+### Errors
 
-### Errors    
+- **system results** (for example, the script does not exist)
 
-**The system result (for example script does not exist)**   
 ```
 {
   "result": 1702,
@@ -249,7 +257,9 @@ Response
   "error": "script = wordpress.failmethod not found"
 }
 ```
-**Script result (for examle, if environment does not exist, or not running ……)**    
+
+- **script results** (for examle, environment does not exist, not running, etc.)    
+
 ```
 {
   "result": 0,
@@ -271,8 +281,8 @@ Response
 }
 ```
 
-**WP API result (for examle, wp-config.php does not exist**    
-Code result: **13001**
+- **WP API results** (for examle, wp-config.php does not exist)
+
 ```
   "response": {
     "result": 13001,
