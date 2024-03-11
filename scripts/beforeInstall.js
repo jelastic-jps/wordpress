@@ -9,7 +9,7 @@ var resp = {
 if ('${settings.ls-addon:false}'== 'true') {
   resp.nodes.push({
     nodeType: "llsmp",
-    engine: "${settings.php_engine:php8.2}",
+    engine: "${settings.php_engine:php8.0}",
     count: 1,
     cloudlets: "${settings.cloudlets:16}",
     diskLimit: "${settings.diskspace:[quota.disk.limitation]}",
