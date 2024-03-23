@@ -5,6 +5,7 @@ name: WordPress Standalone Kit
 categories:
   - apps/blogs
   - apps/content-management
+  - apps/wordpress
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
 description:
