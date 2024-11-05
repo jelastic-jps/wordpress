@@ -33,10 +33,6 @@ settings:
           caption: PHP 8.3
         - value: php8.2
           caption: PHP 8.2
-        - value: php8.1
-          caption: PHP 8.1
-        - value: php8.0
-          caption: PHP 8.0
   
     - caption: Advanced Features
       type: displayfield
