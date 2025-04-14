@@ -156,7 +156,7 @@ onInstall:
 actions:
 
   addLimits:
-    - env.control.ApplyNodeGroupData[cp]:
+    - env.nodegroup.ApplyData[cp]:
         data:
           validation : 
             maxCount: 1
