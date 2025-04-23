@@ -25,10 +25,12 @@ settings:
     - caption: PHP version
       type: list
       name: php_engine
-      default: php8.3
+      default: php8.4
       required: true
       width: 225
       values:
+        - value: php8.4
+          caption: PHP 8.4
         - value: php8.3
           caption: PHP 8.3
         - value: php8.2
