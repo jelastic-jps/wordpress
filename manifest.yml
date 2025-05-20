@@ -9,8 +9,8 @@ categories:
 logo: https://raw.githubusercontent.com/jelastic-jps/wordpress/master/images/wp-standalone.png
 homepage: http://wordpress.org/
 description:
-  text: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
-  short: WordPress Standalone with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
+  text: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
+  short: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/wordpress/v2.2.0
 
