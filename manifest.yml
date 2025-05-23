@@ -6,13 +6,25 @@ categories:
   - apps/blogs
   - apps/content-management
   - apps/wordpress
-logo: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@master/images/wp-standalone.png
+logo: /images/wp-standalone.png
 homepage: http://wordpress.org/
 description:
   text: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
-baseUrl: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@2.2.0
+
+globals:
+  cdnUrl: https://cdn.jsdelivr.net/gh
+  isSingleDeploy: ${settings.isSingleDeploy:true}
+  WP_CLUSTER_PATH: ${globals.cdnUrl}/jelastic-jps/wordpress-cluster@2.2.0
+  DB_USER: ${settings.DB_USER:user-[fn.random]}
+  DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
+  DB_HOST: 127.0.0.1
+  PROTOCOL: http
+  WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
+  SUCCESS: default
+
+baseUrl: ${globals.cdnUrl}/jelastic-jps/wordpress@2.2.0
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
@@ -114,18 +126,8 @@ settings:
       markup:
 
 mixins:
- - https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@master/configs/vers.yaml
+ - ${globals.cdnUrl}/jelastic-jps/wordpress@master/configs/vers.yaml
  - /scripts/common.yml
-
-globals:
-  isSingleDeploy: ${settings.isSingleDeploy:true}
-  WP_CLUSTER_PATH: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress-cluster@2.2.0
-  DB_USER: ${settings.DB_USER:user-[fn.random]}
-  DB_PASS: ${settings.DB_PASS:[fn.password(10)]}
-  DB_HOST: 127.0.0.1
-  PROTOCOL: http
-  WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
-  SUCCESS: default
 
 onInstall:
   - addLimits
@@ -187,7 +189,7 @@ actions:
         DOMAIN: ${response.domains} 
 
   installLEaddon:
-    - install: https://cdn.jsdelivr.net/gh/jelastic-jps/lets-encrypt@master/manifest.jps
+    - install: ${globals.cdnUrl}/jelastic-jps/lets-encrypt@master/manifest.jps
       nodeGroup: cp
       skipEmail: true
       settings:
@@ -219,7 +221,7 @@ actions:
         bash ~/bin/setupWP.sh --url https://${domain};
 
   installCDN:
-    - install: https://cdn.jsdelivr.net/gh/jelastic-jps/cdn@master/manifest.yml
+    - install: ${globals.cdnUrl}/jelastic-jps/cdn@master/manifest.yml
       nodeGroup: cp
       skipEmail: true
       settings:
@@ -251,7 +253,7 @@ actions:
 
   setupNode:
     - log: OPTIMIZATION
-    - install: https://cdn.jsdelivr.net/gh/jelastic/templates@master/config_v2.jps
+    - install: ${globals.cdnUrl}/jelastic/templates@master/config_v2.jps
       settings:
         targetGroup: cp
         targetNodes: ${this.nodeId}
@@ -261,7 +263,7 @@ actions:
     - log: Create user for DataBase
     - cmd [cp]: |-
         wget ${baseUrl}/configs/sqldb/wordpress.cnf -O /etc/mysql/conf.d/wordpress.cnf &>> /var/log/run.log;
-        wget https://cdn.jsdelivr.net/gh/jelastic-jps/mysql-cluster@master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log;
+        wget ${globals.cdnUrl}/jelastic-jps/mysql-cluster@master/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log;
         bash ~/setupUser.sh ${globals.DB_USER} ${globals.DB_PASS} &>> /var/log/run.log;
         jem passwd set -p ${globals.DB_PASS} &>> /var/log/run.log;
       user: root
