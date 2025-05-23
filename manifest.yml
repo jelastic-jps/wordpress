@@ -12,6 +12,7 @@ description:
   text: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs
 
+baseUrl: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@2.2.0
 
 globals:
   cdnUrl: https://cdn.jsdelivr.net/gh
@@ -23,8 +24,6 @@ globals:
   PROTOCOL: http
   WP_ADMIN_PASS: ${settings.WP_ADMIN_PASS:[fn.password(10)]}
   SUCCESS: default
-
-baseUrl: ${globals.cdnUrl}/jelastic-jps/wordpress@2.2.0
 
 onBeforeInit: /scripts/beforeInit.js?_r=${fn.random}
 onBeforeInstall: /scripts/beforeInstall.js?_r=${fn.random}
@@ -126,7 +125,7 @@ settings:
       markup:
 
 mixins:
- - ${globals.cdnUrl}/jelastic-jps/wordpress@master/configs/vers.yaml
+ - https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@master/configs/vers.yaml
  - /scripts/common.yml
 
 onInstall:
