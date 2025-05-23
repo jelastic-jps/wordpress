@@ -220,7 +220,7 @@ actions:
         bash ~/bin/setupWP.sh --url https://${domain};
 
   installCDN:
-    - install: ${globals.cdnUrl}/cdn@master/manifest.yml
+    - install: ${globals.cdnUrl}/jelastic-jps/cdn@master/manifest.yml
       nodeGroup: cp
       skipEmail: true
       settings:
