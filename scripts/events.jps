@@ -3,7 +3,7 @@ id: wordpress-standalone-events
 name: WordPress Standalone Events
 
 globals:
-  WP_CLUSTER_PATH: https://raw.githubusercontent.com/jelastic-jps/wordpress-cluster/v2.2.0
+  WP_CLUSTER_PATH: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress-cluster@2.2.0
       
 onAfterInstallAddon [nodeGroup:cp, id:letsencrypt-ssl-addon]:
   - cmd[cp]: |-
