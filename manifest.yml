@@ -12,10 +12,10 @@ description:
   text: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs. WordPress CMS deployed as a lightweight standalone container with minimal allocated resources for cost efficiency.
   short: WordPress Standalone Kit with built-in kit for choosing optimal application servers and a set of advanced features for running websites and blogs.
 
-baseUrl: https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@2.2.0
+baseUrl: https://fastly.jsdelivr.net/gh/jelastic-jps/wordpress@2.2.0
 
 globals:
-  cdnUrl: https://cdn.jsdelivr.net/gh
+  cdnUrl: https://fastly.jsdelivr.net/gh
   isSingleDeploy: ${settings.isSingleDeploy:true}
   WP_CLUSTER_PATH: ${globals.cdnUrl}/jelastic-jps/wordpress-cluster@2.2.0
   DB_USER: ${settings.DB_USER:user-[fn.random]}
@@ -127,7 +127,7 @@ settings:
       markup:
 
 mixins:
- - https://cdn.jsdelivr.net/gh/jelastic-jps/wordpress@master/configs/vers.yaml
+ - https://fastly.jsdelivr.net/gh/jelastic-jps/wordpress@master/configs/vers.yaml
  - /scripts/common.yml
 
 onInstall:
